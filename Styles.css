@@ -1,16 +1,98 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
 }
-nav{
-    
+
+nav {
     height: 10vh;
-    background-color: black;
+    background-color: #1E3A8A;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    text-decoration: none;
+    font-family: 'Times New Roman', Times, serif;
+    /* font-style: italic; */
+
 }
-.body{
-    height: 80vh;
+
+nav a {
+    text-decoration: none;
+    color: #F9FAFB;
 }
-footer{
-    height: 10vh;
-    background-color: black;
+
+#time {
+    border: 1px solid white;
+    border-radius: 3px;
+    color: #E5E7EB;
+    padding:5px;
+    font-size:20px;
+}
+
+.body {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    border: 1px solid none;
+    border-radius: 10px;
+    width: fit-content;
+    background-color: #3B82F6;
+    padding: 30px;
+
+}
+
+.form h1 {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 40px;
+}
+
+label {
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+input[type="text"],
+input[type="password"] {
+    background-color: #FFFFFF;
+    color: #111827;
+    border: 2px solid #E5E7EB;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+    width: 250px;
+}
+
+.button {
+    background-color: #1E3A8A;
+    color: #F9FAFB;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background-color: #0042ac;
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+}
+
+.button:active {
+    transform: scale(0.9);
+}
+.button_center{
+    display: flex;
+    justify-content: center;
 }

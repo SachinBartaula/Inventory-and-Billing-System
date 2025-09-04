@@ -1,21 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IBS</title>
     <link rel="Stylesheet" href="Styles.css">
+    <script src="date_time.js"></script>
 </head>
+
 <body>
     <nav>
-        <h2 id="logo">Inventory and Billing System</h2>
+        <a href="#">
+            <h2 id="logo">Inventory & Billing System</h2>
+        </a>
+        <div id="time"></div>
     </nav>
     <div class="body">
-        
-    </div>
-    <footer>
+        <div class="form">
 
-    </footer>
-    
+            <form method="post" action="abc.php">
+                <h1>Login</h1>
+                <label>User name </label><input type="text" name="u_name" placeholder="Username" required min="5"
+                    max="20"><br><br>
+                <label>Password&nbsp;&nbsp; </label><input type="password" name="u_password" placeholder="Password"
+                    required min="8" max="20"><br><br>
+                <div class="button_center">
+                    <input class="button" type="submit" name="btn1" value="Login"> &nbsp; &nbsp; &nbsp; &nbsp;
+                    <input class="button" type="reset" name="btn2" value="Cancel">
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+
 </body>
+
 </html>
