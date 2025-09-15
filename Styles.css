@@ -19,6 +19,9 @@ nav a {
     text-decoration: none;
     color: #FFFFFF; /* White */
 }
+#logo:active{
+    transform:scale(0.98) ;
+}
 
 #time {
     border: 1px solid #94A3B8; /* Soft Gray Blue */
@@ -73,6 +76,13 @@ input[type="password"] {
     outline: none;
     transition: 0.3s;
     width: 250px;
+} 
+
+input[type="text"]:active{
+    transform: scale(0.95);
+}
+input[type="password"]:active{
+    transform: scale(0.95);
 }
 
 .button {
@@ -84,7 +94,7 @@ input[type="password"] {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 1s;
 }
 
 .button:hover {
