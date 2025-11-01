@@ -16,11 +16,11 @@
         <h2 id="logo">Inventory &<br>Billing system</h2>
         <div class="page-contanier">
             <ul>
-                <li><b><a href="a_dashboard.html">Dashboard</a></b></li>
-                <li><a href="">Inventory</a></li>
-                <li><a href="">Reports</a></li>
-                <li><a href="">Billing</a></li>
-                <li><a href="">Employees</a></li>
+                <li><a href="a_dashboard.html">Dashboard</a></li>
+                <li><a href="a_inventory.html">Inventory</a></li>
+                <li><b><a href="a_reports.html">Reports</a></b></li>
+                <li><a href="a_billing.html">Billing</a></li>
+                <li><a href="a_employee.html">Employees</a></li>
             </ul>
         </div>
     </div>

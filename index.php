@@ -11,13 +11,48 @@
 </head>
 
 <body>
-  
-    <div class="sidebar">
+  <?php
+if(isset($_REQUEST["u_name"]))
+    {
+    $name=$_REQUEST["u_name"];
+    $password=$_REQUEST["u_password"];
+    
+    $servername="localhost:3306";
+    $dusername="root";
+    $dpassword="";
+    $dname="project";
+    
+    $conn=new mysqli($servername,$dusername,$dpassword,$dname);
+    if($conn->connect_errno !=0)
+        {
+            die("connection failed".$conn->connect_error);
+        }
+    $sql="select * from users";
+    $result=$conn->query($sql);
+
+
+    if($result->num_rows > 0)
+ {
+    while ($row=$result->fetch_assoc()) {
+        $temp_name=$row['username'];
+        $temp_password=$row['password'];
+ }
+    if($name==$temp_name && $password==$temp_password){
+        header("location:a_dashboard.php");
+    }
+    else 
+        header("location:index.php");
+    }
+
+    }
+else{
+?>
+  <div class="sidebar">
         <h2 id="logo">Inventory &<br>Billing system</h2>
 </div>
     <div class="container">
         <div class="form">
-            <form method="post" action="abc.php">
+            <form method="post">
                 <h1>Login</h1>
                 <label for="uname">User name </label><br>
                 <input type="text" id="uname"name="u_name" placeholder="Username" required minlength="5" maxlength="20">
@@ -26,7 +61,7 @@
 
                         <label for="password">Password</label>
                         <br>
-                        <input type="password" id="password" name="u_password" placeholder="Password"required minlength="8" maxlength="20" pattern="[0-9]{1-19},[a-z,A-Z]{1-19}">
+                        <input type="password" id="password" name="u_password" placeholder="Password"required>
                         <br><br>
                     </div>
                 <div class="button_center">
@@ -37,6 +72,9 @@
         </div>
     </div>
 </div>  
+<?php
+}
+  ?>
 </body>
 
 </html>
