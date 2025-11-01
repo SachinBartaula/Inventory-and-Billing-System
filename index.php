@@ -13,7 +13,7 @@
 <body>
   
     <div class="sidebar">
-        <h2 id="title">Inventory &<br>Billing system</h2>
+        <h2 id="logo">Inventory &<br>Billing system</h2>
 </div>
     <div class="container">
         <div class="form">
