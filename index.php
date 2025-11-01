@@ -11,13 +11,11 @@
 </head>
 
 <body>
-    <nav>
-        <a href="#">
-            <h2 id="logo">Inventory & Billing System</h2>
-        </a>
-        <div id="time"></div>
-    </nav>
-    <div class="body">
+  
+    <div class="sidebar">
+        <h2 id="title">Inventory &<br>Billing system</h2>
+</div>
+    <div class="container">
         <div class="form">
             <form method="post" action="abc.php">
                 <h1>Login</h1>
@@ -35,13 +33,10 @@
                     <input class="button" type="submit" name="btn1" value="Login"> &nbsp; &nbsp; &nbsp; &nbsp;
                     <input class="button" type="reset" name="btn2" value="Cancel">
                 </div>
-
-
-
             </form>
         </div>
     </div>
-
+</div>  
 </body>
 
 </html>
