@@ -7,6 +7,7 @@
     <title>IBS</title>
     <!-- <link rel="stylesheet" href="Styles.css"> -->
      <link rel="stylesheet" href="Styles.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><!--icon connect garni*/-->
     <script src="main.js"></script>
 </head>
 
@@ -49,17 +50,18 @@ else{
 ?>
   <div class="sidebar">
         <h2 id="logo">Inventory &<br>Billing system</h2>
+
 </div>
     <div class="container">
         <div class="form">
             <form method="post">
                 <h1>Login</h1>
-                <label for="uname">User name </label><br>
+                <label for="uname"><i class="fa-solid fa-user"></i> User name </label><br>
                 <input type="text" id="uname"name="u_name" placeholder="Username" required minlength="5" maxlength="20">
                     <br><br>
                     <div class="password">
 
-                        <label for="password">Password</label>
+                        <label for="password"><i class="fa-solid fa-key"></i> Password</label>
                         <br>
                         <input type="password" id="password" name="u_password" placeholder="Password"required>
                         <br><br>
