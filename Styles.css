@@ -37,7 +37,7 @@ body{
     text-decoration: none;
 }
 #logo:hover{
-    transform: scale(0.90);
+    transform: scale(0.95);
 }
 .page-contanier{
     margin-top: 3.5vw;
@@ -56,7 +56,8 @@ body{
     transition: 0.5s;
 }
 .page-contanier ul li:hover{
-    transform: scale(1.2);
+    transform: scale(1.1);
+    background-color: #0284C7;
 }
 /* -------------------------- contanier -------------------------------------- */
 .container{
