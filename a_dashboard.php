@@ -24,7 +24,11 @@
                 <li><a href="a_employee.php"><i class="fa-solid fa-user-plus"></i> Employees</a></li>
             </ul>
         </div>
+        <footer>
+        <p>Version 1.0</p>
+        </footer>
     </div>
+    
 </body>
 
 </html>

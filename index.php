@@ -73,6 +73,9 @@ else{
             </form>
         </div>
     </div>
+     <footer>
+        <p>Version 1.0</p>
+        </footer>
 </div>  
 <?php
 }

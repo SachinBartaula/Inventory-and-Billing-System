@@ -22,13 +22,14 @@ body{
   -webkit-background-clip: text; /* For WebKit browsers like Chrome, Safari */
   background-clip: text;
   color: transparent;
-    margin-top: 4vh;
+    margin-top: 3vh;
     margin-left: 2vw;
     margin-right: 2vw;
     font-size: 35px;
-    padding-bottom: 5px;
+    height: 15vh;
+    /* padding-bottom: 5px; */
     border-bottom: 2px solid #0369A1;
-    overflow-wrap: break-word; 
+    /* overflow-wrap: break-word;  */
     overflow: hidden;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     transition:0.8s; 
@@ -40,7 +41,10 @@ body{
     transform: scale(0.95);
 }
 .page-contanier{
-    margin-top: 3.5vw;
+    margin-top: 1vw;
+    height: 75vh;
+    display: flex;
+    align-items: space-around;
 }
 .page-contanier ul li a{
     text-decoration:none ;
@@ -49,15 +53,18 @@ body{
 }
 .page-contanier ul li{
    list-style-type: none;
-    margin-top: 2vh;
+    margin-top: 1.5vh;
     margin-left: 2vw;
-    margin-right: 2vw;
     padding-left: 2vw;   
     transition: 0.5s;
 }
 .page-contanier ul li:hover{
     transform: scale(1.1);
     background-color: #0284C7;
+}
+footer{
+    color:#E0F2FE;
+    margin-left: 3vw;
 }
 /* -------------------------- contanier -------------------------------------- */
 .container{
