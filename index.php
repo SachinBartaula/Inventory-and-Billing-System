@@ -9,6 +9,7 @@
      <link rel="stylesheet" href="Styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><!--icon connect garni*/-->
     <script src="main.js"></script>
+  
 </head>
 
 <body>
@@ -48,7 +49,7 @@ if(isset($_REQUEST["u_name"]))
     }
 else{
 ?>
-  <div class="sidebar">
+  <div class="sidebar_index">
         <h2 id="logo">Inventory &<br>Billing system</h2>
          <div class="page-contanier">
         </div>

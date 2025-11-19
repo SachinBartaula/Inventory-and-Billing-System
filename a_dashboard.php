@@ -4,15 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IBS</title>
+    <title>Dashboard</title>
     <!-- <link rel="stylesheet" href="Styles.css"> -->
     <link rel="stylesheet" href="Styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><!--icon connect garni*/-->
     <script src="main.js"></script>
 </head>
-
 <body>
-
     <div class="sidebar">
          <a href="a_dashboard.php"><h2 id="logo" >Inventory &<br>Billing system</h2></a>
         <div class="page-contanier">
@@ -30,8 +28,8 @@
     </div>
     
     <div class="main">
-        <div class="main_top">
-            <div class="main_top_heading">
+        <div class="main_box">
+            <div class="main_box_heading">
                 <h1>Dashboard</h1><br>
                 <h4>Admin</h4>
                 </div>
@@ -62,23 +60,30 @@
                 <td>Dummy data</td>
                 <td>Dummy data</td>
             </tr>
-            <tr>
-                <td>Dummy data</td>
+</table>
+</div>
+<h2 id="main_body_heading">Top Salse item</h2>
+<div class="main_body_table">
+             <table border="1px">
+                <tr>
+                <th> S.N </th>
+                <th> Product </th>
+                <th> Quantity </th>
+                <th> Stock </th>
+                <th> Action </th>
+            </tr>
+             <tr>
                 <td>Dummy data</td>
                 <td>Dummy data</td>
                 <td>Dummy data</td>
                 <td>Dummy data</td>
                 <td>Dummy data</td>
             </tr>
-
-
+          
+            </table>
 </div>
-<?php
-?>
-
-        </table>
-        </div>
-    </div>
+</div>
+<footer>hdsjdshdh</footer>
 </body>
 
 </html>
