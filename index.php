@@ -50,6 +50,11 @@ else{
 ?>
   <div class="sidebar">
         <h2 id="logo">Inventory &<br>Billing system</h2>
+         <div class="page-contanier">
+        </div>
+        <footer>
+        <p>Version 1.0</p>
+        </footer>
 
 </div>
     <div class="container">
@@ -73,10 +78,9 @@ else{
             </form>
         </div>
     </div>
-     <footer>
-        <p>Version 1.0</p>
-        </footer>
+     
 </div>  
+
 <?php
 }
   ?>

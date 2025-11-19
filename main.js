@@ -1,10 +1,20 @@
-window.onload=function(){
+window.onload = function () {
     function clock() {
-        var time = new Date();
-        document.getElementById("hrs").innerHTML = time.getHours() + ":";
-        document.getElementById("min").innerHTML = time.getMinutes() + ":";
-        document.getElementById("sec").innerHTML = time.getSeconds();
+        const time = new Date();
+        let hrs = time.getHours();
+        const min = String(time.getMinutes()).padStart(2, "0");
+        const sec = String(time.getSeconds()).padStart(2, "0");
+        const ampm = hrs >= 12 ? "PM" : "AM";
+
+        hrs = hrs % 12 || 12; // Convert 24hr to 12hr format
+        hrs = String(hrs).padStart(2, "0");
+
+        document.getElementById("hrs").innerHTML = hrs + ":";
+        document.getElementById("min").innerHTML = min + ":";
+        document.getElementById("sec").innerHTML = sec;
+        document.getElementById("ampm").innerHTML = ampm;
     }
+
     clock();
     setInterval(clock, 1000);
-}
+};

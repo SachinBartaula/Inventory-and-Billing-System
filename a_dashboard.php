@@ -29,6 +29,56 @@
         </footer>
     </div>
     
+    <div class="main">
+        <div class="main_top">
+            <div class="main_top_heading">
+                <h1>Dashboard</h1><br>
+                <h4>Admin</h4>
+                </div>
+                <div class="clock">
+                <span id="hrs"></span>
+                <span id="min"></span>
+                <span id="sec"></span>
+                <span id="ampm"></span>
+            </div>
+        </div>
+        <div class="main_body">
+            <h2 id="main_body_heading">Salse</h2>
+            <div class="main_body_table">
+            <table border="1px">
+            <tr>
+                <th> S.N </th>
+                <th> Product </th>
+                <th> Quantity </th>
+                <th> Purchased By </th>
+                <th> Total Amount </th>
+                <th> Action </th>
+            </tr>
+            <tr>
+                <td>Dummy data</td>
+                <td>Dummy data</td>
+                <td>Dummy data</td>
+                <td>Dummy data</td>
+                <td>Dummy data</td>
+                <td>Dummy data</td>
+            </tr>
+            <tr>
+                <td>Dummy data</td>
+                <td>Dummy data</td>
+                <td>Dummy data</td>
+                <td>Dummy data</td>
+                <td>Dummy data</td>
+                <td>Dummy data</td>
+            </tr>
+
+
+</div>
+<?php
+?>
+
+        </table>
+        </div>
+    </div>
 </body>
 
 </html>
