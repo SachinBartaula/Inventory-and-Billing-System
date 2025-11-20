@@ -83,7 +83,6 @@
             </table>
 </div>
 </div>
-<footer>hdsjdshdh</footer>
 </body>
 
 </html>

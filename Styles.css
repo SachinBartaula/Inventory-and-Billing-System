@@ -2,9 +2,12 @@
     margin: 0px;
     padding: 0px;
 }
-html, body {
+
+html,
+body {
     overflow-x: hidden;
 }
+
 body {
     min-height: 100vh;
     display: flex;
@@ -84,7 +87,7 @@ body {
     /* background-color:#5887ec; */
 }
 
-footer p{
+footer p {
     color: #E0F2FE;
     margin-left: 3vw;
 }
@@ -174,7 +177,7 @@ input[type="password"]:active {
 /* -------------------- main dashboard -------------------------- */
 
 .main {
-     margin-left: 20vw;
+    margin-left: 20vw;
     width: calc(100vw - 20vw);
 }
 
@@ -192,10 +195,12 @@ input[type="password"]:active {
     width: 50vw;
     Border: 1px;
     border-radius: 15px;
-    background-color: #E0F2FE;
+    background-color: #49b4fc;
     padding: 15px;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    letter-spacing: 1px;
+    font-family: "Segoe UI", sans-serif;
 }
 
 .clock {
@@ -207,11 +212,12 @@ input[type="password"]:active {
     align-items: center;
     justify-content: center;
     color: #000000;
+     font-family: "Segoe UI", sans-serif;
     font-size: 40px;
     font-weight: bold;
     letter-spacing: 1px;
     transition: 0.4s;
-    background-color: #E0F2FE;
+    background-color: #49b4fc;
     padding: 15px;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -222,7 +228,7 @@ input[type="password"]:active {
     padding: 20px;
     Border: 1px;
     border-radius: 15px;
-    background-color: #E0F2FE;
+    background-color: #49b4fc;
     width: 70vw;
     height: auto;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -230,6 +236,10 @@ input[type="password"]:active {
 }
 
 #main_body_heading {
+    display: flex;
+    justify-content: center;
+    color: #000000;
+    font-family: 'Courier New', Courier, monospace;
     display: flex;
     justify-content: center;
 }
@@ -252,7 +262,7 @@ input[type="password"]:active {
 }
 
 .main_body_table table th {
-    background: #23a8eb;
+    background: #003f7a;
     color: white;
     padding: 10px;
     text-align: left;
@@ -261,6 +271,10 @@ input[type="password"]:active {
 .main_body_table table tr td {
     padding: 10px;
     border: 1px solid #ddd;
+    background-color: #f1f1f1;
+    font-family: 'Verdana', Geneva, sans-serif;
+    font-size: 15px;
+    color: #121111;
 }
 
 .main_body_table table tr:hover {
