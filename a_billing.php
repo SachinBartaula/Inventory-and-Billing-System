@@ -1,3 +1,9 @@
+  <?php
+    session_start();
+   if(!isset($_SESSION["username_session"]) || !isset($_SESSION["password_session"])) {
+    header("Location: index.php");
+    exit();
+    }?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,6 +31,7 @@
             </ul>
         </div>
          <footer>
+            <a href="logout.php"><b>Logout</b></a>
         <p>Version 1.0</p>
         </footer>
     </div>

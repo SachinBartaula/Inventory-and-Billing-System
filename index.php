@@ -14,6 +14,7 @@
 
 <body>
   <?php
+    session_start();
 if(isset($_REQUEST["u_name"]))
     {
     $name=$_REQUEST["u_name"];
@@ -26,11 +27,13 @@ if(isset($_REQUEST["u_name"]))
 
     if($result->num_rows > 0)
  {
-    while ($row=$result->fetch_assoc()) {
-        $temp_name=$row['username'];
-        $temp_password=$row['password'];
+    while ($data=$result->fetch_assoc()) {
+        $temp_name=$data['username'];
+        $temp_password=$data['password'];
  }
     if($name==$temp_name && $password==$temp_password){
+        $_SESSION["username_session"]=$temp_name;
+        $_SESSION["password_session"]=$temp_password;
         header("location:a_dashboard.php");
     }
     else 

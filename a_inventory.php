@@ -1,6 +1,11 @@
+   <?php
+    session_start();
+   if(!isset($_SESSION["username_session"]) || !isset($_SESSION["password_session"])) {
+    header("Location: index.php");
+    exit();
+    }?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,13 +30,14 @@
             </ul>
         </div>
          <footer>
+            <a href="logout.php"><b>Logout</b></a>
         <p>Version 1.0</p>
         </footer>
     </div>
     <div class="main">
         <div class="main_box">
             <div class="main_box_heading">
-                <h1>Inventory</h1><br>
+                <h1>Inventory</h1>
                 <h4>Admin</h4>
                 </div>
             </div>
@@ -39,7 +45,7 @@
                 <div class="display_inventory">
                     <h2 id="main_body_heading">Inventory</h2>
                     <div class="addinventory_button">
-                    <input class="button" type="submit" name="add_inventory" value="+ Add Inventory">
+                    <input class="button" type="submit" name="add_inventory" value="+ Add Inventory" id="inventory_add">
                     </div>
                   <div class="main_body_table">
             <table border="1px">
@@ -62,7 +68,7 @@
 </table>
 </div>
             </div>
-            <div class="addinventory">
+        <div class="addinventory" id="inventory_form">
         <form>
             <!-- css applied through input attributes -->
       <table>

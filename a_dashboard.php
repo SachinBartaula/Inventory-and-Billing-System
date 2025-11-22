@@ -1,3 +1,10 @@
+    <?php
+    session_start();
+   if(!isset($_SESSION["username_session"]) || !isset($_SESSION["password_session"])) {
+    header("Location: index.php");
+    exit();
+    }
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,8 +18,9 @@
     <script src="main.js"></script>
 </head>
 <body>
+    
     <div class="sidebar">
-         <a href="a_dashboard.php"><h2 id="logo" >Inventory &<br>Billing system</h2></a>
+        <a href="a_dashboard.php"><h2 id="logo" >Inventory &<br>Billing system</h2></a>
         <div class="page-contanier">
             <ul>
                 <li><b><a href="a_dashboard.php"><i class="fa-solid fa-chart-line"></i> Dashboard</a></b></li>
@@ -23,7 +31,8 @@
             </ul>
         </div>
         <footer>
-        <p>Version 1.0</p>
+            <a href="logout.php"><b>Logout</b></a>
+            <p>Version 1.0</p>
         </footer>
     </div>
     
@@ -32,8 +41,8 @@
             <div class="main_box_heading_dashboard">
                 <h1>Dashboard</h1>
                 <h4>Admin</h4>
-                </div>
-                <div class="clock">
+            </div>
+            <div class="clock">
                 <span id="hrs"></span>
                 <span id="min"></span>
                 <span id="sec"></span>
@@ -43,45 +52,45 @@
         <div class="main_body">
             <h2 id="main_body_heading">Salse</h2>
             <div class="main_body_table">
-            <table border="1px">
-            <tr>
-                <th> S.N </th>
-                <th> Product </th>
-                <th> Quantity </th>
-                <th> Purchased By </th>
-                <th> Total Amount </th>
-                <th> Action </th>
+                <table border="1px">
+                    <tr>
+                        <th> S.N </th>
+                        <th> Product </th>
+                        <th> Quantity </th>
+                        <th> Purchased By </th>
+                        <th> Total Amount </th>
+                        <th> Action </th>
+                    </tr>
+                    <tr>
+                        <td>Dummy data</td>
+                        <td>Dummy data</td>
+                <td>Dummy data</td>
+                <td>Dummy data</td>
+                <td>Dummy data</td>
+                <td>Dummy data</td>
             </tr>
+        </table>
+    </div>
+    <h2 id="main_body_heading">Top Salse item</h2>
+    <div class="main_body_table">
+        <table border="1px">
             <tr>
-                <td>Dummy data</td>
-                <td>Dummy data</td>
-                <td>Dummy data</td>
-                <td>Dummy data</td>
-                <td>Dummy data</td>
-                <td>Dummy data</td>
-            </tr>
-</table>
-</div>
-<h2 id="main_body_heading">Top Salse item</h2>
-<div class="main_body_table">
-             <table border="1px">
-                <tr>
                 <th> S.N </th>
                 <th> Product </th>
                 <th> Quantity </th>
                 <th> Stock </th>
                 <th> Action </th>
             </tr>
-             <tr>
+            <tr>
                 <td>Dummy data</td>
                 <td>Dummy data</td>
                 <td>Dummy data</td>
                 <td>Dummy data</td>
                 <td>Dummy data</td>
             </tr>
-          
-            </table>
-</div>
+            
+        </table>
+    </div>
 </div>
 </body>
 
