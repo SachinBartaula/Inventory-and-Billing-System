@@ -28,9 +28,9 @@
     </div>
     
     <div class="main">
-        <div class="main_box">
-            <div class="main_box_heading">
-                <h1>Dashboard</h1><br>
+        <div class="main_box_dashboard">
+            <div class="main_box_heading_dashboard">
+                <h1>Dashboard</h1>
                 <h4>Admin</h4>
                 </div>
                 <div class="clock">

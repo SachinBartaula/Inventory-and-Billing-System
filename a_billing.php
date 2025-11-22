@@ -29,7 +29,15 @@
         </footer>
     </div>
     <div class="main">
+         <div class="main_box">
+            <div class="main_box_heading">
+                <h1>Billing</h1><br>
+                <h4>Admin</h4>
+                </div>
+            </div>
+        <div class="main_body">
         
+    </div>
     </div>
 </body>
 
