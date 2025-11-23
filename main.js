@@ -1,3 +1,4 @@
+// -------------------------------------clock---------------------------------
 window.onload = function () {
     function clock() {
         const time = new Date();
@@ -18,6 +19,11 @@ window.onload = function () {
     clock();
     setInterval(clock, 1000);
 };
+// ------------------------inventory---------------------------
 function additems() {
-    
+   document.getElementById("addinventory_id").classList.add("show");
+}
+function closeitems(){
+   document.getElementById("addinventory_id").classList.add("close");
+
 }

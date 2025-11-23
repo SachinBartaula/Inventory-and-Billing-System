@@ -29,7 +29,7 @@
             </ul>
         </div>
         <footer>
-            <a href="logout.php"><b>Logout</b></a>
+            <a href="logout.php" class="button_2"><b>Logout</b></a>
             <p>Version 1.0</p>
         </footer>
     </div>
@@ -44,7 +44,7 @@
                 <div class="display_inventory">
                     <h2 id="main_body_heading">Inventory</h2>
                     <div class="addinventory_button">
-                        <input class="button" type="submit" name="add_inventory" value="+ Add Inventory" id="inventory_add" onclick="additems()">
+                        <input class="button_2" type="submit" name="add_inventory" value="+ Add Inventory" id="inventory_add" onclick="additems()">
 
                     </div>
                     <div class="main_body_table">
@@ -71,9 +71,12 @@
         </div>
  <!-- ------------------------------form section shown on click event------------------------        -->
  <!-- css applied through input attributes -->
- <div class="addinventory">
-     <form>
-              <h3>Inventory Items</h3>
+ <div class="addinventory" id="addinventory_id">
+     
+    <div class="addinventory_bgcolor">
+        <form>
+            <span id="close" ><button class="button_2" onclick="closeitems()">&times;</button></span>
+            <h3>Inventory Items</h3>
             <table>
                 <tr>
                     <td><label for="product_name">Product Name:</label></td>
@@ -86,11 +89,11 @@
                 
                 
                 <tr>
-            <td><label for="product_quantity">Quantity:</label></td>
-            <td><input type="text" id="product_quantity" placeholder="Quantity" name="product_quantity"></td>
-            <td><label for="product_category">Category:</label></td>
-            <td><input type="text" id="product_category" placeholder="Category" name="product_category"></td>
-        </tr>
+                    <td><label for="product_quantity">Quantity:</label></td>
+                    <td><input type="text" id="product_quantity" placeholder="Quantity" name="product_quantity"></td>
+                    <td><label for="product_category">Category:</label></td>
+                    <td><input type="text" id="product_category" placeholder="Category" name="product_category"></td>
+                </tr>
 
         <tr>
             
@@ -99,9 +102,11 @@
             <tr>
                 <td><label for="purchased_date">Purchased on:</label></td>
                 <td><input type="text" id="purchased_date" placeholder="Purchased Date" name="purchased_date"></td>
+                <td><input type="submit" name="inventory_submit" value="Submit "class="button_2"><td>
             </tr>
         </table>
     </form>
+</div>
 </div>
 <!-- ------------------------------------------close------------------------------------------------------------ -->
 </body>

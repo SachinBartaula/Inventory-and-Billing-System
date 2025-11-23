@@ -31,7 +31,7 @@
             </ul>
         </div>
          <footer>
-            <a href="logout.php"><b>Logout</b></a>
+            <a href="logout.php" class="button_2"><b>Logout</b></a>
         <p>Version 1.0</p>
         </footer>
     </div>
