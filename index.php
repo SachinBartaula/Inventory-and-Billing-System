@@ -21,7 +21,7 @@ if(isset($_REQUEST["u_name"]))
     $password=$_REQUEST["u_password"];
     
    require_once "connection.php";
-    $sql="select * from users";
+    $sql="select * from user";
     $result=$conn->query($sql);
 
 
