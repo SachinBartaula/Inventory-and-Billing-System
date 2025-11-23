@@ -18,3 +18,6 @@ window.onload = function () {
     clock();
     setInterval(clock, 1000);
 };
+function additems() {
+    window.location.href = "index.php";
+}

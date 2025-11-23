@@ -1,4 +1,4 @@
-   <?php
+<?php
     session_start();
    if(!isset($_SESSION["username_session"]) || !isset($_SESSION["password_session"])) {
     header("Location: index.php");
@@ -13,7 +13,6 @@
     <!-- <link rel="stylesheet" href="Styles.css"> -->
     <link rel="stylesheet" href="Styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><!--icon connect garni*/-->
-    <script src="main.js"></script>
 </head>
 
 <body>
@@ -29,9 +28,9 @@
                 <li><a href="a_employee.php"><i class="fa-solid fa-user-plus"></i> Employees</a></li>
             </ul>
         </div>
-         <footer>
+        <footer>
             <a href="logout.php"><b>Logout</b></a>
-        <p>Version 1.0</p>
+            <p>Version 1.0</p>
         </footer>
     </div>
     <div class="main">
@@ -45,11 +44,12 @@
                 <div class="display_inventory">
                     <h2 id="main_body_heading">Inventory</h2>
                     <div class="addinventory_button">
-                    <input class="button" type="submit" name="add_inventory" value="+ Add Inventory" id="inventory_add">
+                        <input class="button" type="submit" name="add_inventory" value="+ Add Inventory" id="inventory_add" onclick="additems()">
+
                     </div>
-                  <div class="main_body_table">
-            <table border="1px">
-            <tr>
+                    <div class="main_body_table">
+                        <table border="1px">
+                            <tr>
                 <th> S.N </th>
                 <th> Product </th>
                 <th> Quantity </th>
@@ -65,23 +65,27 @@
                 <td>Dummy data</td>
                 <td>Dummy data</td>
             </tr>
-</table>
-</div>
+        </table>
+    </div>
             </div>
-        <div class="addinventory" id="inventory_form">
-        <form>
-            <!-- css applied through input attributes -->
-      <table>
-        <tr>
-            <td><label for="product_name">Product Name:</label></td>
-            <td><input type="text" id="product_name" placeholder="Product Name" name="product_name"></td>
-            <td><label for="product_price">Price:</label></td>
-            <td><input type="text" id="product_price" placeholder="Price" name="product_price"></td>
-        </tr>
-
-     
-
-        <tr>
+        </div>
+ <!-- ------------------------------form section shown on click event------------------------        -->
+ <!-- css applied through input attributes -->
+ <div class="addinventory">
+     <form>
+              <h3>Inventory Items</h3>
+            <table>
+                <tr>
+                    <td><label for="product_name">Product Name:</label></td>
+                    <td><input type="text" id="product_name" placeholder="Product Name" name="product_name"></td>
+                    
+                    <td><label for="product_price">Price:</label></td>
+                    <td><input type="text" id="product_price" placeholder="Price" name="product_price"></td>
+                </tr>
+                
+                
+                
+                <tr>
             <td><label for="product_quantity">Quantity:</label></td>
             <td><input type="text" id="product_quantity" placeholder="Quantity" name="product_quantity"></td>
             <td><label for="product_category">Category:</label></td>
@@ -89,17 +93,18 @@
         </tr>
 
         <tr>
-          
-        </tr>
-
-        <tr>
-            <td><label for="purchased_date">Purchased on:</label></td>
-            <td><input type="text" id="purchased_date" placeholder="Purchased Date" name="purchased_date"></td>
-        </tr>
-    </table>
-</fotm>
+            
+            </tr>
+            
+            <tr>
+                <td><label for="purchased_date">Purchased on:</label></td>
+                <td><input type="text" id="purchased_date" placeholder="Purchased Date" name="purchased_date"></td>
+            </tr>
+        </table>
+    </form>
 </div>
-    </div>
+<!-- ------------------------------------------close------------------------------------------------------------ -->
 </body>
+<script src="main.js"></script>
 
 </html>
