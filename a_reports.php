@@ -44,7 +44,42 @@
                 </div>
             </div>
         <div class="main_body">
-        
+           <h2 id="main_body_heading">Top salse</h2>
+            <div class="main_body_table">
+                <table border="1px">
+                    <tr>
+                        <th> S.N </th>
+                        <th> Product </th>
+                        <th> Quantity </th>
+                    </tr>
+                    <tr>
+                <td>Dummy data</td>
+                <td>Dummy data</td>
+                <td>Dummy data</td>
+            </tr>
+        </table>
+    </div>
+    <h2 id="main_body_heading">Top Salse item</h2>
+    <div class="main_body_table">
+        <table border="1px">
+            <tr>
+                <th> S.N </th>
+                <th> Product </th>
+                <th> Quantity </th>
+                <th> Stock </th>
+                <th> Action </th>
+            </tr>
+            <tr>
+                <td>Dummy data</td>
+                <td>Dummy data</td>
+                <td>Dummy data</td>
+                <td>Dummy data</td>
+                <td>Dummy data</td>
+            </tr>
+            
+        </table>
+    </div>
+</div>
     </div>
     </div>
 </body>

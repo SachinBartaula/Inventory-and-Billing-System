@@ -43,7 +43,45 @@
                 </div>
             </div>
         <div class="main_body">
-        
+
+        <div class="billing">
+        <form>
+            <h3>Billing</h3>
+            <table>
+                <tr>
+                    <td><label for="product_name">Product Name:</label></td>
+                    <td><input type="text" id="product_name" placeholder="Product Name" name="product_name"></td>
+                    
+                    <td><label for="product_price">Price:</label></td>
+                    <td><input type="text" id="product_price" placeholder="Price" name="product_price"></td>
+                </tr>
+                
+                
+                
+                <tr>
+                    <td><label for="product_quantity">Quantity:</label></td>
+                    <td><input type="text" id="product_quantity" placeholder="Quantity" name="product_quantity"></td>
+                    <td><label for="product_category">Category:</label></td>
+                    <td><input type="text" id="product_category" placeholder="Category" name="product_category"></td>
+                </tr>
+
+        <tr>
+                <td><label for="discount">Discount %:</label></td>
+                <td><input type="text" id="discount" placeholder="Discount" name="discount"></td>
+                <td><label for="Salse_on">Salse on:</label></td>
+                <td><input type="text" id="Salse_on" name="salse_date"readonly></td>
+                    
+            </tr>
+            
+            <tr>
+                <td><label for="total_amount">Total Amount:</label></td>
+                <td><input type="text" id="total_amount" readonly name="discount"></td>
+                <td><input type="submit" name="inventory_submit" value="Submit "class="button_2"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</div>
     </div>
     </div>
 </body>

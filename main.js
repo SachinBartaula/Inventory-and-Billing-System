@@ -1,5 +1,5 @@
 // -------------------------------------clock---------------------------------
-window.onload = function () {
+window.addEventListener("load" ,function () {
     function clock() {
         const time = new Date();
         let hrs = time.getHours();
@@ -18,12 +18,26 @@ window.onload = function () {
 
     clock();
     setInterval(clock, 1000);
-};
+});
 // ------------------------inventory---------------------------
 function additems() {
-   document.getElementById("addinventory_id").classList.add("show");
+    document.getElementById("addinventory_id").classList.add("show");
 }
 function closeitems(){
-   document.getElementById("addinventory_id").classList.add("close");
-
+    document.getElementById("addinventory_id").classList.add("close");
+    
 }
+window.addEventListener("load", function () {
+    const time = new Date();
+    const fulldate = time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate();
+    document.getElementById("purchased_date").value = fulldate;
+});
+
+// --------------------------billing----------------------------------
+
+window.addEventListener("load", function () {
+    const time = new Date();
+    const fulldate = time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate();
+    document.getElementById("Salse_on").value = fulldate;
+
+});
