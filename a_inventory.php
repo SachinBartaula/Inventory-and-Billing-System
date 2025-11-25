@@ -101,7 +101,7 @@
             
             <tr>
                 <td><label for="purchased_date">Purchased on:</label></td>
-                <td><input type="text" id="purchased_date" placeholder="Purchased Date" name="purchased_date"></td>
+                <td><input type="text" id="purchased_date"readonly> </td>
                 <td><input type="submit" name="inventory_submit" value="Submit "class="button_2"><td>
             </tr>
         </table>
