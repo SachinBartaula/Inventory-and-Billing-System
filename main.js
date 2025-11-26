@@ -41,3 +41,17 @@ window.addEventListener("load", function () {
     document.getElementById("Salse_on").value = fulldate;
 
 });
+// -------------------------------employees--------------------------------
+function addemployee(){
+    document.getElementById("emp_form_container").classList.add("show");
+}
+function closeemployee(){
+    document.getElementById("emp_form_container").classList.add("close");
+    
+}
+
+window.addEventListener("load", function () {
+    const time = new Date();
+    const fulldate = time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate();
+    document.getElementById("emp_created_on").value = fulldate;
+});

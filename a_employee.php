@@ -44,8 +44,38 @@
                 </div>
             </div>
         <div class="main_body">
+            <h2 id="main_body_heading">Employees</h2>
+            <div class="employee_add_button">
+                <input class="button_2" type="submit" name="add_inventory" value="+ Add Employees" id="employee_add" onclick="addemployee()">
+            </div>
+        </div>
+        <div class="emp_form_container" id="emp_form_container">
+            
+            <div class="employee_add"> 
+                <form>
+                    <div class="employee_add_head">
+                        <span id="close" ><button class="button_2" onclick="closeemployee()">&times;</button></span>
+                        <h3>Add Employees</h3>
+                    </div>
+                    <table>
+                        <tr>
+                            <td><label for="e_username">User Name:</label></td>
+                            <td><input type="text" id="e_username" placeholder="User name" name="e_username"></td>
+                            
+                            <td><label for="e_password">Password:</label></td>
+                            <td><input type="text" id="e_password" placeholder="Password" name="e_password"></td>
+                        </tr>
+                        <tr>
+                             <td><label for="emp_created_on">Created on:</label></td>
+                            <td><input type="text" id="emp_created_on" readonly> </td>
+                         <td><input type="submit" name="employee_submit" value="Submit "class="button_2"><td>
+
+</tr>
+                    </table>
+                </form>
+            </div>
+        </div>
         
-    </div>
     </div>
 </body>
 
