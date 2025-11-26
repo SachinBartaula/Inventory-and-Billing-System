@@ -50,7 +50,7 @@
             </div>
         </div>
         <div class="main_body">
-            <h2 id="main_body_heading">Salse</h2>
+            <h2 id="main_body_heading">Sales</h2>
             <div class="main_body_table">
                 <table border="1px">
                     <tr>
@@ -71,7 +71,7 @@
             </tr>
         </table>
     </div>
-    <h2 id="main_body_heading">Top Salse item</h2>
+    <h2 id="main_body_heading">Top Sales item</h2>
     <div class="main_body_table">
         <table border="1px">
             <tr>
