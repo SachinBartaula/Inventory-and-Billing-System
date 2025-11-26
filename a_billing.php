@@ -73,6 +73,14 @@
                     
             </tr>
             
+        <tr>
+                <td><label for="customer_name">Customer:</label></td>
+                <td><input type="text" id="customer_name" placeholder="Customer Name" name="customer_name"></td>
+                <td><label for="customer_phone">Phone no:</label></td>
+                <td><input type="text" id="customer_phone" name="customer_phone"placeholder="Customer phone number" ></td>
+                    
+            </tr>
+            
             <tr>
                 <td><label for="total_amount">Total Amount:</label></td>
                 <td><input type="text" id="total_amount" readonly name="discount"></td>
