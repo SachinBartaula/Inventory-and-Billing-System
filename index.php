@@ -19,7 +19,7 @@ if(isset($_REQUEST["u_name"]))
     {
     $name=$_REQUEST["u_name"];
     $password=$_REQUEST["u_password"];
-    // $role=$_REQUEST["role"];
+    $role=$_REQUEST["role"];
    require_once "connection.php";
     $sql="select * from user";
     $result=$conn->query($sql);
@@ -33,8 +33,8 @@ if(isset($_REQUEST["u_name"]))
         $adminrole="admin";
         $employeerole="employee";
  }
-    if($name==$temp_name && $password==$temp_password ){
-        //  if($name==$temp_name && $password==$temp_password && $role==$adminrole ){
+    // if($name==$temp_name && $password==$temp_password ){
+         if($name==$temp_name && $password==$temp_password && $role==$adminrole ){
         $_SESSION["username_session"]=$temp_name;
         $_SESSION["password_session"]=$temp_password;
         header("location:a_dashboard.php");

@@ -12,10 +12,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <!-- <link rel="stylesheet" href="Styles.css"> -->
-    <link rel="stylesheet" href="Styles.css?v=<?php echo time(); ?>">
+   <!-- jQuery (MUST be loaded first) -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.dataTables.min.css">
+
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/2.3.5/js/dataTables.min.js"></script>
+
+<!-- Your main.js -->
+<script src="main.js"></script>
+ 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><!--icon connect garni*/-->
-    <script src="main.js"></script>
+    <link rel="stylesheet" href="Styles.css?v=<?php echo time(); ?>">
+
 </head>
 <body>
     
@@ -52,44 +63,37 @@
         <div class="main_body">
             <h2 id="main_body_heading">Sales</h2>
             <div class="main_body_table">
-                <table border="1px">
-                    <tr>
+                <table id="myTable" class="display">
+    <thead>
+        <tr>
                         <th> S.N </th>
                         <th> Product </th>
                         <th> Quantity </th>
                         <th> Purchased By </th>
                         <th> Total Amount </th>
                         <th> Action </th>
-                    </tr>
-                    <tr>
-                        <td>Dummy data</td>
-                        <td>Dummy data</td>
-                <td>Dummy data</td>
-                <td>Dummy data</td>
-                <td>Dummy data</td>
-                <td>Dummy data</td>
-            </tr>
-        </table>
-    </div>
-    <h2 id="main_body_heading">Top Sales item</h2>
-    <div class="main_body_table">
-        <table border="1px">
-            <tr>
-                <th> S.N </th>
-                <th> Product </th>
-                <th> Quantity </th>
-                <th> Stock </th>
-                <th> Action </th>
-            </tr>
-            <tr>
-                <td>Dummy data</td>
-                <td>Dummy data</td>
-                <td>Dummy data</td>
-                <td>Dummy data</td>
-                <td>Dummy data</td>
-            </tr>
-            
-        </table>
+                 </tr>
+                </thead>
+                <tbody>
+                   <tr>
+                     <td>Row 1 Data 1</td>
+                      <td>Row 1 Data 2</td>
+                     <td>Row 2 Data 1</td>
+                  <td>Row 2 Data 2</td>
+                   <td>Row 2 Data 1</td>
+                  <td>Row 2 Data 2</td>
+                 </tr>
+                 <tr>
+                  <td>Row 2 Data 1</td>
+                  <td>Row 2 Data 2</td>
+                  <td>Row 1 Data 1</td>
+                <td>Row 1 Data 2</td>
+                 <td>Row 2 Data 1</td>
+                  <td>Row 2 Data 2</td>
+                 
+             </tr>
+    </tbody>
+</table>
     </div>
 </div>
 </body>

@@ -19,6 +19,10 @@ window.addEventListener("load" ,function () {
     clock();
     setInterval(clock, 1000);
 });
+window.addEventListener("load", function(){
+    let table = new DataTable('#myTable');
+});
+
 // ------------------------inventory---------------------------
 function additems() {
     document.getElementById("addinventory_id").classList.add("show");
