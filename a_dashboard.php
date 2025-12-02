@@ -23,9 +23,15 @@
 
 <!-- Your main.js -->
 <script src="main.js"></script>
- 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><!--icon connect garni*/-->
+
+<!--icon connect garni*/-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- main css -->
     <link rel="stylesheet" href="Styles.css?v=<?php echo time(); ?>">
+
+<!-- google font -->
+ <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
 
 </head>
 <body>

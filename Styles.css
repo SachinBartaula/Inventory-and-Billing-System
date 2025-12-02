@@ -314,7 +314,8 @@ select:focus {
     align-items: center;
     justify-content: center;
     color: #000000;
-    font-family: "Segoe UI", sans-serif;
+    /* font-family: "Segoe UI", sans-serif; */
+     font-family: 'Orbitron', sans-serif;
     font-size: 40px;
     font-weight: bold;
     letter-spacing: 1px;
@@ -350,6 +351,9 @@ select:focus {
     padding: 10px;
     overflow: hidden;
     margin-bottom: 15px;
+    /* background-color: #088ddf54; */
+    border: 5px;
+    border-radius: 15px;
 }
 
 .main_body_table table {
