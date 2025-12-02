@@ -459,6 +459,114 @@ margin-right: 8vw;
 #closebutton p:hover{
     background-color: #38BDF8;
 }
+/* Icons container */
+.icons {
+    text-align: center;  /* center the entire cell */
+    white-space: nowrap; /* prevent line breaks */
+}
+
+/* Make links inline-block */
+.icons a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* Icon styling */
+.icons i {
+    font-size: 18px;
+    margin: 0 5px;        /* spacing between icons */
+    cursor: pointer;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+}
+
+/* Edit icon */
+.icons i.fa-pencil {
+    color: green;
+}
+
+.icons i.fa-pencil:hover {
+    color: darkgreen;
+    transform: scale(1.2);
+}
+
+/* Delete icon */
+.icons i.fa-trash-can {
+    color: red;
+}
+
+.icons i.fa-trash-can:hover {
+    color: darkred;
+    transform: scale(1.2);
+}
+/* ---------------------edit inventoy--------------- */
+/* Edit Inventory Form Styling */
+.Edit_inventory_main {
+    width: fit-content;
+    margin: 50px auto; /* centers the form horizontally */
+    background-color: #20a8ec;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    font-family: 'Arial', sans-serif;
+    color: #ffffff;
+}
+
+.Edit_inventory_main h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.Edit_inventory_main table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.Edit_inventory_main table tr td {
+    padding: 15px;
+    vertical-align: middle;
+}
+
+.Edit_inventory_main input[type="text"],
+.Edit_inventory_main input[type="number"],
+.Edit_inventory_main input[type="date"] {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: none;
+    font-size: 14px;
+    outline: none;
+}
+
+.Edit_inventory_main input[type="text"]:focus,
+.Edit_inventory_main input[type="number"]:focus,
+.Edit_inventory_main input[type="date"]:focus {
+    box-shadow: 0 0 4px rgba(0,123,255,0.4);
+    background-color: #fff;
+    color: #000;
+}
+
+.Edit_inventory_main .button_2 {
+    background-color: #00fbd5;
+    color: #000;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.Edit_inventory_main .button_2:hover {
+    transform: scale(1.05);
+}
+
+.Edit_inventory_main .button_2:active {
+    transform: scale(0.95);
+}
+
 /* ------------------------reports---------------------------- */
 /*__________________________ something_code______________________________ */
 
