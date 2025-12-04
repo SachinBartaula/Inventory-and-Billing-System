@@ -15,41 +15,46 @@
 <body>
   <?php
     session_start();
-if(isset($_REQUEST["u_name"]))
-    {
-    $name=$_REQUEST["u_name"];
-    $password=$_REQUEST["u_password"];
-    $role=$_REQUEST["role"];
-   require_once "connection.php";
-    $sql="select * from user";
-    $result=$conn->query($sql);
 
+if(isset($_REQUEST["u_name"])) {
 
-    if($result->num_rows > 0)
- {
-    while ($data=$result->fetch_assoc()) {
-        $temp_name=$data['username'];
-        $temp_password=$data['password'];
-        $adminrole="admin";
-        $employeerole="employee";
- }
-    // if($name==$temp_name && $password==$temp_password ){
-         if($name==$temp_name && $password==$temp_password && $role==$adminrole ){
-        $_SESSION["username_session"]=$temp_name;
-        $_SESSION["password_session"]=$temp_password;
-        header("location:a_dashboard.php");
+    $name = $_REQUEST["u_name"];
+    $password = $_REQUEST["u_password"];
+    $role = $_REQUEST["role"];
+
+    require_once "connection.php";
+
+    $sql = "SELECT * FROM user WHERE username='$name' AND password='$password'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows == 1) {
+
+        $data = $result->fetch_assoc();
+
+        if ($role == $data['role']) {
+
+            $_SESSION["username_session"] = $data['username'];
+            $_SESSION["password_session"] = $data['password'];
+            $_SESSION["role_session"] = $data['role'];
+
+            if ($data['role'] == "admin") {
+                header("location:a_dashboard.php");
+            } else {
+                header("location:e_dashboard.php");
+            }
+            exit();
+        }
+        else {
+            header("location:index.php");
+            exit();
+        }
     }
-    // if($name==$temp_name && $password==$temp_password && $role==$employeerole ){
-    //     $_SESSION["username_session"]=$temp_name;
-    //     $_SESSION["password_session"]=$temp_password;
-    //     header("location:e_dashboard.php");
-    // }
-    else 
+    else {
         header("location:index.php");
+        exit();
     }
+}
 
-    }
-else{
 ?>
   <div class="sidebar_index">
         <h2 id="logo">Inventory &<br>Billing system</h2>
@@ -90,7 +95,7 @@ else{
 </div>  
 
 <?php
-}
+
   ?>
 </body>
 

@@ -2,13 +2,25 @@
 require_once "connection.php";
 
     session_start();
-   if(!isset($_SESSION["username_session"]) || !isset($_SESSION["password_session"])) {
+   if(!isset($_SESSION["username_session"]) || $_SESSION["role_session"] !== "admin") {
     header("Location: index.php");
     exit();
     }
-    // -------------delete------------------
-    if (isset($_GET['delete'])) {
+    // -------------------delete inventory-------------------
+if (isset($_GET['delete'])) {
     $id = intval($_GET['delete']); 
+    $sql = "DELETE FROM inventory WHERE inv_id = $id";
+    $result = $conn->query($sql);
+    if ($result) {
+        header("Location: a_reports.php");
+        exit();
+    } else {
+        echo "Error deleting record: " . $conn->error;
+    }
+}
+    // -------------delete bills------------------
+    if (isset($_GET['s_delete'])) {
+    $id = intval($_GET['s_delete']); 
     $sql = "DELETE FROM sales WHERE s_id = $id";
     $result = $conn->query($sql);
     if ($result) {
@@ -18,7 +30,40 @@ require_once "connection.php";
         echo "Error deleting record: " . $conn->error;
     }
 }
-    
+// -----------------------------edit bills-------------------------
+if(isset($_POST["billing_update"])) {
+
+    // Get data from form
+    $id              = intval($_POST["s_id"]);  // <-- get the record ID
+  $ProductName     = $_POST["product_name"];
+$Price           = intval($_POST["product_price"]);
+$Quantity        = intval($_POST["product_quantity"]);
+$Category        = $_POST["product_category"];
+$discount        = intval($_POST["discount"]);
+$salesDate         = $_POST["salse_date"];
+$customername       =$_POST["customer_name"];
+// $customerphone     =$_POST["customer_phone"];
+     
+    // Update query
+ $sql = "UPDATE sales 
+        SET productname = '$ProductName',
+            s_price = $Price,
+            s_quantity = $Quantity,
+            s_category = '$Category',
+            discount = $discount,
+            salseon = '$salesDate',
+            customername = '$customername'
+            -- customer_id = '$customerphone'
+        WHERE s_id = $id";
+    $result = $conn->query($sql);
+    if ($result) {
+        echo "<script>alert('Record updated successfully'); window.location='a_reports.php';</script>";
+        exit();
+    } else {
+        echo "Error updating record: " . $conn->error;
+    }
+}
+
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,10 +147,10 @@ if ($result->num_rows > 0) {
             . "<td>" . $row['salseon'] . "</td>"
             // . "<td>" . $row['totalamount'] . "</td>"
              . "<td class='icons'>"
-                . "<a href='edit_inventory.php?edit=" . $row['s_id'] . "' title='Edit'>"
+                . "<a href='edit_bills.php?edit=" . $row['s_id'] . "' title='Edit'>"
                     . "<i class='fa-solid fa-pencil'></i>"
                 . "</a> &nbsp;"
-                . "<a href='a_reports.php?delete=" . $row['s_id'] . "' title='Delete' onclick=\"return confirm('Are you sure?')\">"
+                . "<a href='a_reports.php?s_delete=" . $row['s_id'] . "' title='Delete' onclick=\"return confirm('Are you sure?')\">"
                     . "<i class='fa-solid fa-trash-can'></i>"
                 . "</a>"
             . "</td>"

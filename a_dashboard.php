@@ -1,6 +1,6 @@
     <?php
     session_start();
-   if(!isset($_SESSION["username_session"]) || !isset($_SESSION["password_session"])) {
+   if(!isset($_SESSION["username_session"]) || $_SESSION["role_session"] !== "admin") {
     header("Location: index.php");
     exit();
     }

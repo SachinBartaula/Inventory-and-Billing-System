@@ -1,9 +1,37 @@
   <?php
     session_start();
-   if(!isset($_SESSION["username_session"]) || !isset($_SESSION["password_session"])) {
+   if(!isset($_SESSION["username_session"]) || $_SESSION["role_session"] !== "admin") {
     header("Location: index.php");
     exit();
     }
+    require_once "connection.php";
+    // ------------------------create employee------------------
+if(isset($_POST["employee_submit"])){
+    
+    $username =$_POST["e_username"];
+    $password =$_POST["e_password"];
+    $role=$_POST["role"];    
+    $date=$_POST["employee_createdOn"];
+    $sql="INSERT INTO user (username,password,role) values ('$username','$password','$role')";
+
+    $result=$conn->query($sql);
+    if($result){
+        echo "<script>alert('New employee id created'); window.location='a_employee.php';</script>";
+
+    }
+}
+// ---------------------------------delete-----------------------------
+ if (isset($_GET['delete'])) {
+    $id = intval($_GET['delete']); 
+    $sql = "DELETE FROM user WHERE user_id = $id";
+    $result = $conn->query($sql);
+    if ($result) {
+        header("Location: a_employee.php");
+        exit();
+    } else {
+        echo "Error deleting record: " . $conn->error;
+    }
+}
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +74,7 @@
     <div class="main">
          <div class="main_box">
             <div class="main_box_heading">
-                <h1>Employee</h1><br>
+                <h1>Employee</h1>
                 <h4>Admin</h4>
                 </div>
             </div>
@@ -55,11 +83,51 @@
             <div class="employee_add_button">
                 <input class="button_2" type="submit" name="add_inventory" value="+ Add Employees" id="employee_add" onclick="addemployee()">
             </div>
-        </div>
+            
+            <div class="main_body_table">
+                <table class="display">
+                  <thead>
+          <tr>
+                        <th> S.N </th>
+                        <th> Employee </th>
+                        <th> Action </th>
+                 </tr>
+                </thead>
+                <tbody>
+                    <?php
+$sql = "SELECT * FROM user where role='employee'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $sno = 1;
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>"
+            . "<td>" . $sno . "</td>"
+            . "<td>" . $row['username'] . "</td>"
+            . "<td class='icons'>"
+             . "<a href='a_employee.php?delete=" . $row['user_id'] . "' title='Delete' onclick=\"return confirm('Are you sure?')\">"
+                    . "<i class='fa-solid fa-trash-can'></i>"
+                . "</a>"
+                 . "</td>"
+            // . "<td>" . $row['customername'] . "</td>"
+            . "</tr>";
+            $sno++;
+        }
+    }
+    else{
+        echo "<tr>
+        <td colspan='3' style='text-align:center;'>No data found</td>
+      </tr>";
+    }
+    ?>      
+    </tbody>
+</table>
+</div>
+</div>
         <div class="emp_form_container" id="emp_form_container">
             
             <div class="employee_add"> 
-                <form>
+                <form method="post">
                     <div class="employee_add_head">
                         <span id="close" ><button class="button_2" onclick="closeemployee()">&times;</button></span>
                         <h3>Add Employees</h3>
@@ -70,14 +138,18 @@
                             <td><input type="text" id="e_username" placeholder="User name" name="e_username"></td>
                             
                             <td><label for="e_password">Password:</label></td>
-                            <td><input type="text" id="e_password" placeholder="Password" name="e_password"></td>
+                            <td><input type="password" id="e_password" placeholder="Password" name="e_password"></td>
                         </tr>
                         <tr>
+                             <td><label for="role">Role:</label></td>
+                            <td><input type="text" id="role" name="role" value="employee" readonly> </td>
                              <td><label for="emp_created_on">Created on:</label></td>
-                            <td><input type="text" id="emp_created_on" readonly> </td>
+                            <td><input type="text" id="emp_created_on" name="employee_createdOn" readonly> </td>
+                        </tr>
+                        <tr>
+                         <td><input type="hidden" name="" value=" "class=""><td>
                          <td><input type="submit" name="employee_submit" value="Submit "class="button_2"><td>
-
-</tr>
+                        </tr>
                     </table>
                 </form>
             </div>

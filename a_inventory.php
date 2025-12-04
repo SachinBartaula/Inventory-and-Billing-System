@@ -1,9 +1,11 @@
 <?php
-    session_start();
-   if(!isset($_SESSION["username_session"]) || !isset($_SESSION["password_session"])) {
+session_start();
+
+if(!isset($_SESSION["username_session"]) || $_SESSION["role_session"] !== "admin") {
     header("Location: index.php");
     exit();
-    }
+}
+
 // ------------------connection---------------
 require_once "connection.php";
 // --------------------insert------------------
@@ -37,7 +39,6 @@ if (isset($_GET['delete'])) {
         echo "Error deleting record: " . $conn->error;
     }
 }
-// -------------------update-------------------
 // -------------------update-------------------
 if(isset($_POST["inventory_update"])) {
 
