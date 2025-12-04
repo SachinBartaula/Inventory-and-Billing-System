@@ -66,42 +66,50 @@
                 <span id="ampm"></span>
             </div>
         </div>
-        <div class="main_body">
-            <h2 id="main_body_heading">Sales</h2>
+                <div class="main_body">
+            <h2 id="main_body_heading">Sales History</h2>
             <div class="main_body_table">
-                <table id="myTable" class="display">
-    <thead>
-        <tr>
+                <table id="salesTable" class="display">
+                  <thead>
+          <tr>
                         <th> S.N </th>
                         <th> Product </th>
-                        <th> Quantity </th>
                         <th> Purchased By </th>
-                        <th> Total Amount </th>
-                        <th> Action </th>
+                        <th> Price </th>
+                        <th> Quantity </th>
+                        <th> Date </th>
+                        <!-- <th> Total Amount </th> -->
                  </tr>
                 </thead>
                 <tbody>
-                   <tr>
-                     <td>Row 1 Data 1</td>
-                      <td>Row 1 Data 2</td>
-                     <td>Row 2 Data 1</td>
-                  <td>Row 2 Data 2</td>
-                   <td>Row 2 Data 1</td>
-                  <td>Row 2 Data 2</td>
-                 </tr>
-                 <tr>
-                  <td>Row 2 Data 1</td>
-                  <td>Row 2 Data 2</td>
-                  <td>Row 1 Data 1</td>
-                <td>Row 1 Data 2</td>
-                 <td>Row 2 Data 1</td>
-                  <td>Row 2 Data 2</td>
-                 
-             </tr>
+                     <?php
+            require_once "connection.php";
+
+$sql = "SELECT * FROM sales";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $sno = 1;
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>"
+            . "<td>" . $sno . "</td>"
+            . "<td>" . $row['productname'] . "</td>"
+            . "<td>" . $row['customername'] . "</td>"
+            . "<td>" . $row['s_price'] . "</td>"
+            . "<td>" . $row['s_quantity'] . "</td>"
+            . "<td>" . $row['salseon'] . "</td>"
+            // . "<td>" . $row['totalamount'] . "</td>"
+            . "</tr>";
+        $sno++;
+    }
+}
+?>      
     </tbody>
 </table>
     </div>
 </div>
+</div>
+
 </body>
 
 </html>

@@ -122,7 +122,7 @@ if(isset($_POST["inventory_update"])) {
 
                     </div>
                     <div class="main_body_table">
-                      <table id="myTable" class="display">
+                      <table id="inventoryTable" class="display">
     <thead>
         <tr>
                         <th> S.N </th>
@@ -207,6 +207,7 @@ if ($result->num_rows > 0) {
     </form>
 </div>
 </div>
+
 <!-- ------------------------------------------close------------------------------------------------------------ -->
 </body>
 <script src="main.js"></script>

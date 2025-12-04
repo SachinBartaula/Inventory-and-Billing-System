@@ -1,9 +1,25 @@
   <?php
+require_once "connection.php";
+
     session_start();
    if(!isset($_SESSION["username_session"]) || !isset($_SESSION["password_session"])) {
     header("Location: index.php");
     exit();
-    }?>
+    }
+    // -------------delete------------------
+    if (isset($_GET['delete'])) {
+    $id = intval($_GET['delete']); 
+    $sql = "DELETE FROM sales WHERE s_id = $id";
+    $result = $conn->query($sql);
+    if ($result) {
+        header("Location: a_reports.php");
+        exit();
+    } else {
+        echo "Error deleting record: " . $conn->error;
+    }
+}
+    
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,48 +63,108 @@
     <div class="main">
          <div class="main_box">
             <div class="main_box_heading">
-                <h1>Reports</h1><br>
+                <h1>Reports</h1>
                 <h4>Admin</h4>
                 </div>
             </div>
         <div class="main_body">
     <h2 id="main_body_heading">Top Sales item</h2>
     <div class="main_body_table">
-       <table id="myTable" class="display">
+       <table id="salesTable" class="display">
+    <thead>
+        <tr>
+                         <th> S.N </th>
+                        <th> Product </th>
+                        <th> Purchased By </th>
+                        <th> Price </th>
+                        <th> Quantity </th>
+                        <th> Date </th>
+                        <!-- <th> Total Amount </th> -->
+                        <th> Action </th>
+
+                 </tr>
+                </thead>
+                <tbody>
+                   <?php
+
+$sql = "SELECT * FROM sales";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $sno = 1;
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>"
+            . "<td>" . $sno . "</td>"
+            . "<td>" . $row['productname'] . "</td>"
+            . "<td>" . $row['customername'] . "</td>"
+            . "<td>" . $row['s_price'] . "</td>"
+            . "<td>" . $row['s_quantity'] . "</td>"
+            . "<td>" . $row['salseon'] . "</td>"
+            // . "<td>" . $row['totalamount'] . "</td>"
+             . "<td class='icons'>"
+                . "<a href='edit_inventory.php?edit=" . $row['s_id'] . "' title='Edit'>"
+                    . "<i class='fa-solid fa-pencil'></i>"
+                . "</a> &nbsp;"
+                . "<a href='a_reports.php?delete=" . $row['s_id'] . "' title='Delete' onclick=\"return confirm('Are you sure?')\">"
+                    . "<i class='fa-solid fa-trash-can'></i>"
+                . "</a>"
+            . "</td>"
+            . "</tr>";
+        $sno++;
+    }
+}
+?>      
+    </tbody>
+</table>
+    </div>
+    <h2 id="main_body_heading">Inventory item</h2>
+     <div class="main_body_table">
+
+                      <table id="inventoryTable" class="display">
     <thead>
         <tr>
                         <th> S.N </th>
                         <th> Product </th>
                         <th> Quantity </th>
-                        <th> Purchased By </th>
-                        <th> Total Amount </th>
-                        <th> Action </th>
+                        <th> Category</th>
+                        <th> Purchased Price</th>
+                        <th> Date</th>
+                        <th> Action</th>
                  </tr>
                 </thead>
                 <tbody>
-                   <tr>
-                     <td>Row 1 Data 1</td>
-                      <td>Row 1 Data 2</td>
-                     <td>Row 2 Data 1</td>
-                  <td>Row 2 Data 2</td>
-                   <td>Row 2 Data 1</td>
-                  <td>Row 2 Data 2</td>
-                 </tr>
-                 <tr>
-                  <td>Row 2 Data 1</td>
-                  <td>Row 2 Data 2</td>
-                  <td>Row 1 Data 1</td>
-                <td>Row 1 Data 2</td>
-                 <td>Row 2 Data 1</td>
-                  <td>Row 2 Data 2</td>
-                 
-             </tr>
+                   <?php
+$sql = "SELECT * FROM inventory";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $sno = 1;
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>"
+            . "<td>" . $sno . "</td>"
+            . "<td>" . $row['productname'] . "</td>"
+            . "<td>" . $row['inv_quantity'] . "</td>"
+            . "<td>" . $row['inv_category'] . "</td>"
+            . "<td>" . $row['b_price'] . "</td>"
+            . "<td>" . $row['purchasedon'] . "</td>"
+            . "<td class='icons'>"
+                . "<a href='edit_inventory.php?edit=" . $row['inv_id'] . "' title='Edit'>"
+                    . "<i class='fa-solid fa-pencil'></i>"
+                . "</a> &nbsp;"
+                . "<a href='a_reports.php?delete=" . $row['inv_id'] . "' title='Delete' onclick=\"return confirm('Are you sure?')\">"
+                    . "<i class='fa-solid fa-trash-can'></i>"
+                . "</a>"
+            . "</td>"
+            . "</tr>";
+        $sno++;
+    }
+}
+?>
+
     </tbody>
 </table>
     </div>
 </div>
-    </div>
-    </div>
-</body>
 
+</body>
 </html>

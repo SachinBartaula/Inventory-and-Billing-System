@@ -27,6 +27,15 @@ if (isset($_GET["edit"])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+     <div class="sidebar_index">
+        <h2 id="logo">Inventory &<br>Billing system</h2>
+         <div class="page-contanier">
+        </div>
+        <footer>
+        <p>Version 1.0</p>
+        </footer>
+
+</div>
     <div class="Edit_inventory_main">
         <h2>Edit Inventory Item</h2>
         <form method="post" action="a_inventory.php">
@@ -39,12 +48,12 @@ if (isset($_GET["edit"])) {
                     <td><input type="text" id="product_name" name="product_name" value="<?php echo htmlspecialchars($row['productname']); ?>" required></td>
 
                     <td><label for="product_price">Price:</label></td>
-                    <td><input type="number" id="product_price" name="product_price" value="<?php echo $row['b_price']; ?>" required></td>
+                    <td><input type="text" id="product_price" name="product_price" value="<?php echo $row['b_price']; ?>" required></td>
                 </tr>
 
                 <tr>
                     <td><label for="product_quantity">Quantity:</label></td>
-                    <td><input type="number" id="product_quantity" name="product_quantity" value="<?php echo $row['inv_quantity']; ?>" required></td>
+                    <td><input type="text" id="product_quantity" name="product_quantity" value="<?php echo $row['inv_quantity']; ?>" required></td>
 
                     <td><label for="product_category">Category:</label></td>
                     <td><input type="text" id="product_category" name="product_category" value="<?php echo htmlspecialchars($row['inv_category']); ?>" required></td>
