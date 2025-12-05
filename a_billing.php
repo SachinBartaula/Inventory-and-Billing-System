@@ -17,9 +17,10 @@ $discount        = intval($_POST["discount"]);
 $salesDate         = $_POST["salse_date"];
 $customer        = $_POST["customer_name"];
 $phone           = $_POST["customer_phone"];
+$totalamount      =intval($_POST["total_amount"]);
      
-    $sql = "INSERT INTO sales (productname, s_price, s_quantity, s_category,discount, salseon)
-            VALUES ('$ProductName', $Price, $Quantity, '$Category',$discount, '$salesDate')";
+    $sql = "INSERT INTO sales (productname, s_price, s_quantity, s_category,discount, salseon,customername,totalamount)
+            VALUES ('$ProductName', $Price, $Quantity, '$Category',$discount, '$salesDate','$customer',$totalamount)";
         $result=$conn->query($sql);
     // $sql_customer="INSERT INTO customer (customername,customerphone) VALUES ('$customer','$phone')";
     //     $result_customer=$conn->query($sql_customer);
@@ -43,6 +44,9 @@ $Quantity        = intval($_POST["product_quantity"]);
 $Category        = $_POST["product_category"];
 $discount        = intval($_POST["discount"]);
 $salesDate         = $_POST["salse_date"];
+$customername       =$_POST["customer_name"];
+
+
      
     // Update query
      $sql = "UPDATE sales 
@@ -51,7 +55,8 @@ $salesDate         = $_POST["salse_date"];
                 s_quantity = $Quantity,
                 s_category = '$Category',
                 discount = $discount,
-                salseon = '$salesDate'
+                salseon = '$salesDate',
+                customername='$customername'
             WHERE s_id = $id";
 
     $result = $conn->query($sql);
@@ -84,7 +89,6 @@ $salesDate         = $_POST["salse_date"];
     <!-- <link rel="stylesheet" href="Styles.css"> -->
     <link rel="stylesheet" href="Styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><!--icon connect garni*/-->
-    <script src="main.js"></script>
 </head>
 
 <body>
@@ -122,22 +126,22 @@ $salesDate         = $_POST["salse_date"];
                     <td><label for="product_name">Product Name:</label></td>
                     <td><input type="text" id="product_name" placeholder="Product Name" name="product_name"required></td>
                     
-                    <td><label for="product_price">Price:</label></td>
-                    <td><input type="text" id="product_price" placeholder="Price" name="product_price"required></td>
+                    <td><label for="product_price_billing">Price:</label></td>
+                    <td><input type="text" id="product_price_billing" placeholder="Price" name="product_price"required></td>
                 </tr>
                 
                 
                 
                 <tr>
-                    <td><label for="product_quantity">Quantity:</label></td>
-                    <td><input type="text" id="product_quantity" placeholder="Quantity" name="product_quantity"required></td>
+                    <td><label for="product_quantity_billing">Quantity:</label></td>
+                    <td><input type="text" id="product_quantity_billing" placeholder="Quantity" name="product_quantity" value="1" required></td>
                     <td><label for="product_category">Category:</label></td>
                     <td><input type="text" id="product_category" placeholder="Category" name="product_category"required></td>
                 </tr>
 
         <tr>
-                <td><label for="discount">Discount %:(optional)</label></td>
-                <td><input type="text" id="discount" placeholder="Discount" name="discount"></td>
+                <td><label for="discount_billing">Discount %:(optional)</label></td>
+                <td><input type="text" id="discount_billing" placeholder="Discount" name="discount" value="0" ></td>
                 <td><label for="Salse_on">Salse on:</label></td>
                 <td><input type="text" id="Salse_on" name="salse_date"readonly></td>
                     
@@ -153,7 +157,7 @@ $salesDate         = $_POST["salse_date"];
             
             <tr>
                 <td><label for="total_amount">Total Amount:</label></td>
-                <td><input type="text" id="total_amount" readonly name="discount"></td>
+                <td><input type="text" id="total_amount" readonly name="total_amount"></td>
                 <td><input type="submit" name="billing_submit" value="Submit "class="button_2"></td>
             </tr>
         </table>
@@ -162,6 +166,8 @@ $salesDate         = $_POST["salse_date"];
 </div>
     </div>
     </div>
+    <script src="main.js"></script>
 </body>
+
 
 </html>

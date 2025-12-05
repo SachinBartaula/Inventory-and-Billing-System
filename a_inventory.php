@@ -68,7 +68,22 @@ if(isset($_POST["inventory_update"])) {
         echo "Error updating record: " . $conn->error;
     }
 }
+// -------------------------------insert category--------------------
 
+if (isset($_POST["category_submit"])) {
+
+    $Category        = $_POST["category_name"];
+    $date            = $_POST["salse_date"];
+     
+    $sql = "INSERT INTO category (category_name,created_on)
+            VALUES ('$Category','$date')";
+        $result=$conn->query($sql);
+        if ($result) {
+                  echo "<script>alert('Category added sucessfull'); window.location='a_inventory.php';</script>";
+
+              exit();
+        }
+    }     
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,6 +134,7 @@ if(isset($_POST["inventory_update"])) {
                 <div class="display_inventory">
                     <h2 id="main_body_heading">Inventory</h2>
                     <div class="addinventory_button">
+                        <input class="button_2" type="submit" name="add_category" value="+ Category" id="btn_category_add" onclick="addcategory()">&nbsp;&nbsp;
                         <input class="button_2" type="submit" name="add_inventory" value="+ Add Inventory" id="inventory_add" onclick="additems()">
 
                     </div>
@@ -209,6 +225,33 @@ if ($result->num_rows > 0) {
 </div>
 </div>
 
+<div class="category_add" id="category_add">
+    <div class="addinventory_bgcolor">
+        <form method="post">
+            <span id="close_category">
+                <button class="button_2" onclick="closecategory()">&times;</button>
+            </span>
+
+            <h3>Add Category</h3>
+
+            <table>
+                <tr>
+                    <td><label for="Category_name">Category:</label></td>
+                    <td><input type="text" id="Category_name" name="category_name" placeholder="Category"></td>
+                </tr>
+
+                <tr>
+                    <td><label>Created on:</label></td>
+                    <td><input type="text"id="Salse_on" name="salse_date"readonly></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="category_submit" value="Submit" class="button_2"></td>
+
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
 <!-- ------------------------------------------close------------------------------------------------------------ -->
 </body>
 <script src="main.js"></script>

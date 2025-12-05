@@ -31,6 +31,13 @@ function closeitems(){
     document.getElementById("addinventory_id").classList.add("close");
     
 }
+function addcategory() {
+    document.getElementById("category_add").classList.add("show_category");
+}
+function closecategory(){
+    document.getElementById("category_add").classList.add("close_category");
+
+}
 window.addEventListener("load", function () {
     const time = new Date();
     const fulldate = time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate();
@@ -45,6 +52,28 @@ window.addEventListener("load", function () {
     document.getElementById("Salse_on").value = fulldate;
 
 });
+
+//real time calculation
+ function calculateTotal() {
+        let price = parseFloat(document.getElementById("product_price_billing").value) || 0;
+        let quantity = parseInt(document.getElementById("product_quantity_billing").value) || 0;
+        let discount = parseFloat(document.getElementById("discount_billing").value) || 0;
+
+        let total = price * quantity;
+
+        // apply discount if entered
+        if (discount > 0) {
+            total = total - (total * (discount / 100));
+        }
+
+        document.getElementById("total_amount").value = total.toFixed(2);
+    }
+
+    // Run calculation whenever user types
+    document.getElementById("product_price_billing").addEventListener("input", calculateTotal);
+    document.getElementById("product_quantity_billing").addEventListener("input", calculateTotal);
+    document.getElementById("discount_billing").addEventListener("input", calculateTotal);
+
 // -------------------------------employees--------------------------------
 function addemployee(){
     document.getElementById("emp_form_container").classList.add("show");

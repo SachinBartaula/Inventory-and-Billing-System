@@ -424,6 +424,50 @@ select:focus {
     width: 100%;
     height: 100vh;
 }
+
+.category_add{
+    display: none;
+    opacity: 0;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    z-index: -50;
+    transition: 0.3s;
+}
+
+.category_add.close_category{
+    display: none;
+    opacity: 0;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    z-index: -50;
+    transition: 0.3s;
+}
+
+.category_add.show_category{
+    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 100;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+.category_add h3{
+    text-align: center;
+}
+.category_add table tr td{
+    padding: 10px;
+}
+#close_category{
+    display: flex;
+    justify-content: end;
+}
 .addinventory_bgcolor{
     width:fit-content;
     background-color: #20a8ec;

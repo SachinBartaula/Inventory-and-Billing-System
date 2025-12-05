@@ -123,8 +123,8 @@ $customername       =$_POST["customer_name"];
                         <th> Purchased By </th>
                         <th> Price </th>
                         <th> Quantity </th>
+                        <th> Total Amount </th>
                         <th> Date </th>
-                        <!-- <th> Total Amount </th> -->
                         <th> Action </th>
 
                  </tr>
@@ -144,8 +144,8 @@ if ($result->num_rows > 0) {
             . "<td>" . $row['customername'] . "</td>"
             . "<td>" . $row['s_price'] . "</td>"
             . "<td>" . $row['s_quantity'] . "</td>"
+            . "<td>" . $row['totalamount'] . "</td>"
             . "<td>" . $row['salseon'] . "</td>"
-            // . "<td>" . $row['totalamount'] . "</td>"
              . "<td class='icons'>"
                 . "<a href='edit_bills.php?edit=" . $row['s_id'] . "' title='Edit'>"
                     . "<i class='fa-solid fa-pencil'></i>"
