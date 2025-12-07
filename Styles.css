@@ -14,6 +14,23 @@ body {
 
 }
 
+.button_link {
+    display: inline-block;
+    padding: 10px 20px;           /* space inside the button */
+    background-color: #ff511c;     /* button color */
+    color: #fff;                   /* text color */
+    text-decoration: none;         /* remove underline */
+    font-weight: bold;
+    border-radius: 5px;            /* rounded corners */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button_link:hover {
+    background-color: #e04b12;     /* darker on hover */
+}
+
 /* --------------------- sidebar ---------------------- */
 .sidebar_index {
     top: 0;

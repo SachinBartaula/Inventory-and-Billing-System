@@ -27,22 +27,19 @@ window.addEventListener("load", function () {
 function additems() {
     document.getElementById("addinventory_id").classList.add("show");
 }
-function closeitems(){
-    document.getElementById("addinventory_id").classList.add("close");
-    
-}
+
 function addcategory() {
     document.getElementById("category_add").classList.add("show_category");
 }
-function closecategory(){
-    document.getElementById("category_add").classList.add("close_category");
-}
+
 window.addEventListener("load", function () {
     const time = new Date();
     const fulldate = time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate();
     document.getElementById("purchased_date").value = fulldate;
 });
 
+// ---------------------validation inventory---------------------------
+   
 // --------------------------billing----------------------------------
 
 window.addEventListener("load", function () {

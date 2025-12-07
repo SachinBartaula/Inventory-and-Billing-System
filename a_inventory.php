@@ -54,8 +54,7 @@ if (isset($_POST["inventory_update"])) {
             SET productname = '$ProductName',
                 inv_price = $Price,
                 inv_quantity = $Quantity,
-                inv_category = '$Category',
-                purchasedon = '$PurchasedOn'
+                inv_category = '$Category'
             WHERE inv_id = $id";
 
     $result = $conn->query($sql);
@@ -103,6 +102,7 @@ if (isset($_POST["category_submit"])) {
     <link rel="stylesheet" href="Styles.css?v=<?php echo time(); ?>">
     <!--icon connect garni*/-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 
 <body>
@@ -191,8 +191,9 @@ if (isset($_POST["category_submit"])) {
         <!-- css applied through input attributes -->
         <div class="addinventory" id="addinventory_id">
             <div class="addinventory_bgcolor">
-                <form method="post">
-                    <span id="close"><button class="button_2" onclick="closeitems()">&times;</button></span>
+                <form method="post" onsubmit="return inventory_validation(event)">
+
+                    <span id="close"><a href="a_inventory.php" class="button_link">&times;</a></button></span>
                     <h3>Inventory Items</h3>
                     <table>
                         <tr>
@@ -248,9 +249,10 @@ if (isset($_POST["category_submit"])) {
         <!-- -----------------------------category model-------------------- -->
         <div class="category_add" id="category_add">
             <div class="addinventory_bgcolor">
-                <form method="post">
+                <form method="post" onsubmit="return category_validation(event)">
                     <span id="close_category">
-                        <button class="button_2" onclick="closecategory()">&times;</button>
+                        <span id="close"><a href="a_inventory.php" class="button_link">&times;</a></button></span>
+
                     </span>
 
                     <h3>Add Category</h3>
@@ -274,7 +276,9 @@ if (isset($_POST["category_submit"])) {
             </div>
         </div>
         <!-- ------------------------------------------close------------------------------------------------------------ -->
+        <script src="main.js"></script>
+        <script src="validation.js"></script>
+
 </body>
-<script src="main.js"></script>
 
 </html>

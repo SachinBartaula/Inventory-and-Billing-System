@@ -38,8 +38,7 @@ if (isset($_GET["edit"])) {
 </div>
     <div class="Edit_inventory_main">
         <h2>Edit Inventory Item</h2>
-        <form method="post" action="a_inventory.php">
-            <!-- Hidden input to pass the ID -->
+<form method="post" action="a_inventory.php" onsubmit="return inventory_edit_validation(event)">      
             <input type="hidden" name="inv_id" value="<?php echo $row['inv_id']; ?>">
 
             <table>
@@ -48,7 +47,7 @@ if (isset($_GET["edit"])) {
                     <td><input type="text" id="product_name" name="product_name" value="<?php echo htmlspecialchars($row['productname']); ?>" required></td>
 
                     <td><label for="product_price">Price:</label></td>
-                    <td><input type="text" id="product_price" name="product_price" value="<?php echo $row['b_price']; ?>" required></td>
+                    <td><input type="text" id="product_price" name="product_price" value="<?php echo $row['inv_price']; ?>" required></td>
                 </tr>
 
                 <tr>
@@ -56,18 +55,34 @@ if (isset($_GET["edit"])) {
                     <td><input type="text" id="product_quantity" name="product_quantity" value="<?php echo $row['inv_quantity']; ?>" required></td>
 
                     <td><label for="product_category">Category:</label></td>
-                    <td><input type="text" id="product_category" name="product_category" value="<?php echo htmlspecialchars($row['inv_category']); ?>" required></td>
+                    <td> <?php
+                                $sql_category = "SELECT cat_id, category_name FROM  category";
+                                $result_category = $conn->query($sql_category);
+                                ?>
+
+                                <select name="product_category">
+                                    <option value="">Select Category</option>
+
+                                    <?php
+                                    while ($row = mysqli_fetch_assoc($result_category)) {
+                                    ?>
+                                        <option value="<?php echo htmlspecialchars($row['category_name']); ?>">
+                                            <?php echo htmlspecialchars($row['category_name']); ?>
+                                        </option>
+                                    <?php
+                                    }
+                                    ?></td>
                 </tr>
 
                 <tr>
-                    <td><label for="purchased_date">Purchased On:</label></td>
-                    <td><input type="date" id="purchased_date" name="product_purchasedon" value="<?php echo $row['purchasedon']; ?>" required readonly></td>
 
                     <td colspan="2"><input type="submit" name="inventory_update" value="Update" class="button_2"></td>
                 </tr>
             </table>
         </form>
     </div>
+        <script src="validation.js"></script>
+
 </body>
 </html>
 

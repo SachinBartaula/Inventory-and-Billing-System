@@ -129,9 +129,10 @@ if ($result->num_rows > 0) {
         <div class="emp_form_container" id="emp_form_container">
             
             <div class="employee_add"> 
-                <form method="post">
+                <form method="post" onsubmit="return employee_validation(event)">
                     <div class="employee_add_head">
-                        <span id="close" ><button class="button_2" onclick="closeemployee()">&times;</button></span>
+                        <span id="close"><a href="a_employee.php" class="button_link">&times;</a></button></span>
+
                         <h3>Add Employees</h3>
                     </div>
                     <table>
@@ -163,6 +164,7 @@ if ($result->num_rows > 0) {
     
 
 ?>
+        <script src="validation.js"></script>
 
 </body>
 
