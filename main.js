@@ -36,7 +36,6 @@ function addcategory() {
 }
 function closecategory(){
     document.getElementById("category_add").classList.add("close_category");
-
 }
 window.addEventListener("load", function () {
     const time = new Date();
@@ -52,6 +51,7 @@ window.addEventListener("load", function () {
     document.getElementById("Salse_on").value = fulldate;
 
 });
+
 
 //real time calculation
  function calculateTotal() {
@@ -74,6 +74,13 @@ window.addEventListener("load", function () {
     document.getElementById("product_quantity_billing").addEventListener("input", calculateTotal);
     document.getElementById("discount_billing").addEventListener("input", calculateTotal);
 
+
+///show phone number of customer
+function showPhone() {
+    const select = document.getElementById("customerSelect");
+    const phone = select.options[select.selectedIndex].getAttribute("data-phone");
+    document.getElementById("customer_phone").value = phone;
+}
 // -------------------------------employees--------------------------------
 function addemployee(){
     document.getElementById("emp_form_container").classList.add("show");
@@ -83,8 +90,3 @@ function closeemployee(){
     
 }
 
-window.addEventListener("load", function () {
-    const time = new Date();
-    const fulldate = time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate();
-    document.getElementById("emp_created_on").value = fulldate;
-});

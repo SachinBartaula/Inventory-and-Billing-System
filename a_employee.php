@@ -49,8 +49,9 @@ if(isset($_POST["employee_submit"])){
 <!-- DataTables JS -->
 <script src="https://cdn.datatables.net/2.3.5/js/dataTables.min.js"></script>
     <link rel="stylesheet" href="Styles.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><!--icon connect garni*/-->
     <script src="main.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><!--icon connect garni*/-->
 </head>
 
 <body>
@@ -81,6 +82,7 @@ if(isset($_POST["employee_submit"])){
         <div class="main_body">
             <h2 id="main_body_heading">Employees</h2>
             <div class="employee_add_button">
+               
                 <input class="button_2" type="submit" name="add_inventory" value="+ Add Employees" id="employee_add" onclick="addemployee()">
             </div>
             
@@ -144,7 +146,7 @@ if ($result->num_rows > 0) {
                              <td><label for="role">Role:</label></td>
                             <td><input type="text" id="role" name="role" value="employee" readonly> </td>
                              <td><label for="emp_created_on">Created on:</label></td>
-                            <td><input type="text" id="emp_created_on" name="employee_createdOn" readonly> </td>
+                            <td><input type="text" id="Salse_on" name="employee_createdOn" readonly> </td>
                         </tr>
                         <tr>
                          <td><input type="hidden" name="" value=" "class=""><td>
@@ -154,12 +156,14 @@ if ($result->num_rows > 0) {
                 </form>
             </div>
         </div>
-        
-    </div>
+
+        <!-- ----------------------------------customer------------------------------  -->
+
     <?php
     
 
 ?>
+
 </body>
 
 </html>

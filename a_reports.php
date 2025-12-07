@@ -190,7 +190,7 @@ if ($result->num_rows > 0) {
             . "<td>" . $row['productname'] . "</td>"
             . "<td>" . $row['inv_quantity'] . "</td>"
             . "<td>" . $row['inv_category'] . "</td>"
-            . "<td>" . $row['b_price'] . "</td>"
+            . "<td>" . $row['inv_price'] . "</td>"
             . "<td>" . $row['purchasedon'] . "</td>"
             . "<td class='icons'>"
                 . "<a href='edit_inventory.php?edit=" . $row['inv_id'] . "' title='Edit'>"
