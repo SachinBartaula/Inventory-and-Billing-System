@@ -89,7 +89,8 @@
       <!-- <link rel="stylesheet" href="Styles.css"> -->
       <link rel="stylesheet" href="Styles.css?v=<?php echo time(); ?>">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><!--icon connect garni*/-->
-  </head>
+ 
+    </head>
 
   <body>
 
@@ -123,8 +124,10 @@
               <div class="billing">
                   <form method="post">
                       <h3>Billing</h3>
-
                       <table>
+
+
+                              <input type="date" id="date" name="salse_date" readonly>
                           <tr>
                               <td><label for="product_name">Product Name:</label></td>
                               <td><input type="text" id="product_name" placeholder="Product Name" name="product_name" required></td>
@@ -137,38 +140,7 @@
 
                           <tr>
                               <td><label for="product_quantity_billing">Quantity:</label></td>
-                              <td><input type="text" id="product_quantity_billing" placeholder="Quantity" name="product_quantity" value="1" required></td>
-                              <td><label for="product_category">Category:</label></td>
-                              <td>
-                                  <?php
-                                    $sql_category = "SELECT cat_id, category_name FROM  category";
-                                    $result_category = $conn->query($sql_category);
-                                    ?>
-
-                                  <select name="category">
-                                      <option value="">Select Category</option>
-
-                                      <?php
-                                        while ($row = mysqli_fetch_assoc($result_category)) {
-                                        ?>
-                                          <option value="<?php echo htmlspecialchars($row['category_name']); ?>">
-                                            <?php echo htmlspecialchars($row['category_name']); ?>
-                                        </option>
-                                      <?php
-                                        }
-                                        ?>
-                              </td>
-                          </tr>
-
-                          <tr>
-                              <td><label for="discount_billing">Discount %:(optional)</label></td>
-                              <td><input type="text" id="discount_billing" placeholder="Discount" name="discount" value="0"></td>
-                              <td><label for="Salse_on">Salse on:</label></td>
-                              <td><input type="text" id="Salse_on" name="salse_date" readonly></td>
-
-                          </tr>
-
-                          <tr>
+                              <td><input type="number" id="product_quantity_billing" placeholder="Quantity" name="product_quantity" value="1" required></td>
                               <td><label for="customer_name">Customer:</label></td>
                               <td>
 
@@ -190,7 +162,32 @@
                                         }
                                         ?>
                               </td>
-                              <td><label for="customer_phone">Phone no:(optional)</label></td>
+                              <!-- <td><label for="product_category">Category:</label></td> -->
+                              <!-- <td>
+                                  <?php
+                                    $sql_category = "SELECT cat_id, category_name FROM  category";
+                                    $result_category = $conn->query($sql_category);
+                                    ?>
+
+                                  <select name="category">
+                                      <option value="">Select Category</option>
+
+                                      <?php
+                                        while ($row = mysqli_fetch_assoc($result_category)) {
+                                        ?>
+                                          <option value="<?php echo htmlspecialchars($row['category_name']); ?>">
+                                            <?php echo htmlspecialchars($row['category_name']); ?>
+                                        </option>
+                                      <?php
+                                        }
+                                        ?>
+                              </td> -->
+                          </tr>
+
+                          <tr>
+                              <td><label for="discount_billing">Discount %:(optional)</label></td>
+                              <td><input type="text" id="discount_billing" placeholder="Discount" name="discount" value="0"></td>
+                              
                           </tr>
 
                           <tr>
@@ -200,6 +197,7 @@
                           </tr>
                       </table>
                   </form>
+
               </div>
           </div>
       </div>

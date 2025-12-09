@@ -208,7 +208,7 @@ if (isset($_POST["category_submit"])) {
 
                         <tr>
                             <td><label for="product_quantity">Quantity:</label></td>
-                            <td><input type="text" id="product_quantity" placeholder="Quantity" name="product_quantity"></td>
+                            <td><input type="number" id="product_quantity" placeholder="Quantity" name="product_quantity" value="1"></td>
                             <td><label for="product_category">Category:</label></td>
                             <td>
                                 <?php
@@ -238,8 +238,8 @@ if (isset($_POST["category_submit"])) {
 
                         <tr>
                             <td><label for="purchased_date">Purchased on:</label></td>
-                            <td><input type="text" id="purchased_date" name="product_purchasedon" readonly> </td>
-                            <td><input type="submit" name="inventory_submit" value="Submit " class="button_2">
+                            <td><input type="date" id="date" name="product_purchasedon" readonly> </td>
+                            <td><input type="submit" name="inventory_submit" value="Add" class="button_2">
                             <td>
                         </tr>
                     </table>
@@ -265,10 +265,10 @@ if (isset($_POST["category_submit"])) {
 
                         <tr>
                             <td><label>Created on:</label></td>
-                            <td><input type="text" id="Salse_on" name="salse_date" readonly></td>
+                            <td><input type="date" id="catogary_date" name="salse_date" readonly></td>
                         </tr>
                         <tr>
-                            <td><input type="submit" name="category_submit" value="Submit" class="button_2"></td>
+                            <td><input type="submit" name="category_submit" value="Add" class="button_2"></td>
 
                         </tr>
                     </table>

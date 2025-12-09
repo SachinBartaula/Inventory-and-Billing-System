@@ -52,7 +52,7 @@ if (isset($_GET["edit"])) {
 
                 <tr>
                     <td><label for="product_quantity">Quantity:</label></td>
-                    <td><input type="text" id="product_quantity" name="product_quantity" value="<?php echo $row['inv_quantity']; ?>" required></td>
+                    <td><input type="number" id="product_quantity" name="product_quantity" value="<?php echo $row['inv_quantity']; ?>" required></td>
 
                     <td><label for="product_category">Category:</label></td>
                     <td> <?php
