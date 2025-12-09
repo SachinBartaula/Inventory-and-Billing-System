@@ -31,14 +31,7 @@ function additems() {
 function addcategory() {
     document.getElementById("category_add").classList.add("show_category");
 }
-
-// window.addEventListener("load", function () {
-//     const time = new Date();
-//     const fulldate = time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate();
-//     document.getElementById("purchased_date").value = fulldate;
-// });
-
-   
+  
 // --------------------------billing----------------------------------
 
 window.addEventListener("load", function () {
@@ -49,6 +42,7 @@ window.addEventListener("load", function () {
 
     const fullDate = `${year}-${month}-${day}`;
     document.getElementById("date").value = fullDate;
+    document.getElementById("date_text").innerHTML = fullDate;
     document.getElementById("catogary_date").value = fullDate;
 
 });

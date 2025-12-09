@@ -198,17 +198,17 @@ if (isset($_POST["category_submit"])) {
                     <table>
                         <tr>
                             <td><label for="product_name">Product Name:</label></td>
-                            <td><input type="text" id="product_name" placeholder="Product Name" name="product_name"></td>
+                            <td><input type="text" id="product_name" placeholder="Product Name" name="product_name"required></td>
 
                             <td><label for="product_price">Price:</label></td>
-                            <td><input type="text" id="product_price" placeholder="Price" name="product_price"></td>
+                            <td><input type="text" id="product_price" placeholder="Price" name="product_price"required></td>
                         </tr>
 
 
 
                         <tr>
                             <td><label for="product_quantity">Quantity:</label></td>
-                            <td><input type="number" id="product_quantity" placeholder="Quantity" name="product_quantity" value="1"></td>
+                            <td><input type="number" id="product_quantity" placeholder="Quantity" name="product_quantity" value="1"required></td>
                             <td><label for="product_category">Category:</label></td>
                             <td>
                                 <?php
@@ -216,13 +216,13 @@ if (isset($_POST["category_submit"])) {
                                 $result_category = $conn->query($sql_category);
                                 ?>
 
-                                <select name="product_category">
+                                <select name="product_category" required>
                                     <option value="">Select Category</option>
 
                                     <?php
                                     while ($row = mysqli_fetch_assoc($result_category)) {
                                     ?>
-                                        <option value="<?php echo htmlspecialchars($row['category_name']); ?>">
+                                        <option  value="<?php echo htmlspecialchars($row['category_name']); ?>">
                                             <?php echo htmlspecialchars($row['category_name']); ?>
                                         </option>
                                     <?php
@@ -260,7 +260,7 @@ if (isset($_POST["category_submit"])) {
                     <table>
                         <tr>
                             <td><label for="Category_name">Category:</label></td>
-                            <td><input type="text" id="Category_name" name="category_name" placeholder="Category"></td>
+                            <td><input type="text" id="Category_name" name="category_name" placeholder="Category" required></td>
                         </tr>
 
                         <tr>
@@ -268,7 +268,7 @@ if (isset($_POST["category_submit"])) {
                             <td><input type="date" id="catogary_date" name="salse_date" readonly></td>
                         </tr>
                         <tr>
-                            <td><input type="submit" name="category_submit" value="Add" class="button_2"></td>
+                            <td><input type="submit" name="category_submit" value="Addrequired" class="button_2"></td>
 
                         </tr>
                     </table>

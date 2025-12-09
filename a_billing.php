@@ -1,6 +1,7 @@
   <?php
     session_start();
-    if (!isset($_SESSION["username_session"]) || !isset($_SESSION["password_session"])) {
+
+    if (!isset($_SESSION["username_session"]) || $_SESSION["role_session"] !== "admin") {
         header("Location: index.php");
         exit();
     }
@@ -89,8 +90,8 @@
       <!-- <link rel="stylesheet" href="Styles.css"> -->
       <link rel="stylesheet" href="Styles.css?v=<?php echo time(); ?>">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><!--icon connect garni*/-->
- 
-    </head>
+
+  </head>
 
   <body>
 
@@ -112,101 +113,147 @@
               <p>Version 1.0</p>
           </footer>
       </div>
-      <div class="main">
+      <div class="main_billing">
           <div class="main_box">
               <div class="main_box_heading">
                   <h1>Billing</h1>
-                  <h4>Admin</h4>
+                  <h4><?php echo
+                        $_SESSION["username_session"]; ?></h4>
               </div>
           </div>
-          <div class="main_body">
-
               <div class="billing">
                   <form method="post">
-                      <h3>Billing</h3>
-                      <table>
 
+                      <!-- Date -->
+                      <div class="form-group">
+                          <label for="date">Date:</label>
+                          <input type="date" id="date" name="salse_date" readonly>
+                      </div>
 
-                              <input type="date" id="date" name="salse_date" readonly>
-                          <tr>
-                              <td><label for="product_name">Product Name:</label></td>
-                              <td><input type="text" id="product_name" placeholder="Product Name" name="product_name" required></td>
+                      <!-- Product Name + Price -->
+                      <div class="form-row">
+                          <div class="form-group">
+                              <label for="product_name">Product Name:</label>
+                              <input type="text" id="product_name" name="product_name" placeholder="Product Name" required>
+                          </div>
 
-                              <td><label for="product_price_billing">Price:</label></td>
-                              <td><input type="text" id="product_price_billing" placeholder="Price" name="product_price" required></td>
-                          </tr>
+                          <div class="form-group">
+                              <label for="product_price_billing">Price:</label>
+                              <input type="text" id="product_price_billing" name="product_price" placeholder="Price" required>
+                          </div>
+                      </div>
 
+                      <!-- Quantity + Customer -->
+                      <div class="form-row">
+                          <div class="form-group">
+                              <label for="product_quantity_billing">Quantity:</label>
+                              <input type="number" id="product_quantity_billing" name="product_quantity" value="1" required>
+                          </div>
 
-
-                          <tr>
-                              <td><label for="product_quantity_billing">Quantity:</label></td>
-                              <td><input type="number" id="product_quantity_billing" placeholder="Quantity" name="product_quantity" value="1" required></td>
-                              <td><label for="customer_name">Customer:</label></td>
-                              <td>
-
+                          <div class="form-group">
+                              <label for="customer_name">Customer:</label>
+                              <select name="customer_name" id="customer_name">
+                                  <option value="Cash">Cash</option>
                                   <?php
-                                    $sql_customer = "SELECT c_id, customername FROM  customer";
+                                    $sql_customer = "SELECT c_id, customername FROM customer";
                                     $result_customer = $conn->query($sql_customer);
+                                    while ($row = mysqli_fetch_assoc($result_customer)) {
                                     ?>
+                                      <option value="<?php echo $row['c_id']; ?>">
+                                          <?php echo $row['customername']; ?>
+                                      </option>
+                                  <?php } ?>
+                              </select>
+                          </div>
+                      </div>
 
-                                  <select name="customer_name">
-                                      <option value="Cash" default>Cash</option>
+                      <!-- Discount + Total -->
+                      <div class="form-row">
+                          <div class="form-group">
+                              <label for="discount_billing">Discount % (optional):</label>
+                              <input type="text" id="discount_billing" name="discount" placeholder="Discount" value="0">
+                          </div>
 
-                                      <?php
-                                        while ($row = mysqli_fetch_assoc($result_customer)) {
-                                        ?>
-                                          <option value="<?php echo $row['c_id']; ?>">
-                                              <?php echo $row['customername']; ?>
-                                          </option>
-                                      <?php
-                                        }
-                                        ?>
-                              </td>
-                              <!-- <td><label for="product_category">Category:</label></td> -->
-                              <!-- <td>
-                                  <?php
-                                    $sql_category = "SELECT cat_id, category_name FROM  category";
-                                    $result_category = $conn->query($sql_category);
-                                    ?>
+                          <div class="form-group">
+                              <label for="total_amount">Total Amount:</label>
+                              <input type="text" id="total_amount" name="total_amount" readonly>
+                          </div>
+                      </div>
 
-                                  <select name="category">
-                                      <option value="">Select Category</option>
+                      <!-- Submit Button -->
+                      <div class="form-group">
+                          <button type="submit" name="billing_submit" class="billing-btn">Add</button>
+                      </div>
 
-                                      <?php
-                                        while ($row = mysqli_fetch_assoc($result_category)) {
-                                        ?>
-                                          <option value="<?php echo htmlspecialchars($row['category_name']); ?>">
-                                            <?php echo htmlspecialchars($row['category_name']); ?>
-                                        </option>
-                                      <?php
-                                        }
-                                        ?>
-                              </td> -->
-                          </tr>
-
-                          <tr>
-                              <td><label for="discount_billing">Discount %:(optional)</label></td>
-                              <td><input type="text" id="discount_billing" placeholder="Discount" name="discount" value="0"></td>
-                              
-                          </tr>
-
-                          <tr>
-                              <td><label for="total_amount">Total Amount:</label></td>
-                              <td><input type="text" id="total_amount" readonly name="total_amount"></td>
-                              <td><input type="submit" name="billing_submit" value="Submit " class="button_2"></td>
-                          </tr>
-                      </table>
                   </form>
+              </div>
+                
+              </div>
 
+              <!-- ---------------------invoice----------------------------  -->
+
+              <div class="invoice-box">
+                  <h1>Invoice</h1>
+
+                  <table class="details">
+                      <tr>
+                          <td>
+                              <strong>Inventory & Billing system</strong><br>
+                          </td>
+                          <td>
+                              <strong>Invoice #:</strong> 001<br>
+                              <strong>Date:</strong> <span id="date_text"></span><br>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td colspan="2">
+                              <strong>Bill To:</strong><br>
+                              Customer Name<br>
+                              Customer Contact
+                          </td>
+                      </tr>
+                  </table>
+
+                  <table class="items">
+                      <tr>
+                          <th>Item</th>
+                          <th>Quantity</th>
+                          <th>Unit Price</th>
+                          <th>Total</th>
+                      </tr>
+                      <tr>
+                          <td>Product 1</td>
+                          <td>2</td>
+                          <td>$50.00</td>
+                          <td>$100.00</td>
+                      </tr>
+                      <tr>
+                          <td>Product 2</td>
+                          <td>1</td>
+                          <td>$75.00</td>
+                          <td>$75.00</td>
+                      </tr>
+                  </table>
+
+                  <table class="totals">
+                      <tr>
+                          <td>Subtotal:</td>
+                          <td>$175.00</td>
+                      </tr>
+                      <tr>
+                          <td>Tax (10%):</td>
+                          <td>$17.50</td>
+                      </tr>
+                      <tr>
+                          <td><strong>Total:</strong></td>
+                          <td><strong>$192.50</strong></td>
+                      </tr>
+                  </table>
+
+                  <p><strong>Signature:</strong> _____________________</p>
               </div>
           </div>
-      </div>
-      </div>
-
-
-
-
-      <script src="main.js"></script>
+          <script src="main.js"></script>
   </body>
 
   </html>
