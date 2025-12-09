@@ -122,15 +122,13 @@
               </div>
           </div>
               <div class="billing">
-                  <form method="post">
+                  <!-- <form> -->
 
-                      <!-- Date -->
                       <div class="form-group">
                           <label for="date">Date:</label>
                           <input type="date" id="date" name="salse_date" readonly>
                       </div>
 
-                      <!-- Product Name + Price -->
                       <div class="form-row">
                           <div class="form-group">
                               <label for="product_name">Product Name:</label>
@@ -143,7 +141,6 @@
                           </div>
                       </div>
 
-                      <!-- Quantity + Customer -->
                       <div class="form-row">
                           <div class="form-group">
                               <label for="product_quantity_billing">Quantity:</label>
@@ -159,15 +156,14 @@
                                     $result_customer = $conn->query($sql_customer);
                                     while ($row = mysqli_fetch_assoc($result_customer)) {
                                     ?>
-                                      <option value="<?php echo $row['c_id']; ?>">
-                                          <?php echo $row['customername']; ?>
+                                      <option value=<?php echo htmlspecialchars($row['customername']); ?>>
+                                          <?php echo  $row['customername']; ?>
                                       </option>
                                   <?php } ?>
                               </select>
                           </div>
                       </div>
 
-                      <!-- Discount + Total -->
                       <div class="form-row">
                           <div class="form-group">
                               <label for="discount_billing">Discount % (optional):</label>
@@ -180,12 +176,11 @@
                           </div>
                       </div>
 
-                      <!-- Submit Button -->
                       <div class="form-group">
-                          <button type="submit" name="billing_submit" class="billing-btn">Add</button>
+                          <button type="submit" name="billing_submit" class="billing-btn" onclick="add_sales()">Add</button>
                       </div>
 
-                  </form>
+                  <!-- </form> -->
               </div>
                 
               </div>
@@ -207,50 +202,44 @@
                       </tr>
                       <tr>
                           <td colspan="2">
-                              <strong>Bill To:</strong><br>
-                              Customer Name<br>
-                              Customer Contact
+                              <strong>Bill To:</strong><p id="customer_name_invoice"></p><br>
                           </td>
                       </tr>
                   </table>
 
                   <table class="items">
                       <tr>
-                          <th>Item</th>
-                          <th>Quantity</th>
+                          <th >Item</th>
+                          <th >Quantity</th>
                           <th>Unit Price</th>
                           <th>Total</th>
                       </tr>
                       <tr>
-                          <td>Product 1</td>
-                          <td>2</td>
-                          <td>$50.00</td>
-                          <td>$100.00</td>
+                          <td id="items">Product 1</td>
+                          <td id="quantity">2</td>
+                          <td id="price" >$50.00</td>
+                          <td id="total_price">$100.00</td>
                       </tr>
-                      <tr>
-                          <td>Product 2</td>
-                          <td>1</td>
-                          <td>$75.00</td>
-                          <td>$75.00</td>
-                      </tr>
+                     
                   </table>
 
                   <table class="totals">
                       <tr>
                           <td>Subtotal:</td>
-                          <td>$175.00</td>
+                          <td id=subtotal></td>
                       </tr>
                       <tr>
-                          <td>Tax (10%):</td>
-                          <td>$17.50</td>
+                          <td>Tax:</td>
+                          <td id="tax"></td>
                       </tr>
                       <tr>
                           <td><strong>Total:</strong></td>
-                          <td><strong>$192.50</strong></td>
+                          <td id="final_total_amount"><strong>$192.50</strong></td>
                       </tr>
                   </table>
 
-                  <p><strong>Signature:</strong> _____________________</p>
+                  <p><strong>Sales by: </strong> <?php echo
+                        $_SESSION["username_session"]; ?> </p>
               </div>
           </div>
           <script src="main.js"></script>
