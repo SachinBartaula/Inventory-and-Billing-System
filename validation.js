@@ -194,3 +194,41 @@ function employee_validation(e) {
 
     return true; // All valid
 }
+
+// --------------------------------------customer-------------------------
+function customer_validation(e) {
+
+    // Get values
+    let name = document.getElementById("c_name").value.trim();
+    let phone = document.getElementById("c_phone").value.trim();
+    let address = document.getElementById("c_address").value.trim();
+
+    // Name validation
+    if (name === "") {
+        alert("Customer name is required");
+        return false;
+    }
+    if (!/^[a-zA-Z]{3,49}\d?$/.test(name)) {
+        alert("Name should contain letters only");
+        return false;
+    }
+
+    // Phone validation
+    if (phone === "") {
+        alert("Phone number is required");
+        return false;
+    }
+    if (!/^[0-9]{10}$/.test(phone)) {
+        alert("Phone must be digits only (7-15 digits)");
+        return false;
+    }
+
+    // Address validation
+    if (address === "") {
+        alert("Address is required");
+        return false;
+    }
+
+    // If all ok → submit form
+    return true;
+}

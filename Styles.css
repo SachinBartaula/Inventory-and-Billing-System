@@ -864,3 +864,65 @@ margin-right: 8vw;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 
 }
+/* ---------------------------------customer---------------------------------- */
+.customer_form_container{
+   display: none;
+    opacity: 0;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    z-index: -50;
+    transition: 0.3s;
+}
+.customer_form_container.show{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 100;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100vh;
+}
+.customer_form_container.close{
+    display: none;
+    opacity: 0;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    z-index: -50;
+    transition: 0.3s;
+}
+.customer_add{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #20a8ec;
+    width:fit-content;
+    height: fit-content;
+    padding: 20px;
+    border: 2px;
+    border-radius: 10px;
+}
+.customer_add table tr td{
+    padding:10px;
+}
+.customer_add span{
+    display: flex;
+    justify-content: flex-end;
+}
+.customer_add h3{
+      display: flex;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 20px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+.customer_add_button{
+    display: flex;
+    justify-content: end;
+    margin-right: 2vw;
+}

@@ -22,6 +22,7 @@ window.addEventListener("load", function () {
 window.addEventListener("load", function () {
   let salesTable = new DataTable("#salesTable");
   let inventoryTable = new DataTable("#inventoryTable");
+  let customerTable = new DataTable("#customerTable");
 });
 // ------------------------inventory---------------------------
 function additems() {
@@ -83,17 +84,76 @@ function add_sales() {
   const customerName = document.getElementById("customer_name").value;
   const totalAmount = document.getElementById("total_amount").value;
 
-  document.getElementById("customer_name_invoice").innerHTML= customerName ;
-  document.getElementById("items").innerHTML=  itemsName;
-  document.getElementById("quantity").innerHTML= quantity ;
-  document.getElementById("price").innerHTML=  price;
-  document.getElementById("total_price").innerHTML= totalAmount ;
-}
+    if (itemsName === "") {
+      alert("Please enter product name");
+      return;
+  }
 
+  if (price === "" || isNaN(price)) {
+      alert("Please enter a valid price");
+      return;
+  }
+
+  if (quantity === "" || quantity <= 0) {
+      alert("Please enter a valid quantity");
+      return;
+  }
+
+  if (totalAmount === "" || isNaN(totalAmount)) {
+      alert("Total amount is missing or invalid");
+      return;
+  }
+  document.getElementById("customer_name_invoice").innerHTML = customerName;
+
+  const tableBody = document.getElementById("invoice_items");
+
+  const newRow = `
+      <tr>
+        <td>${itemsName}</td>
+        <td>${quantity}</td>
+        <td>${price}</td>
+        <td>${totalAmount}</td>
+      </tr>
+  `;
+
+  tableBody.insertAdjacentHTML("beforeend", newRow);
+
+  // ---------------------sent info------------ 
+  // document.getElementById("customer_name_database").value=customerName;
+
+  updateTotals();
+}
+function updateTotals() {
+  const taxOrNot=document.getElementById("tax_toggle").checked;
+    let subtotal = 0;
+
+    const rows = document.querySelectorAll("#invoice_items tr");
+
+    rows.forEach(row => {
+        let totalCell = row.children[3].innerText;
+        subtotal += parseFloat(totalCell);
+    });
+
+    document.getElementById("subtotal").innerHTML = subtotal.toFixed(2);
+
+    let tax=0;
+    if (taxOrNot){
+      tax = subtotal * 0.13;
+      document.getElementById("tax").innerHTML = tax.toFixed(2);
+    }
+
+    let finalTotal = subtotal + tax;
+    document.getElementById("final_total_amount").innerHTML = finalTotal.toFixed(2);
+
+}
 // -------------------------------employees--------------------------------
 function addemployee() {
   document.getElementById("emp_form_container").classList.add("show");
 }
 function closeemployee() {
   document.getElementById("emp_form_container").classList.add("close");
+}
+// ------------------------------------customer------------------------
+function addCustomer() {
+  document.getElementById("customer_form_container").classList.add("show");
 }

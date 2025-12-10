@@ -29,7 +29,10 @@ CREATE TABLE inventory (
 CREATE TABLE customer (
     c_id INT AUTO_INCREMENT PRIMARY KEY,
     customername VARCHAR(150) NOT NULL,
-    customerphone VARCHAR(20)
+    customerphone VARCHAR(20),
+    customeraddress VARCHAR(100),
+    created_on DATE NOT NULL
+
 );
 
 -- ==========================
