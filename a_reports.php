@@ -21,7 +21,7 @@ if (isset($_GET['delete'])) {
     // -------------delete bills------------------
     if (isset($_GET['s_delete'])) {
     $id = intval($_GET['s_delete']); 
-    $sql = "DELETE FROM sales WHERE s_id = $id";
+    $sql = "DELETE FROM sales WHERE sale_id = $id";
     $result = $conn->query($sql);
     if ($result) {
         header("Location: a_reports.php");
@@ -31,38 +31,38 @@ if (isset($_GET['delete'])) {
     }
 }
 // -----------------------------edit bills-------------------------
-if(isset($_POST["billing_update"])) {
+// if(isset($_POST["billing_update"])) {
 
-    // Get data from form
-    $id              = intval($_POST["s_id"]);  // <-- get the record ID
-  $ProductName     = $_POST["product_name"];
-$Price           = intval($_POST["product_price"]);
-$Quantity        = intval($_POST["product_quantity"]);
-$Category        = $_POST["product_category"];
-$discount        = intval($_POST["discount"]);
-$salesDate         = $_POST["salse_date"];
-$customername       =$_POST["customer_name"];
-// $customerphone     =$_POST["customer_phone"];
+//     // Get data from form
+//     $id              = intval($_POST["s_id"]);  // <-- get the record ID
+//   $ProductName     = $_POST["product_name"];
+// $Price           = intval($_POST["product_price"]);
+// $Quantity        = intval($_POST["product_quantity"]);
+// $Category        = $_POST["product_category"];
+// $discount        = intval($_POST["discount"]);
+// $salesDate         = $_POST["salse_date"];
+// $customername       =$_POST["customer_name"];
+// // $customerphone     =$_POST["customer_phone"];
      
-    // Update query
- $sql = "UPDATE sales 
-        SET productname = '$ProductName',
-            s_price = $Price,
-            s_quantity = $Quantity,
-            s_category = '$Category',
-            discount = $discount,
-            salseon = '$salesDate',
-            customername = '$customername'
-            -- customer_id = '$customerphone'
-        WHERE s_id = $id";
-    $result = $conn->query($sql);
-    if ($result) {
-        echo "<script>alert('Record updated successfully'); window.location='a_reports.php';</script>";
-        exit();
-    } else {
-        echo "Error updating record: " . $conn->error;
-    }
-}
+//     // Update query
+//  $sql = "UPDATE sales 
+//         SET productname = '$ProductName',
+//             s_price = $Price,
+//             s_quantity = $Quantity,
+//             s_category = '$Category',
+//             discount = $discount,
+//             salseon = '$salesDate',
+//             customername = '$customername'
+//             -- customer_id = '$customerphone'
+//         WHERE s_id = $id";
+//     $result = $conn->query($sql);
+//     if ($result) {
+//         echo "<script>alert('Record updated successfully'); window.location='a_reports.php';</script>";
+//         exit();
+//     } else {
+//         echo "Error updating record: " . $conn->error;
+//     }
+// }
 
     ?>
 <!DOCTYPE html>
@@ -111,7 +111,7 @@ $customername       =$_POST["customer_name"];
          <div class="main_box">
             <div class="main_box_heading">
                 <h1>Reports</h1>
-                <h4>Admin</h4>
+                <h4><?php echo $_SESSION["username_session"]; ?></h4>
                 </div>
             </div>
         <div class="main_body">
@@ -121,10 +121,7 @@ $customername       =$_POST["customer_name"];
     <thead>
         <tr>
                          <th> S.N </th>
-                        <th> Product </th>
                         <th> Purchased By </th>
-                        <th> Price </th>
-                        <th> Quantity </th>
                         <th> Total Amount </th>
                         <th> Date </th>
                         <th> Action </th>
@@ -141,18 +138,15 @@ if ($result->num_rows > 0) {
     $sno = 1;
     while ($row = $result->fetch_assoc()) {
         echo "<tr>"
-            . "<td>" . $sno . "</td>"
-            . "<td>" . $row['productname'] . "</td>"
-            . "<td>" . $row['customername'] . "</td>"
-            . "<td>" . $row['s_price'] . "</td>"
-            . "<td>" . $row['s_quantity'] . "</td>"
-            . "<td>" . $row['totalamount'] . "</td>"
-            . "<td>" . $row['salseon'] . "</td>"
+           . "<td>" . $row['sale_id'] . "</td>"
+            . "<td>" . $row['customer_name'] . "</td>"
+            . "<td>" . $row['final_total'] . "</td>"
+            . "<td>" . $row['sale_date'] . "</td>"
              . "<td class='icons'>"
-                . "<a href='edit_bills.php?edit=" . $row['s_id'] . "' title='Edit'>"
-                    . "<i class='fa-solid fa-pencil'></i>"
-                . "</a> &nbsp;"
-                . "<a href='a_reports.php?s_delete=" . $row['s_id'] . "' title='Delete' onclick=\"return confirm('Are you sure?')\">"
+                // . "<a href='edit_bills.php?edit=" . $row['sale_id'] . "' title='Edit'>"
+                //     . "<i class='fa-solid fa-pencil'></i>"
+                // . "</a> &nbsp;"
+                . "<a href='a_reports.php?s_delete=" . $row['sale_id'] . "' title='Delete' onclick=\"return confirm('Are you sure?')\">"
                     . "<i class='fa-solid fa-trash-can'></i>"
                 . "</a>"
             . "</td>"

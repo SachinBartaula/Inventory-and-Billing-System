@@ -414,6 +414,24 @@ select:focus {
     cursor: pointer;
 }
 
+.details_bill  {
+    padding: 5px;      
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 12px;      
+    transition: background-color 0.3s ease;
+    
+    text-align: center;
+}
+
+/* Hover effect */
+.details_bill :hover {
+    background-color: #45a049;
+}
+
 /* -----------------------------Inventory------------------------------------- */
 .addinventory{
     display: none;
@@ -926,3 +944,30 @@ margin-right: 8vw;
     justify-content: end;
     margin-right: 2vw;
 }
+/* ------------------------view bills_-----------------------  */
+.amt_view {
+    width: 300px; 
+    margin: 20px 0 40px auto; 
+    padding: 15px 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+}
+
+.amt_row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 16px;
+}
+
+.amt_row.total {
+    font-weight: bold;
+    font-size: 18px;
+    border-top: 1px solid #ccc;
+    padding-top: 12px;
+    margin-top: 8px;
+}
+

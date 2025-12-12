@@ -10,7 +10,7 @@ require_once "connection.php";
 if (isset($_GET["edit"])) {
     $id = intval($_GET["edit"]);
 
-    $sql = "SELECT * FROM sales WHERE s_id = $id";
+    $sql = "SELECT * FROM sales WHERE sale_id = $id";
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows == 1) {
@@ -28,7 +28,7 @@ if (isset($_GET["edit"])) {
 </head>
 <body>
      <div class="sidebar_index">
-        <h2 id="logo" onclick="<script>">Inventory &<br>Billing system</h2>
+        <h2 id="logo" >Inventory &<br>Billing system</h2>
          <div class="page-contanier">
         </div>
         <footer>
