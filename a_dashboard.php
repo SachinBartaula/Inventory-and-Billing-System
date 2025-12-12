@@ -74,12 +74,11 @@
                 <table id="salesTable" class="display">
                   <thead>
           <tr>
-                        <th> S.N </th>
-                        <th> Product </th>
+                        <th> ID </th>
                         <th> Purchased By </th>
-                        <th> Price </th>
-                        <th> Quantity </th>
+                        <th> Total Amount</th>
                         <th> Date </th>
+                        <th> View Details </th>
                         <!-- <th> Total Amount </th> -->
                  </tr>
                 </thead>
@@ -94,13 +93,11 @@ if ($result->num_rows > 0) {
     $sno = 1;
     while ($row = $result->fetch_assoc()) {
         echo "<tr>"
-            . "<td>" . $sno . "</td>"
-            . "<td>" . $row['productname'] . "</td>"
-            . "<td>" . $row['customername'] . "</td>"
-            . "<td>" . $row['s_price'] . "</td>"
-            . "<td>" . $row['s_quantity'] . "</td>"
-            . "<td>" . $row['salseon'] . "</td>"
-            // . "<td>" . $row['totalamount'] . "</td>"
+            . "<td>" . $row['sale_id'] . "</td>"
+            . "<td>" . $row['customer_name'] . "</td>"
+            . "<td>" . $row['final_total'] . "</td>"
+            . "<td>" . $row['sale_date'] . "</td>"
+            . "<td>" . "Details" . "</td>"
             . "</tr>";
         $sno++;
     }

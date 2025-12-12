@@ -77,76 +77,71 @@ document
   .getElementById("discount_billing")
   .addEventListener("input", calculateTotal);
 
-  let count=1;
+  let count = 1;
+
 function add_sales() {
-  const itemsName = document.getElementById("product_name").value;
-  const price = document.getElementById("product_price_billing").value;
-  const quantity = document.getElementById("product_quantity_billing").value;
-  const customerName = document.getElementById("customer_name").value;
-  const totalAmount = document.getElementById("total_amount").value;
-    if (itemsName === "") {
-      alert("Please enter product name");
-      return;
-  }
+    const product = document.getElementById("product_name").value;
+    const price = parseFloat(document.getElementById("product_price_billing").value);
+    const qty = parseFloat(document.getElementById("product_quantity_billing").value);
+    const customer = document.getElementById("customer_name").value;
 
-  if (price === "" || isNaN(price)) {
-      alert("Please enter a valid price");
-      return;
-  }
-
-  if (quantity === "" || quantity <= 0) {
-      alert("Please enter a valid quantity");
-      return;
-  }
-
-  if (totalAmount === "" || isNaN(totalAmount)) {
-      alert("Total amount is missing or invalid");
-      return;
-  }
-  document.getElementById("customer_name_invoice").innerHTML = customerName;
-
-  const tableBody = document.getElementById("invoice_items");
-
-  const newRow = `
-      <tr>
-        <td>${count}</td>
-        <td>${itemsName}</td>
-        <td>${quantity}</td>
-        <td>${price}</td>
-        <td>${totalAmount}</td>
-      </tr>
-  `;
-
-  tableBody.insertAdjacentHTML("beforeend", newRow);
-  count=count+1;
-  // ---------------------sent info------------ 
-  // document.getElementById("customer_name_database").value=customerName;
-
-  updateTotals();
-}
-function updateTotals() {
-  const taxOrNot=document.getElementById("tax_toggle").checked;
-    let subtotal = 0;
-
-
-    const rows = document.querySelectorAll("#invoice_items tr");
-
-    rows.forEach(row => {
-        let totalCell = row.children[3].innerText;
-        subtotal += parseFloat(totalCell);
-    });
-
-    document.getElementById("subtotal").innerHTML = subtotal.toFixed(2);
-
-    let tax=0;
-    if (taxOrNot){
-      tax = subtotal * 0.13;
-      document.getElementById("tax").innerHTML = tax.toFixed(2);
+    if (!product || isNaN(price) || isNaN(qty) || qty <= 0) {
+        alert("Enter valid product, price, and quantity");
+        return;
     }
 
-    let finalTotal = subtotal + tax;
-    document.getElementById("final_total_amount").innerHTML = finalTotal.toFixed(2);
+    const total = (price * qty).toFixed(2);
+    document.getElementById("customer_name_invoice").innerText = customer;
 
+    const tbody = document.getElementById("invoice_items");
+    tbody.insertAdjacentHTML("beforeend", `<tr>
+        <td>${count}</td>
+        <td>${product}</td>
+        <td>${qty}</td>
+        <td>${price.toFixed(2)}</td>
+        <td>${total}</td>
+    </tr>`);
+    count++;
+    updateTotals();
+}
+
+function updateTotals() {
+    const taxEnabled = document.getElementById("tax_toggle").checked;
+    let subtotal = 0;
+    document.querySelectorAll("#invoice_items tr").forEach(r => {
+        subtotal += parseFloat(r.children[4].innerText);
+    });
+    const tax = taxEnabled ? subtotal * 0.13 : 0;
+    const finalTotal = subtotal + tax;
+
+    document.getElementById("subtotal").innerText = subtotal.toFixed(2);
+    document.getElementById("tax").innerText = tax.toFixed(2);
+    document.getElementById("final_total_amount").innerText = finalTotal.toFixed(2);
+
+    // Hidden inputs for PHP
+    document.getElementById("subtotal_amount").value = subtotal.toFixed(2);
+    document.getElementById("tax_amount").value = tax.toFixed(2);
+    document.getElementById("final_total").value = finalTotal.toFixed(2);
+}
+
+function prepareInvoiceData() {
+    const items = [];
+    document.querySelectorAll("#invoice_items tr").forEach(r => {
+        items.push({
+            product_name: r.children[1].innerText,
+            quantity: r.children[2].innerText,
+            price: r.children[3].innerText,
+            total: r.children[4].innerText
+        });
+    });
+
+    if (items.length === 0) {
+        alert("Add at least one item before saving invoice!");
+        return false; // prevent submit
+    }
+
+    document.getElementById("invoice_data").value = JSON.stringify(items);
+    return true; // allow submit
 }
 // -------------------------------employees--------------------------------
 function addemployee() {
