@@ -133,7 +133,19 @@
               <div class="form-row">
                   <div class="form-group">
                       <label for="product_name">Product Name:</label>
-                      <input type="text" id="product_name" name="product_name" placeholder="Product Name" required>
+                      <!-- <input type="text" id="product_name" name="product_name" placeholder="Product Name" required> -->
+                      <select name="product_name" id="product_name">
+                          <option value="">Select Product</option>
+                          <?php
+                            $sql = "SELECT productname FROM inventory";
+                            $result = $conn->query($sql);
+                            while ($row = mysqli_fetch_assoc($result)) {
+                            ?>
+                              <option value=<?php echo htmlspecialchars($row['productname']); ?>>
+                                  <?php echo  $row['productname']; ?>
+                              </option>
+                          <?php } ?>
+                      </select>
                   </div>
 
                   <div class="form-group">
@@ -219,6 +231,7 @@
           </table>
           <table class="items">
               <tr>
+                  <th>No.</th>
                   <th>Item</th>
                   <th>Quantity</th>
                   <th>Unit Price</th>

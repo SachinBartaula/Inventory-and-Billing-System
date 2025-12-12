@@ -39,17 +39,29 @@ CREATE TABLE customer (
 -- 4. SALES TABLE
 -- ==========================
 CREATE TABLE sales (
-    s_id INT AUTO_INCREMENT PRIMARY KEY,
-    productname VARCHAR(150) NOT NULL,
-    s_price DECIMAL(10,2) NOT NULL,
-    s_quantity INT NOT NULL DEFAULT 0,
-    s_category VARCHAR(100),
-    discount DECIMAL(10,2) DEFAULT 0,
-    salseon DATE NOT NULL,
-    customername VARCHAR(150),
-    totalamount DECIMAL(10,2),
-
+    sale_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_name VARCHAR(255) NOT NULL,
+    subtotal DECIMAL(10,2) NOT NULL,
+    tax DECIMAL(10,2) NOT NULL,
+    final_total DECIMAL(10,2) NOT NULL,
+    sale_date DATE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE sales_items (
+    item_id INT AUTO_INCREMENT PRIMARY KEY,
+    sale_id INT NOT NULL,
+    product_name VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    total DECIMAL(10,2) NOT NULL,
+
+    -- Relationship
+    FOREIGN KEY (sale_id) REFERENCES sales(sale_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
 -- ===========================
 -- 5. category
 -- ===========================

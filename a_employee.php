@@ -65,6 +65,8 @@ if(isset($_POST["employee_submit"])){
                 <li><a href="a_reports.php"><i class="fas fa-file-alt"></i> Reports</a></li>
                 <li><a href="a_billing.php"><i class="fas fa-money-bill"></i> Billing</a></li>
                 <li><b><a href="a_employee.php"><i class="fa-solid fa-user-plus"></i> Employees</a></b></li>
+                  <li><a href="customer.php"><i class="fa-solid fa-user-plus"></i> Customer</a></li>
+
             </ul>
         </div>
          <footer>

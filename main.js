@@ -77,13 +77,13 @@ document
   .getElementById("discount_billing")
   .addEventListener("input", calculateTotal);
 
+  let count=1;
 function add_sales() {
   const itemsName = document.getElementById("product_name").value;
   const price = document.getElementById("product_price_billing").value;
   const quantity = document.getElementById("product_quantity_billing").value;
   const customerName = document.getElementById("customer_name").value;
   const totalAmount = document.getElementById("total_amount").value;
-
     if (itemsName === "") {
       alert("Please enter product name");
       return;
@@ -109,6 +109,7 @@ function add_sales() {
 
   const newRow = `
       <tr>
+        <td>${count}</td>
         <td>${itemsName}</td>
         <td>${quantity}</td>
         <td>${price}</td>
@@ -117,7 +118,7 @@ function add_sales() {
   `;
 
   tableBody.insertAdjacentHTML("beforeend", newRow);
-
+  count=count+1;
   // ---------------------sent info------------ 
   // document.getElementById("customer_name_database").value=customerName;
 
@@ -126,6 +127,7 @@ function add_sales() {
 function updateTotals() {
   const taxOrNot=document.getElementById("tax_toggle").checked;
     let subtotal = 0;
+
 
     const rows = document.querySelectorAll("#invoice_items tr");
 

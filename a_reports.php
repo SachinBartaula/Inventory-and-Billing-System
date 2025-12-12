@@ -98,6 +98,8 @@ $customername       =$_POST["customer_name"];
                 <li><b><a href="a_reports.php"><i class="fas fa-file-alt"></i> Reports</a></b></li>
                 <li><a href="a_billing.php"><i class="fas fa-money-bill"></i> Billing</a></li>
                 <li><a href="a_employee.php"><i class="fa-solid fa-user-plus"></i> Employees</a></li>
+                  <li><a href="customer.php"><i class="fa-solid fa-user-plus"></i> Customer</a></li>
+
             </ul>
         </div>
          <footer>
