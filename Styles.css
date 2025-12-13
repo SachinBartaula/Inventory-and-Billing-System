@@ -696,7 +696,7 @@ margin-right: 8vw;
 }
 .billing {
     max-width: 700px;
-    margin: 20px auto;
+    margin-left: 2vw;
     background: #E0F2FE;
     padding: 25px 30px;
     border-radius: 12px;

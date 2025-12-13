@@ -14,35 +14,88 @@ if (isset($_POST["billing_submit"])) {
     $tax = $_POST["tax_amount"];
     $final_total = $_POST["final_total"];
     $date = $_POST["salse_date"];
-    $invoice_items = json_decode($_POST["invoice_data"], true);
 
-    // Prevent saving empty invoice
-    if (empty($invoice_items)) {
-        header("Location: a_billing.php?error=empty_invoice");
+    if (!isset($_POST["invoice_data"]) || empty($_POST["invoice_data"])) {
+        echo "<script>alert('Sale failed: No items selected'); window.location='a_billing.php';</script>";
         exit();
     }
 
-    $sql = "INSERT INTO sales (customer_name, subtotal, tax, final_total, sale_date)
-            VALUES ('$customer', '$subtotal', '$tax', '$final_total', '$date')";
-    $conn->query($sql);
-    $sale_id = $conn->insert_id;
+    $invoice_items = json_decode($_POST["invoice_data"], true);
 
-    foreach ($invoice_items as $item) {
-        $name = $item["product_name"];
-        $qty = $item["quantity"];
-        $price = $item["price"];
-        $total = $item["total"];
-
-        $sql2 = "INSERT INTO sales_items (sale_id, product_name, quantity, price, total)
-                 VALUES ('$sale_id', '$name', '$qty', '$price', '$total')";
-        $conn->query($sql2);
+    if (!$invoice_items || count($invoice_items) === 0) {
+        echo "<script>alert('Sale failed: No items selected'); window.location='a_billing.php';</script>";
+        exit();
     }
 
-    // Redirect to prevent duplicate insert on refresh
-    header("Location: view_bill.php?sale_id=$sale_id&print=1");
-    exit();
+    // ---------- START TRANSACTION ----------
+    $conn->begin_transaction();
+
+    try {
+        // ---------- INSERT SALE ----------
+        $sql = "INSERT INTO sales (customer_name, subtotal, tax, final_total, sale_date)
+                VALUES ('$customer', '$subtotal', '$tax', '$final_total', '$date')";
+        $conn->query($sql);
+        $sale_id = $conn->insert_id;
+
+        // ---------- LOOP ITEMS ----------
+        foreach ($invoice_items as $item) {
+
+            $name  = $item["product_name"];
+            $qty   = intval($item["quantity"]);
+            $price = floatval($item["price"]);
+            $total = floatval($item["total"]);
+
+            // ---------- CHECK INVENTORY ----------
+            $check_sql = "SELECT inv_quantity 
+                          FROM inventory 
+                          WHERE productname = '$name'
+                          FOR UPDATE";
+            $check_result = $conn->query($check_sql);
+
+            if ($check_result->num_rows === 0) {
+                throw new Exception("Product not found:");
+            }
+
+            $stock = $check_result->fetch_assoc()["inv_quantity"];
+
+            if ($stock < $qty) {
+                throw new Exception("Not enough stock");
+            }
+
+            // ---------- INSERT SALES ITEM ----------
+            $sql2 = "INSERT INTO sales_items 
+                     (sale_id, product_name, quantity, price, total)
+                     VALUES 
+                     ('$sale_id', '$name', '$qty', '$price', '$total')";
+            $conn->query($sql2);
+
+            // ---------- UPDATE INVENTORY ----------
+            $update_sql = "UPDATE inventory 
+                           SET inv_quantity = inv_quantity - $qty 
+                           WHERE productname = '$name'";
+            $conn->query($update_sql);
+        }
+
+        // ---------- COMMIT ----------
+        $conn->commit();
+
+        echo "<script>
+                alert('Invoice saved successfully!');
+                window.location='view_bill.php?sale_id=$sale_id&print=1';
+              </script>";
+        exit();
+
+    } catch (Exception $e) {
+        // ---------- ROLLBACK ----------
+        $conn->rollback();
+        echo "<script>
+                alert('Sale failed: {$e->getMessage()}');
+                window.location='a_billing.php';
+              </script>";
+    }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
