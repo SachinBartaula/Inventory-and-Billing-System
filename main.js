@@ -153,4 +153,11 @@ function closeemployee() {
 // ------------------------------------customer------------------------
 function addCustomer() {
   document.getElementById("customer_form_container").classList.add("show");
+
+
+}
+// ---------------------------------view bills----------------------
+
+function print_function(){
+  window.print();
 }

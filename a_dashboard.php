@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div class="main_body">
-                <h2 id="main_body_heading">Sales History</h2>
+                <h2 id="main_body_heading">Sales</h2>
                 <div class="main_body_table">
                     <table id="salesTable" class="display">
                         <thead>

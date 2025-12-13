@@ -755,9 +755,31 @@ margin-right: 8vw;
     font-weight: bold;
     transition: 0.3s;
 }
-
+.billing_btn_add {
+    margin-left: 50%;
+    width: 50%;
+    padding: 12px;
+    background-color: #20a8ec;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
 /* Invoice of billing */
-
+.invoice-box-print{
+     margin: 20px auto; 
+    padding: 20px;
+    border: 1px solid #eee;
+    background-color: #E0F2FE;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    width: fit-content; /* shrink to fit content */
+    max-width: 95%; /* never exceed screen width */
+    box-sizing: border-box;
+    height: fit-content;
+}
 .invoice-box {
     margin: 20px auto; 
     margin-top: 24vh;
@@ -771,7 +793,12 @@ margin-right: 8vw;
     height: fit-content;
 }
 
-.invoice-box h1 {
+.invoice-box  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+.invoice-box-print h1 {
     text-align: center;
     margin-bottom: 20px;
     font-size: 24px;
@@ -797,6 +824,10 @@ margin-right: 8vw;
 .items th {
     background-color: #f2f2f2;
 }
+.items tr td {
+    background-color: #ffffff;
+}
+
 
 .totals {
     width: 100%;
@@ -954,7 +985,9 @@ margin-right: 8vw;
     background-color: #f9f9f9;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     font-family: Arial, sans-serif;
+        margin-right: 8vw;
 }
+
 
 .amt_row {
     display: flex;
@@ -971,3 +1004,22 @@ margin-right: 8vw;
     margin-top: 8px;
 }
 
+@media print {
+    .sidebar,
+    .billing,
+    .billing-btn,
+    .billing_btn_add,
+    .main_box_heading,
+    .print_button{
+        display: none !important;
+    }
+
+    body {
+        background: white;
+    }
+}
+.print_button {
+    padding: 2px;
+    font-size: large;
+
+}

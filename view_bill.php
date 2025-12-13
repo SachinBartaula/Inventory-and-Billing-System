@@ -5,6 +5,24 @@
         header("Location: index.php");
         exit();
     }
+
+    if (!isset($_GET['sale_id'])) {
+        die("Invalid invoice");
+    }
+
+    $sale_id = intval($_GET['sale_id']);
+
+     $sql = "SELECT * FROM sales_items where sale_id=$sale_id";
+                                $result = $conn->query($sql);
+                                if ($result->num_rows > 0) {
+                                    $row = $result->fetch_assoc();
+                                }
+     $sql_show_data = "SELECT customer_name,sale_date FROM sales where sale_id=$sale_id";
+                                $result_show_data = $conn->query($sql_show_data);
+                                if ($result_show_data->num_rows > 0) {
+                                    $row_show_data = $result_show_data->fetch_assoc();
+                                }
+
     ?>
  <!DOCTYPE html>
  <html lang="en">
@@ -66,21 +84,35 @@
                      <h4><?php echo $_SESSION["username_session"]; ?></h4>
                  </div>
              </div>
-             <div class="main_body">
-                 <h2 id="main_body_heading">Top Sales item</h2>
-                 <div class="main_body_table">
-                     <table id="salesTable" class="display">
-                         <thead>
+          
+                     <div class="invoice-box-print">
+                         <h1>Invoice</h1>
+                    <button class="print_button" onclick="print_function()">
+    <i class="fas fa-print"></i> Print
+</button>
+                         <table class="details">
                              <tr>
-                                 <th> S.N </th>
-                                 <th> Product Name</th>
-                                 <th> Quantity </th>
-                                 <th> Price </th>
-                                 <th> Total Amount </th>
-
+                                 <td><strong>Inventory & Billing system</strong></td>
+                                 <td>
+                                     <strong>Invoice #:<?php echo  $row['sale_id'] ?></strong> <br>
+                                     <strong>Date:<?php echo  $row_show_data['sale_date'] ?></strong> <span></span>
+                                 </td>
                              </tr>
-                         </thead>
-                         <tbody>
+                             <tr>
+                                 <td colspan="2">
+                                     <strong>Bill To:</strong>
+                                     <p><?php echo  $row_show_data['customer_name'] ?></p>
+                                 </td>
+                             </tr>
+                         </table>
+                         <table class="items">
+                             <tr>
+                                 <th>No.</th>
+                                 <th>Item</th>
+                                 <th>Quantity</th>
+                                 <th>Unit Price</th>
+                                 <th>Total</th>
+                             </tr>
                              <?php
 
                                 if (isset($_GET['sale_id'])) {
@@ -93,7 +125,8 @@
                                 $result = $conn->query($sql);
                                 if ($result->num_rows > 0) {
                                     $sno = 1;
-                                    while ($row = $result->fetch_assoc()) {
+                                    while
+                                        ($row = $result->fetch_assoc()){
                                         echo "<tr>"
                                             . "<td>" . $sno . "</td>"
                                             . "<td>" . $row['product_name'] . "</td>"
@@ -104,37 +137,38 @@
                                         $sno++;
                                     }
                                 }
-                                $sql_total_amount = "SELECT final_total,tax FROM sales WHERE sale_id = $sale_id";
+                            
+                                $sql_total_amount = "SELECT final_total,tax,subtotal FROM sales WHERE sale_id = $sale_id";
                                 $result_amount = $conn->query($sql_total_amount);
 
                                 $total_amount = "";
                                 if ($result_amount && $result_amount->num_rows > 0) {
                                     $row_amount = $result_amount->fetch_assoc();
                                     $total_amount = $row_amount['final_total'];
-                                    $tax=$row_amount['tax'];
+                                    $tax = $row_amount['tax'];
+                                    $subtotal = $row_amount['subtotal'];
                                 }
                                 ?>
-                         </tbody>
-                        </table>
-                    </div>
-         <div class="amt_view">
-    <div class="amt_row">
-        <span>+ Tax:</span>
-        <span><?php echo $tax; ?></span>
-    </div>
-    <div class="amt_row total">
-        <span>= Amount:</span>
-        <span><?php echo $total_amount; ?></span>
-    </div>
-</div>
-                </div>
-         </div>
+                         </table>
+                         <table class="totals">
+            <tr><td>Subtotal:</td><td><?php echo $subtotal; ?></td></tr>
+            <tr><td>Tax:(13%)</td><td><?php echo $tax; ?></td></tr>
+            <tr><td><strong>Total:</strong></td><td ><strong><?php echo $total_amount; ?></strong></td></tr>
+        </table>
+        <p><strong>Sales by: </strong> <?php echo $_SESSION["username_session"]; ?> </p>
+                     </div>
+                 </div>
 
 
+
+                 <?php if (isset($_GET['print'])) { ?>
+                     <script>
+                         window.onload = function() {
+                             window.print();
+                         };
+                     </script>
+                 <?php } ?>
 
      </body>
-
- </html>
- </body>
 
  </html>

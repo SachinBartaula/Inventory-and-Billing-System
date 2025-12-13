@@ -120,11 +120,12 @@ if (isset($_GET['delete'])) {
        <table id="salesTable" class="display">
     <thead>
         <tr>
-                         <th> S.N </th>
-                        <th> Purchased By </th>
-                        <th> Total Amount </th>
-                        <th> Date </th>
-                        <th> Action </th>
+                                <th> ID </th>
+                                <th> Purchased By </th>
+                                <th> Tax Amount </th>
+                                <th> Total Amount</th>
+                                <th> Date </th>
+                                <th> View Details </th>
 
                  </tr>
                 </thead>
@@ -139,16 +140,17 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         echo "<tr>"
            . "<td>" . $row['sale_id'] . "</td>"
-            . "<td>" . $row['customer_name'] . "</td>"
-            . "<td>" . $row['final_total'] . "</td>"
-            . "<td>" . $row['sale_date'] . "</td>"
-             . "<td class='icons'>"
+                                        . "<td>" . $row['customer_name'] . "</td>"
+                                        . "<td>" . $row['tax'] . "</td>"
+                                        . "<td>" . $row['final_total'] . "</td>"
+                                        . "<td>" . $row['sale_date'] . "</td>"
+                                        . "<td><a class='details_bill'href='view_bill.php?sale_id=" . $row['sale_id'] . "'>Details</a> "
+                                        . "<a class='icons href='a_reports.php?s_delete=" . $row['sale_id'] . "' title='Delete' onclick=\"return confirm('Are you sure?')\">"
+                                            . "<i class='fa-solid fa-trash-can'></i>"
+                                        . "</a>"
                 // . "<a href='edit_bills.php?edit=" . $row['sale_id'] . "' title='Edit'>"
                 //     . "<i class='fa-solid fa-pencil'></i>"
                 // . "</a> &nbsp;"
-                . "<a href='a_reports.php?s_delete=" . $row['sale_id'] . "' title='Delete' onclick=\"return confirm('Are you sure?')\">"
-                    . "<i class='fa-solid fa-trash-can'></i>"
-                . "</a>"
             . "</td>"
             . "</tr>";
         $sno++;

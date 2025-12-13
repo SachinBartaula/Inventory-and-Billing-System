@@ -39,7 +39,7 @@ if (isset($_POST["billing_submit"])) {
     }
 
     // Redirect to prevent duplicate insert on refresh
-    header("Location: a_billing.php?success=1");
+    header("Location: view_bill.php?sale_id=$sale_id&print=1");
     exit();
 }
 ?>
@@ -155,7 +155,7 @@ if (isset($_POST["billing_submit"])) {
             <input type="hidden" name="invoice_data" id="invoice_data">
 
             <div class="form-group">
-                <button type="button" class="billing-btn" onclick="add_sales()">Add Item</button>
+                <button type="button" class="billing_btn_add" onclick="add_sales()">Add Item</button><br>
                 <button type="submit" name="billing_submit" class="billing-btn">Save Invoice</button>
             </div>
         </form>
@@ -169,7 +169,7 @@ if (isset($_POST["billing_submit"])) {
             <tr>
                 <td><strong>Inventory & Billing system</strong></td>
                 <td>
-                    <strong>Invoice #:</strong> 001<br>
+                    <strong>Invoice #:</strong> <br>
                     <strong>Date:</strong> <span id="date_text"></span>
                 </td>
             </tr>
