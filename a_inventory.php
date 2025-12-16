@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["username_session"]) || $_SESSION["role_session"] !== "admin") {
+if (!isset($_SESSION["username_session"])) {
     header("Location: index.php");
     exit();
 }
@@ -126,30 +126,53 @@ if ($inventory_number != 0) {
 <body>
 
     <div class="sidebar">
-        <a href="a_dashboard.php">
-            <h2 id="logo">Inventory &<br>Billing system</h2>
-        </a>
-        <div class="page-contanier">
-            <ul>
-                <li><a href="a_dashboard.php"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
-                <li><b><a href="a_inventory.php"><i class="fa-solid fa-warehouse"></i> Inventory</a></b></li>
-                <li><a href="a_reports.php"><i class="fas fa-file-alt"></i> Reports</a></li>
-                <li><a href="a_billing.php"><i class="fas fa-money-bill"></i> Billing</a></li>
-                <li><a href="a_employee.php"><i class="fa-solid fa-user-plus"></i> Employees</a></li>
-                <li><a href="customer.php"><i class="fa-solid fa-user-plus"></i> Customer</a></li>
+        <?php if ($_SESSION["role_session"] == "admin") {
+        ?>
+            <a href="a_dashboard.php">
+            <?php
+        } else {
+            ?>
+                <a href="e_dashboard.php">
+                <?php
+            }
+                ?>
+                <h2 id="logo">Inventory &<br>Billing system</h2>
+                </a>
+                <div class="page-contanier">
+                    <ul>
+                        <?php if ($_SESSION["role_session"] == "admin") {
+                        ?>
+                            <li><a href="a_dashboard.php"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+                            <li><b><a href="a_inventory.php"><i class="fa-solid fa-warehouse"></i> Inventory</a></b></li>
+                            <li><a href="a_reports.php"><i class="fas fa-file-alt"></i> Reports</a></li>
+                            <li><a href="a_billing.php"><i class="fas fa-money-bill"></i> Billing</a></li>
+                            <li><a href="a_employee.php"><i class="fa-solid fa-user-plus"></i> Employees</a></li>
+                            <li><a href="customer.php"><i class="fa-solid fa-user-plus"></i> Customer</a></li>
+                        <?php
+                        } else {
+                        ?>
+                            <li><a href="e_dashboard.php"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+                            <li><b><a href="a_inventory.php"><i class="fa-solid fa-warehouse"></i> Inventory</a></b></li>
+                            <li><a href="a_billing.php"><i class="fas fa-money-bill"></i> Billing</a></li>
+                             <li><a href="customer.php"><i class="fa-solid fa-user-plus"></i> Customer</a></li>
 
-            </ul>
-        </div>
-        <footer>
-            <a href="logout.php" class="button_2"><b>Logout</b></a>
-            <p>Version 1.0</p>
-        </footer>
+
+                        <?php
+                        }
+                        ?>
+
+                    </ul>
+                </div>
+                <footer>
+                    <a href="logout.php" class="button_2"><b>Logout</b></a>
+                    <p>Version 1.0</p>
+                </footer>
     </div>
     <div class="main">
         <div class="main_box">
             <div class="main_box_heading">
                 <h1>Inventory</h1>
-                <h4>Admin</h4>
+                <h4><?php echo $_SESSION["username_session"]; ?></h4>
             </div>
         </div>
         <div class="content_display">

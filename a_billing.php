@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION["username_session"]) || $_SESSION["role_session"] !== "admin") {
+if (!isset($_SESSION["username_session"]) ) {
     header("Location: index.php");
     exit();
 }
@@ -111,15 +111,43 @@ if (isset($_POST["billing_submit"])) {
 </head>
 <body>
 <div class="sidebar">
-    <a href="a_dashboard.php"><h2 id="logo" >Inventory &<br>Billing system</h2></a>
+                 <?php if($_SESSION["role_session"]== "admin"){
+                    ?>
+    <a href="a_dashboard.php">
+            <?php
+                }
+                else 
+                    {
+                     ?>
+    <a href="e_dashboard.php">
+               <?php 
+               }
+               ?>
+    <h2 id="logo" >Inventory &<br>Billing system</h2></a>
         <div class="page-contanier">
             <ul>
-                <li><a href="a_dashboard.php"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
-                <li><a href="a_inventory.php"><i class="fa-solid fa-warehouse"></i> Inventory</a></li>
-                <li><a href="a_reports.php"><i class="fas fa-file-alt"></i> Reports</a></li>
-                <li><b><a href="a_billing.php"><i class="fas fa-money-bill"></i> Billing</a></b></li>
-                <li><a href="a_employee.php"><i class="fa-solid fa-user-plus"></i> Employees</a></li>
-                  <li><a href="customer.php"><i class="fa-solid fa-user-plus"></i> Customer</a></li>
+                 <?php if($_SESSION["role_session"]== "admin"){
+                    ?>
+                     <li><a href="a_dashboard.php"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+                     <li><a href="a_inventory.php"><i class="fa-solid fa-warehouse"></i> Inventory</a></li>
+                     <li><a href="a_reports.php"><i class="fas fa-file-alt"></i> Reports</a></li>
+                     <li><b><a href="a_billing.php"><i class="fas fa-money-bill"></i> Billing</a></b></li>
+                     <li><a href="a_employee.php"><i class="fa-solid fa-user-plus"></i> Employees</a></li>
+                     <li><a href="customer.php"><i class="fa-solid fa-user-plus"></i> Customer</a></li>
+                     <?php
+                }
+                else 
+                    {
+                     ?>
+                      <li><a href="e_dashboard.php"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+                    <li><a href="a_inventory.php"><i class="fa-solid fa-warehouse"></i> Inventory</a></li>
+                     <li><b><a href="a_billing.php"><i class="fas fa-money-bill"></i> Billing</a></b></li>
+                     <li><a href="customer.php"><i class="fa-solid fa-user-plus"></i> Customer</a></li>
+
+
+               <?php 
+               }
+               ?>
 
             </ul>
         </div>

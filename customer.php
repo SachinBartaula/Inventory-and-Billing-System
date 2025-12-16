@@ -1,7 +1,7 @@
  <?php
     session_start();
 
-    if (!isset($_SESSION["username_session"]) || $_SESSION["role_session"] !== "admin") {
+    if (!isset($_SESSION["username_session"])) {
         header("Location: index.php");
         exit();
     }
@@ -57,12 +57,27 @@
          <a href="a_dashboard.php"><h2 id="logo" >Inventory &<br>Billing system</h2></a>
         <div class="page-contanier">
             <ul>
+                 <?php if ($_SESSION["role_session"] == "admin") {
+                        ?>
                 <li><a href="a_dashboard.php"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
                 <li><a href="a_inventory.php"><i class="fa-solid fa-warehouse"></i> Inventory</a></li>
                 <li><a href="a_reports.php"><i class="fas fa-file-alt"></i> Reports</a></li>
                 <li><a href="a_billing.php"><i class="fas fa-money-bill"></i> Billing</a></li>
                 <li><a href="a_employee.php"><i class="fa-solid fa-user-plus"></i> Employees</a></li>
                 <li><b><a href="customer.php"><i class="fa-solid fa-user-plus"></i> Customer</a></b></li>
+                 <?php
+                        } else {
+                        ?>
+                            <li><a href="e_dashboard.php"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+                            <li><a href="a_inventory.php"><i class="fa-solid fa-warehouse"></i> Inventory</a></li>
+                            <li><a href="a_billing.php"><i class="fas fa-money-bill"></i> Billing</a></li>
+                             <li><b><a href="customer.php"><i class="fa-solid fa-user-plus"></i> Customer</a></b></li>
+
+
+                        <?php
+                        }
+                        ?>
+
             </ul>
         </div>
          <footer>
