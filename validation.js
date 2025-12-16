@@ -187,10 +187,10 @@ function employee_validation(e) {
     }
 
     // Created on validation
-    if (createdOn === "") {
-        alert("Created date is required");
-        return false;
-    }
+    // if (createdOn === "") {
+    //     alert("Created date is required");
+    //     return false;
+    // }
 
     return true; // All valid
 }

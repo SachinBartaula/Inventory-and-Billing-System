@@ -11,7 +11,7 @@ if(isset($_POST["employee_submit"])){
     $username =$_POST["e_username"];
     $password =$_POST["e_password"];
     $role=$_POST["role"];    
-    $date=$_POST["employee_createdOn"];
+    // $date=$_POST["employee_createdOn"];
     $sql="INSERT INTO user (username,password,role) values ('$username','$password','$role')";
 
     $result=$conn->query($sql);
@@ -94,12 +94,13 @@ if(isset($_POST["employee_submit"])){
           <tr>
                         <th> S.N </th>
                         <th> Employee </th>
+                        <th> Role </th>
                         <th> Action </th>
                  </tr>
                 </thead>
                 <tbody>
                     <?php
-$sql = "SELECT * FROM user where role='employee'";
+$sql = "SELECT * FROM user ORDER BY date DESC";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -108,6 +109,7 @@ if ($result->num_rows > 0) {
         echo "<tr>"
             . "<td>" . $sno . "</td>"
             . "<td>" . $row['username'] . "</td>"
+            . "<td>" . $row['role'] . "</td>"
             . "<td class='icons'>"
              . "<a href='a_employee.php?delete=" . $row['user_id'] . "' title='Delete' onclick=\"return confirm('Are you sure?')\">"
                     . "<i class='fa-solid fa-trash-can'></i>"
@@ -147,10 +149,18 @@ if ($result->num_rows > 0) {
                         </tr>
                         <tr>
                              <td><label for="role">Role:</label></td>
-                            <td><input type="text" id="role" name="role" value="employee" readonly> </td>
-                             <td><label for="emp_created_on">Created on:</label></td>
-                            <td><input type="text" id="Salse_on" name="employee_createdOn" readonly> </td>
-                        </tr>
+                            <td>
+                            <select name="role" id="role">
+                                <option value="admin">Admin</option>
+                                <option value="employee">Employee</option>
+                            </select>
+                        </td> 
+                        <!-- <tr>
+                            <td><input type="text" id="role" name="role" value="employee" readonly> </td> 
+                          <td><label for="emp_created_on">Created on:</label></td>
+                            <td><input type="date" id="catogary_date" name="employee_createdOn" readonly></td>
+
+                        </tr> -->
                         <tr>
                          <td><input type="hidden" name="" value=" "class=""><td>
                          <td><input type="submit" name="employee_submit" value="Submit "class="button_2"><td>

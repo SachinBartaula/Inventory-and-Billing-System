@@ -28,7 +28,10 @@ window.addEventListener("load", function () {
   const fullDate = `${year}-${month}-${day}`;
 
   document.getElementById("date").value = fullDate;
+  document.getElementById("catogary_date").value = fullDate;
+  document.getElementById("employee_createdOn").value = fullDate;
   document.getElementById("date_text").innerHTML = fullDate;
+  document.getElementById("Salse_on").value = fullDate;
 });
 
 // -------------------------- REAL-TIME TOTAL CALC --------------------------
@@ -124,4 +127,42 @@ function prepareInvoiceData() {
 
   document.getElementById("invoice_data").value = JSON.stringify(items);
   return true; // allow submit
+}
+
+function print_function(){
+  window.print();
+}
+// ----------------model---------------------
+function additems() {
+   document.getElementById("addinventory_id").classList.add("show");
+}
+
+function closeitems(){
+   document.getElementById("addinventory_id").classList.add("close");
+
+}
+
+function addcategory() {
+  document.getElementById("category_add")?.classList.add("show_category");
+}
+
+function closecategory() {
+  document.getElementById("category_add")?.classList.remove("show_category");
+}
+// ------------------------------- EMPLOYEES -----------------------------------
+function addemployee() {
+  document.getElementById("emp_form_container")?.classList.add("show");
+}
+
+function closeemployee() {
+  document.getElementById("emp_form_container")?.classList.remove("show");
+}
+
+// -------------------------------- CUSTOMER ----------------------------------
+function addCustomer() {
+  document.getElementById("customer_form_container")?.classList.add("show");
+}
+
+function closeCustomer() {
+  document.getElementById("customer_form_container")?.classList.remove("show");
 }

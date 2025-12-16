@@ -60,8 +60,8 @@ if (isset($_GET["edit"])) {
                                 $result_category = $conn->query($sql_category);
                                 ?>
 
-                                <select name="product_category">
-                                    <option value="">Select Category</option>
+                                <select name="product_category" required>
+                                    <option value="<?php echo $row['inv_category']; ?>"><?php echo $row['inv_category']; ?></option>
 
                                     <?php
                                     while ($row = mysqli_fetch_assoc($result_category)) {

@@ -341,7 +341,7 @@ select:focus {
     border-radius: 15px;
     align-items: center;
     justify-content: center;
-    color: #ffd6d6;
+    color: #000000;
     /* font-family: "Segoe UI", sans-serif; */
      font-family: 'Orbitron', sans-serif;
     font-size: 40px;
@@ -353,8 +353,38 @@ select:focus {
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
+ .content_display{
+    height: auto;
+    /* background-color: #000000; */
+    margin-left: 2vw;
+    margin-right: 2vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
+ }
+.content_display_container{
+    background-color: #38BDF8;
+    /* margin: 2% 0; */
+    height: 15vh;
+    width: 20vw;
+    border: 2px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 4vh;
 
+}
+.content_display_container p{
+    font-size: 20px;
+    color:white;
+    font-weight: bold;
+    padding: 8px 0;
+}
+.content_display_mainContent p{
+    color: #000000;
+    font-size: 40px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
 .main_body {
     margin-left: 2vw;
     padding: 20px;

@@ -82,6 +82,23 @@ if (isset($_POST["category_submit"])) {
         exit();
     }
 }
+
+// ---------------------------display on a_inventory.php-----------------
+$sql = "SELECT * FROM inventory ORDER BY purchasedon DESC";
+$result = $conn->query($sql);
+$inventory_number = $result->num_rows;
+$total_inventory_amount = 0;
+
+for ($i = 0; $i < $inventory_number; $i++) {
+    $row = $result->fetch_assoc();
+    $row_inventory_amount = $row['inv_price'];
+    $total_inventory_amount = $total_inventory_amount + $row_inventory_amount;
+}
+
+$average_inventory_amount = 0;
+if ($inventory_number != 0) {
+    $average_inventory_amount = $total_inventory_amount / $inventory_number;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,6 +119,7 @@ if (isset($_POST["category_submit"])) {
     <link rel="stylesheet" href="Styles.css?v=<?php echo time(); ?>">
     <!--icon connect garni*/-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="main.js"></script>
 
 </head>
 
@@ -118,7 +136,7 @@ if (isset($_POST["category_submit"])) {
                 <li><a href="a_reports.php"><i class="fas fa-file-alt"></i> Reports</a></li>
                 <li><a href="a_billing.php"><i class="fas fa-money-bill"></i> Billing</a></li>
                 <li><a href="a_employee.php"><i class="fa-solid fa-user-plus"></i> Employees</a></li>
-                  <li><a href="customer.php"><i class="fa-solid fa-user-plus"></i> Customer</a></li>
+                <li><a href="customer.php"><i class="fa-solid fa-user-plus"></i> Customer</a></li>
 
             </ul>
         </div>
@@ -134,6 +152,26 @@ if (isset($_POST["category_submit"])) {
                 <h4>Admin</h4>
             </div>
         </div>
+        <div class="content_display">
+            <div class="content_display_container">
+                <p>No of Items</p>
+                <span class="content_display_mainContent">
+                    <p><?php echo $inventory_number ?></p>
+                </span>
+            </div>
+            <div class="content_display_container">
+                <p>Average per Items</p>
+                <span class="content_display_mainContent">
+                    <p><?php echo $average_inventory_amount ?></p>
+                </span>
+            </div>
+            <div class="content_display_container">
+                <p>Total Cost</p>
+                <span class="content_display_mainContent">
+                    <p><?php echo $total_inventory_amount ?></p>
+                </span>
+            </div>
+        </div>
         <div class="main_body">
             <div class="display_inventory">
                 <h2 id="main_body_heading">Inventory</h2>
@@ -142,6 +180,8 @@ if (isset($_POST["category_submit"])) {
                     <input class="button_2" type="submit" name="add_inventory" value="+ Add Inventory" id="inventory_add" onclick="additems()">
 
                 </div>
+
+
                 <div class="main_body_table">
                     <table id="inventoryTable" class="display">
                         <thead>
@@ -157,8 +197,7 @@ if (isset($_POST["category_submit"])) {
                         </thead>
                         <tbody>
                             <?php
-                            $sql = "SELECT * FROM inventory";
-                            $result = $conn->query($sql);
+                            $result->data_seek(0);
 
                             if ($result->num_rows > 0) {
                                 $sno = 1;
@@ -181,7 +220,11 @@ if (isset($_POST["category_submit"])) {
                                         . "</tr>";
                                     $sno++;
                                 }
+                            } else {
+
+                                echo "<td colspan=7 style='text-align:center;'>" . "No data found" . "</td>";
                             }
+
                             ?>
 
                         </tbody>
@@ -200,17 +243,17 @@ if (isset($_POST["category_submit"])) {
                     <table>
                         <tr>
                             <td><label for="product_name">Product Name:</label></td>
-                            <td><input type="text" id="product_name" placeholder="Product Name" name="product_name"required></td>
+                            <td><input type="text" id="product_name" placeholder="Product Name" name="product_name" required></td>
 
                             <td><label for="product_price">Price:</label></td>
-                            <td><input type="text" id="product_price" placeholder="Price" name="product_price"required></td>
+                            <td><input type="text" id="product_price" placeholder="Price" name="product_price" required></td>
                         </tr>
 
 
 
                         <tr>
                             <td><label for="product_quantity">Quantity:</label></td>
-                            <td><input type="number" id="product_quantity" placeholder="Quantity" name="product_quantity" value="1"required></td>
+                            <td><input type="number" id="product_quantity" placeholder="Quantity" name="product_quantity" value="1" required></td>
                             <td><label for="product_category">Category:</label></td>
                             <td>
                                 <?php
@@ -224,7 +267,7 @@ if (isset($_POST["category_submit"])) {
                                     <?php
                                     while ($row = mysqli_fetch_assoc($result_category)) {
                                     ?>
-                                        <option  value="<?php echo htmlspecialchars($row['category_name']); ?>">
+                                        <option value="<?php echo htmlspecialchars($row['category_name']); ?>">
                                             <?php echo htmlspecialchars($row['category_name']); ?>
                                         </option>
                                     <?php
@@ -270,7 +313,7 @@ if (isset($_POST["category_submit"])) {
                             <td><input type="date" id="catogary_date" name="salse_date" readonly></td>
                         </tr>
                         <tr>
-                            <td><input type="submit" name="category_submit" value="Addrequired" class="button_2"></td>
+                            <td><input type="submit" name="category_submit" value="Add" class="button_2"></td>
 
                         </tr>
                     </table>
@@ -278,7 +321,6 @@ if (isset($_POST["category_submit"])) {
             </div>
         </div>
         <!-- ------------------------------------------close------------------------------------------------------------ -->
-        <script src="main.js"></script>
         <script src="validation.js"></script>
 
 </body>

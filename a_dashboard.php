@@ -3,7 +3,29 @@
     if (!isset($_SESSION["username_session"]) || $_SESSION["role_session"] !== "admin") {
         header("Location: index.php");
         exit();
+       
     }
+       require_once "connection.php";
+
+                            $sql = "SELECT * FROM sales ORDER BY sale_date DESC ";
+
+                            $result = $conn->query($sql);
+                            
+                            $sales_number = $result->num_rows;
+                            $total_sales_amount=0;
+                            
+                            for($i=0; $i<$sales_number; $i++)
+                            {
+                             $row = $result->fetch_assoc();
+                             $row_sales_amount=$row['final_total'];
+                             $total_sales_amount=$total_sales_amount+$row_sales_amount; 
+                            }
+
+                             $average_sales_amount=0;
+                            if($sales_number !=0){
+                                $average_sales_amount=$total_sales_amount / $sales_number;
+                            }
+                           
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -71,9 +93,23 @@
                     <span id="ampm"></span>
                 </div>
             </div>
+            
+            <div class="content_display">
+                <div class="content_display_container"><p>No of Sales</p>
+                <span class="content_display_mainContent"><p><?php echo $sales_number ?></p></span>
+            </div>
+                <div class="content_display_container"><p>Average per Sales</p>
+                <span class="content_display_mainContent"><p><?php echo $average_sales_amount ?></p></span>
+            </div>
+                <div class="content_display_container"><p>Total Revenue</p> 
+                <span class="content_display_mainContent"><p><?php echo $total_sales_amount ?></p></span>
+            </div>
+            </div>
+
             <div class="main_body">
                 <h2 id="main_body_heading">Sales</h2>
                 <div class="main_body_table">
+
                     <table id="salesTable" class="display">
                         <thead>
                             <tr>
@@ -88,24 +124,25 @@
                         </thead>
                         <tbody>
                             <?php
-                            require_once "connection.php";
-
-                            $sql = "SELECT * FROM sales";
-                            $result = $conn->query($sql);
-
                             if ($result->num_rows > 0) {
                                 $sno = 1;
+                                 $result->data_seek(0);
                                 while ($row = $result->fetch_assoc()) {
                                     echo "<tr>"
-                                        . "<td>" . $row['sale_id'] . "</td>"
+                                        // . "<td>" . $row['sale_id'] . "</td>"
+                                        . "<td>" . $sno. "</td>"
                                         . "<td>" . $row['customer_name'] . "</td>"
                                         . "<td>" . $row['tax'] . "</td>"
                                         . "<td>" . $row['final_total'] . "</td>"
                                         . "<td>" . $row['sale_date'] . "</td>"
-                                        . "<td><a class='details_bill'href='view_bill.php?sale_id=" . $row['sale_id'] . "'>Details</a></td>"
+                                        . "<td class='icons'><a class='details_bill'href='view_bill.php?sale_id=" . $row['sale_id'] . "'>Details</a></td>"
                                         . "</tr>";
                                     $sno++;
                                 }
+                                
+                            }
+                            else{
+                                 echo "<td colspan=6 style='text-align:center;'>" . "No data found" . "</td>";
                             }
                             ?>
                         </tbody>
