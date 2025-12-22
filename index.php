@@ -19,7 +19,7 @@
 if(isset($_REQUEST["u_name"])) {
 
     $name = $_REQUEST["u_name"];
-    $password = $_REQUEST["u_password"];
+    $password = md5($_REQUEST["u_password"]);
     $role = $_REQUEST["role"];
 
     require_once "connection.php";
@@ -31,6 +31,7 @@ if(isset($_REQUEST["u_name"])) {
 
         $data = $result->fetch_assoc();
 
+         //checking role if admin or employee
         if ($role == $data['role']) {
 
             $_SESSION["username_session"] = $data['username'];

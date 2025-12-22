@@ -1,9 +1,7 @@
 CREATE DATABASE Inventory_and_Billing_System;
 USE Inventory_and_Billing_System;
 
--- ==========================
 -- 1. USER TABLE
--- ==========================
 CREATE TABLE user (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(100) NOT NULL UNIQUE,
@@ -12,9 +10,7 @@ CREATE TABLE user (
     role ENUM('admin', 'employee') NOT NULL
 );
 
--- ==========================
 -- 2. INVENTORY TABLE
--- ==========================
 CREATE TABLE inventory (
     inv_id INT AUTO_INCREMENT PRIMARY KEY,
     productname VARCHAR(150) NOT NULL,
@@ -24,9 +20,7 @@ CREATE TABLE inventory (
     purchasedon DATE NOT NULL
 );
 
--- ==========================
 -- 3. CUSTOMER TABLE
--- ==========================
 CREATE TABLE customer (
     c_id INT AUTO_INCREMENT PRIMARY KEY,
     customername VARCHAR(150) NOT NULL,
@@ -36,17 +30,14 @@ CREATE TABLE customer (
 
 );
 
--- ==========================
 -- 4. SALES TABLE
--- ==========================
 CREATE TABLE sales (
     sale_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_name VARCHAR(255) NOT NULL,
     subtotal DECIMAL(10,2) NOT NULL,
     tax DECIMAL(10,2) NOT NULL,
     final_total DECIMAL(10,2) NOT NULL,
-    sale_date DATE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    sale_date DATE NOT NULL
 );
 
 CREATE TABLE sales_items (
@@ -63,9 +54,7 @@ CREATE TABLE sales_items (
         ON UPDATE CASCADE
 );
 
--- ===========================
 -- 5. category
--- ===========================
 CREATE TABLE category (
     cat_id INT AUTO_INCREMENT PRIMARY KEY,
     category_name VARCHAR(100) NOT NULL UNIQUE,

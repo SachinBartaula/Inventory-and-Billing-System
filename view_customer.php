@@ -96,16 +96,16 @@ if (!$sales_result) {
         <div class="main_box">
             <div class="main_box_heading">
                 <h1>Customer Sales Record</h1>
-                <h4 ><?php echo
+                <h4><?php echo
                     $_SESSION["username_session"]; ?></h4>
             </div>
         </div>
         <div class="main_body">
 
             <h2 style="text-align: center;">Sales Records of <?= htmlspecialchars($customer_name); ?></h2>
-             <button class="print_button" onclick="print_function()">
-                     <i class="fas fa-print"></i> Print
-                 </button>
+            <button class="print_button" onclick="print_function()">
+                <i class="fas fa-print"></i> Print
+            </button>
             <div class="main_body_table">
                 <table class="customerTable">
                     <thead>
@@ -121,16 +121,22 @@ if (!$sales_result) {
                     </thead>
                     <tbody>
                         <?php
-                        $sn = 1;
-                        while ($row = $sales_result->fetch_assoc()) {
+                        if ($sales_result->num_rows > 0) {
+                            $sn = 1;
+                            while ($row = $sales_result->fetch_assoc()) {
+                                echo "<tr>
+                              <td>{$sn}</td>
+                             <td>{$row['subtotal']}</td>
+                             <td>{$row['tax']}</td>
+                             <td>{$row['final_total']}</td>
+                             <td>{$row['sale_date']}</td>
+                              </tr>";
+                                $sn++;
+                            }
+                        } else {
                             echo "<tr>
-            <td>{$sn}</td>
-            <td>{$row['subtotal']}</td>
-            <td>{$row['tax']}</td>
-            <td>{$row['final_total']}</td>
-            <td>{$row['sale_date']}</td>
-          </tr>";
-                            $sn++;
+        <td colspan='6' style='text-align:center;'>No data found</td>
+      </tr>";
                         }
                         ?>
                     </tbody>

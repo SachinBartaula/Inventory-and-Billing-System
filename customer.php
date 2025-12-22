@@ -136,7 +136,7 @@
                                         . "<td>" . $row['customeraddress'] . "</td>"
                                         . "<td>" . $row['customerphone'] . "</td>"
                                         . "<td class='icons'>"
-                                        . "<a class='details_bill' href='customer_view.php?customername=" . $row['customername'] . "' title='View Details'>
+                                        . "<a class='details_bill' href='view_customer.php?customername=" . $row['customername'] . "' title='View Details'>
                                           Details"
                                         . "</a> "
                                         . "<a href='customer.php?delete=" . $row['c_id'] . "' title='Delete' onclick=\"return confirm('Are you sure?')\">"

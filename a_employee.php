@@ -9,7 +9,7 @@
 if(isset($_POST["employee_submit"])){
     
     $username =$_POST["e_username"];
-    $password =$_POST["e_password"];
+    $password =md5($_POST["e_password"]);
     $role=$_POST["role"];    
     // $date=$_POST["employee_createdOn"];
     $sql="INSERT INTO user (username,password,role) values ('$username','$password','$role')";
