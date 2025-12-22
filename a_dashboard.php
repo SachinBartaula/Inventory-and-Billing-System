@@ -18,12 +18,14 @@
                             {
                              $row = $result->fetch_assoc();
                              $row_sales_amount=$row['final_total'];
-                             $total_sales_amount=$total_sales_amount+$row_sales_amount; 
+                             $total_sales_amount= $total_sales_amount+$row_sales_amount; 
+
                             }
 
                              $average_sales_amount=0;
                             if($sales_number !=0){
-                                $average_sales_amount=$total_sales_amount / $sales_number;
+                                 $average_sales_amount = $total_sales_amount / $sales_number;
+                                
                             }
                            
     ?>
@@ -99,10 +101,10 @@
                 <span class="content_display_mainContent"><p><?php echo $sales_number ?></p></span>
             </div>
                 <div class="content_display_container"><p>Average per Sales</p>
-                <span class="content_display_mainContent"><p><?php echo $average_sales_amount ?></p></span>
+                <span class="content_display_mainContent"><p><?php echo number_format($average_sales_amount,2) ?></p></span>
             </div>
                 <div class="content_display_container"><p>Total Revenue</p> 
-                <span class="content_display_mainContent"><p><?php echo $total_sales_amount ?></p></span>
+                <span class="content_display_mainContent"><p><?php echo number_format( $total_sales_amount )?></p></span>
             </div>
             </div>
 

@@ -142,10 +142,10 @@ if ($result->num_rows > 0) {
                     <table>
                         <tr>
                             <td><label for="e_username">User Name:</label></td>
-                            <td><input type="text" id="e_username" placeholder="User name" name="e_username"></td>
+                            <td><input type="text" id="e_username" placeholder="User name" name="e_username" required></td>
                             
                             <td><label for="e_password">Password:</label></td>
-                            <td><input type="password" id="e_password" placeholder="Password" name="e_password"></td>
+                            <td><input type="password" id="e_password" placeholder="Password" name="e_password" required></td>
                         </tr>
                         <tr>
                              <td><label for="role">Role:</label></td>

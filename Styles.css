@@ -94,7 +94,6 @@ body {
     padding-left: 2vw;
     transition: 0.5s;
 }
-
 .page-contanier ul li:hover {
     transform: scale(1.1);
     /* background-color:#5887ec; */
@@ -1040,7 +1039,8 @@ margin-right: 8vw;
     .billing-btn,
     .billing_btn_add,
     .main_box_heading,
-    .print_button{
+    .print_button
+    {
         display: none !important;
     }
 

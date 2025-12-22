@@ -185,13 +185,13 @@ if ($inventory_number != 0) {
             <div class="content_display_container">
                 <p>Average per Items</p>
                 <span class="content_display_mainContent">
-                    <p><?php echo $average_inventory_amount ?></p>
+                    <p><?php echo number_format($average_inventory_amount,2)?></p>
                 </span>
             </div>
             <div class="content_display_container">
                 <p>Total Cost</p>
                 <span class="content_display_mainContent">
-                    <p><?php echo $total_inventory_amount ?></p>
+                    <p><?php echo number_format($total_inventory_amount) ?></p>
                 </span>
             </div>
         </div>
