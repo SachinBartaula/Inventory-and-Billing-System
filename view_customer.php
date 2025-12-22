@@ -8,8 +8,8 @@ if (!isset($_SESSION["username_session"])) {
 require_once "connection.php";
  // -------------------- if payment done
 if (isset($_GET['update'])) {
-    $id = intval($_GET['update']); // sanitize input
-    $sql = "UPDATE sales SET customer_name = 'cash' WHERE sale_id = $id";
+    $id = intval($_GET['update']); 
+    $sql = "UPDATE sales SET status = 'Cash' WHERE sale_id = $id";
     $result = $conn->query($sql);
     if ($result) {
         header("Location: customer.php");
@@ -28,7 +28,7 @@ $customer_name = mysqli_real_escape_string($conn, $_GET['customername']);
 
 // Fetch all sales of this customer
 $sales_sql = "SELECT * FROM sales 
-              WHERE customer_name = '$customer_name' 
+              WHERE customer_name = '$customer_name'  AND (status IS NULL OR status = '')
               ORDER BY sale_date DESC";
 
 $sales_result = $conn->query($sales_sql);
