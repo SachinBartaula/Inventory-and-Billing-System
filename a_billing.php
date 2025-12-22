@@ -31,13 +31,12 @@ if (isset($_POST["billing_submit"])) {
     $conn->begin_transaction();
 
     try {
-        // ---------- INSERT SALE ----------
+
         $sql = "INSERT INTO sales (customer_name, subtotal, tax, final_total, sale_date)
                 VALUES ('$customer', '$subtotal', '$tax', '$final_total', '$date')";
         $conn->query($sql);
         $sale_id = $conn->insert_id;
 
-        // ---------- LOOP ITEMS ----------
         foreach ($invoice_items as $item) {
 
             $name  = $item["product_name"];
@@ -45,7 +44,6 @@ if (isset($_POST["billing_submit"])) {
             $price = floatval($item["price"]);
             $total = floatval($item["total"]);
 
-            // ---------- CHECK INVENTORY ----------
             $check_sql = "SELECT inv_quantity 
                           FROM inventory 
                           WHERE productname = '$name'
@@ -76,7 +74,6 @@ if (isset($_POST["billing_submit"])) {
             $conn->query($update_sql);
         }
 
-        // ---------- COMMIT ----------
         $conn->commit();
 
         echo "<script>
