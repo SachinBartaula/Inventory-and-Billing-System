@@ -6,6 +6,19 @@ if (!isset($_SESSION["username_session"])) {
     exit();
 }
 require_once "connection.php";
+ // -------------------- if payment done
+if (isset($_GET['update'])) {
+    $id = intval($_GET['update']); // sanitize input
+    $sql = "UPDATE sales SET customer_name = 'cash' WHERE sale_id = $id";
+    $result = $conn->query($sql);
+    if ($result) {
+        header("Location: customer.php");
+        exit();
+    } else {
+        echo "Error updating record: " . $conn->error;
+    }
+}
+
 
 if (!isset($_GET['customername'])) {
     die("Customer not found");
@@ -23,6 +36,9 @@ $sales_result = $conn->query($sales_sql);
 if (!$sales_result) {
     die("Query Failed: " . $conn->error);
 }
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -116,27 +132,32 @@ if (!$sales_result) {
                             <th>Tax</th>
                             <th>Total Amount</th>
                             <th>Date</th>
+                            <th>Action</th>
                         </tr>
-
                     </thead>
                     <tbody>
                         <?php
                         if ($sales_result->num_rows > 0) {
                             $sn = 1;
                             while ($row = $sales_result->fetch_assoc()) {
-                                echo "<tr>
-                              <td>{$sn}</td>
-                             <td>{$row['subtotal']}</td>
-                             <td>{$row['tax']}</td>
-                             <td>{$row['final_total']}</td>
-                             <td>{$row['sale_date']}</td>
-                              </tr>";
+                                echo "<tr>" .
+                                    "<td>" . $sn . "</td>" .
+                                    "<td>" . $row['subtotal'] . "</td>" .
+                                    "<td>" . $row['tax'] . "</td>" .
+                                    "<td>" . $row['final_total'] . "</td>" .
+                                    "<td>" . $row['sale_date'] . "</td>" .
+                                    "<td class='icons'>"
+                                        . "<a class='details_bill' href='view_customer.php?update=" . $row['sale_id'] . "' title='Delete' onclick=\"return confirm('Is bill paid ?')\">"
+                                        . "Paid"
+                                        . "</a>"
+                                        . "</td>"
+                                        . "</tr>";
                                 $sn++;
                             }
                         } else {
                             echo "<tr>
-        <td colspan='6' style='text-align:center;'>No data found</td>
-      </tr>";
+                              <td colspan='7' style='text-align:center;'>No data found</td>
+                                </tr>";
                         }
                         ?>
                     </tbody>

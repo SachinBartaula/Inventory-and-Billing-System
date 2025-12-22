@@ -60,3 +60,8 @@ CREATE TABLE category (
     category_name VARCHAR(100) NOT NULL UNIQUE,
     created_on DATE NOT NULL
 );
+
+-- default admin id password 
+INSERT INTO user (username, password, role)
+VALUES ('admin', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+
