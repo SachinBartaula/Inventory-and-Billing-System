@@ -112,7 +112,7 @@
 
              <div class="main_body_table">
                  <!-- <table class="customerTable" id="customerTable"> -->
-                 <table class="customerTable">
+                 <table class="customerTable" id="mytable">
                      <thead>
                          <tr>
                              <th>S.N</th>

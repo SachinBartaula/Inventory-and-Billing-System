@@ -19,6 +19,23 @@ window.addEventListener("load", function () {
   setInterval(clock, 1000);
 });
 
+//table---------------------------------
+$(document).ready(function() {
+    $('#salesTable').DataTable({
+        "order": [[0, "desc"]],
+        "pageLength": 10
+    });
+
+    $('#inventoryTable').DataTable({
+        "order": [[0, "asc"]],
+        "pageLength": 10
+    });
+     $('#mytable').DataTable({
+        "order": [[0, "asc"]],
+        "pageLength": 10
+    });
+});
+
 // -------------------------- BILLING DATE SETUP --------------------------
 window.addEventListener("load", function () {
   const today = new Date();
@@ -60,10 +77,26 @@ function add_sales() {
   const discount = parseFloat(document.getElementById("discount_billing").value) || 0;
   const customer = document.getElementById("customer_name").value;
 
-  if (!product || isNaN(price) || isNaN(qty) || qty <= 0) {
-    alert("Enter valid product, price, and quantity");
-    return;
-  }
+  if (!product) {
+    alert("Please enter a product name.");
+    return false;
+}
+
+if (isNaN(price) || price <= 0) {
+    alert("Please enter a valid price greater than 0.");
+    return false;
+}
+
+if (isNaN(qty) || qty <= 0) {
+    alert("Please enter a valid quantity greater than 0.");
+    return false;
+}
+
+if (isNaN(discount) || discount < 0) {
+    alert("Please enter a valid discount (0 or greater).");
+    return false;
+}
+// If all validations pass, you can proceed
 
   // Apply discount
   let total = price * qty;

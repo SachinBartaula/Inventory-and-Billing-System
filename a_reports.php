@@ -30,39 +30,6 @@
             echo "Error deleting record: " . $conn->error;
         }
     }
-    // -----------------------------edit bills-------------------------
-    // if(isset($_POST["billing_update"])) {
-
-    //     // Get data from form
-    //     $id              = intval($_POST["s_id"]);  // <-- get the record ID
-    //   $ProductName     = $_POST["product_name"];
-    // $Price           = intval($_POST["product_price"]);
-    // $Quantity        = intval($_POST["product_quantity"]);
-    // $Category        = $_POST["product_category"];
-    // $discount        = intval($_POST["discount"]);
-    // $salesDate         = $_POST["salse_date"];
-    // $customername       =$_POST["customer_name"];
-    // // $customerphone     =$_POST["customer_phone"];
-
-    //     // Update query
-    //  $sql = "UPDATE sales 
-    //         SET productname = '$ProductName',
-    //             s_price = $Price,
-    //             s_quantity = $Quantity,
-    //             s_category = '$Category',
-    //             discount = $discount,
-    //             salseon = '$salesDate',
-    //             customername = '$customername'
-    //             -- customer_id = '$customerphone'
-    //         WHERE s_id = $id";
-    //     $result = $conn->query($sql);
-    //     if ($result) {
-    //         echo "<script>alert('Record updated successfully'); window.location='a_reports.php';</script>";
-    //         exit();
-    //     } else {
-    //         echo "Error updating record: " . $conn->error;
-    //     }
-    // }
 
     ?>
   <!DOCTYPE html>
@@ -72,14 +39,14 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>IBS</title>
-      <!-- jQuery (MUST be loaded first) -->
-      <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
-      <!-- DataTables CSS -->
-      <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.dataTables.min.css">
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-      <!-- DataTables JS -->
-      <script src="https://cdn.datatables.net/2.3.5/js/dataTables.min.js"></script>
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
       <!-- <link rel="stylesheet" href="Styles.css"> -->
       <link rel="stylesheet" href="Styles.css?v=<?php echo time(); ?>">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><!--icon connect garni*/-->

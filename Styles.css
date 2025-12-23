@@ -1053,3 +1053,11 @@ margin-right: 8vw;
     font-size: large;
 
 }
+table.dataTable #mytable{
+    width: 120% !important;
+    table-layout: auto; /* lets columns adjust automatically */
+}
+table.dataTable {
+    width: 100% !important;
+    table-layout: auto; /* lets columns adjust automatically */
+}

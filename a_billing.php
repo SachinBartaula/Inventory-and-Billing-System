@@ -186,14 +186,14 @@ if (isset($_POST["billing_submit"])) {
 
                 <div class="form-group">
                     <label for="product_price_billing">Price:</label>
-                    <input type="text" id="product_price_billing" placeholder="Price">
+                    <input type="number" id="product_price_billing" placeholder="Price" min="1" >
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
                     <label for="product_quantity_billing">Quantity:</label>
-                    <input type="number" id="product_quantity_billing" value="1">
+                    <input type="number" id="product_quantity_billing" value="1" min="1">
                 </div>
 
                 <div class="form-group">
@@ -214,7 +214,7 @@ if (isset($_POST["billing_submit"])) {
             <div class="form-row">
                 <div class="form-group">
                     <label for="discount_billing">Discount % (optional):</label>
-                    <input type="text" id="discount_billing" value="0">
+                    <input type="number" id="discount_billing" value="0" max="100"min="0">
                 </div>
                 <div class="form-group">
                     <label>Apply Tax:</label>
