@@ -8,7 +8,9 @@ function inventory_validation(e) {
   let productCategory = document.querySelector(
     "select[name='product_category']"
   ).value;
-  let purchasedDate = document.getElementById("purchased_date").value.trim();
+  // let purchasedDate = document.getElementById("purchased_date").value.trim();
+  let purchasedDate = document.getElementById("date").value.trim();
+
 
   // Product name pattern: only letters, 3-50 characters
   const productNamePattern = /^[a-zA-Z]{3,50}$/;
@@ -108,52 +110,48 @@ function inventory_edit_validation(e) {
 
 // Category Form Validation
 
-function category_validation(e) {
+function category_validation() {
   let categoryName = document.getElementById("Category_name").value.trim();
-  let createdOn = document.getElementById("Salse_on").value.trim();
+  let createdOn = document.getElementById("catogary_date").value.trim();
 
-  // Check if empty
+  // Empty check
   if (categoryName === "") {
     alert("Category name cannot be empty");
     document.getElementById("Category_name").focus();
-    e.preventDefault();
     return false;
   }
 
-  // Optional: check length
+  // Length check
   if (categoryName.length < 3) {
     alert("Category name must be at least 3 characters long");
     document.getElementById("Category_name").focus();
-    e.preventDefault();
     return false;
   }
 
   if (categoryName.length > 50) {
     alert("Category name cannot exceed 50 characters");
     document.getElementById("Category_name").focus();
-    e.preventDefault();
     return false;
   }
 
-  // Optional: allow only letters, numbers, and spaces
-  const pattern = /^[a-zA-Z ]+$/;
+  // Letters, numbers, spaces
+  const pattern = /^[a-zA-Z0-9 ]+$/;
   if (!pattern.test(categoryName)) {
-    alert("Category name can only contain letters, numbers, and spaces");
+    alert("Category name can contain only letters, numbers, and spaces");
     document.getElementById("Category_name").focus();
-    e.preventDefault();
     return false;
   }
 
-  // Check created date
+  // Date check
   if (createdOn === "") {
     alert("Created date is required");
-    document.getElementById("Salse_on").focus();
-    e.preventDefault();
+    document.getElementById("catogary_date").focus();
     return false;
   }
 
-  return true; // everything is fine, allow form submission
+  return true; // submit allowed
 }
+
 
 // ---------------------------employee---------------------
 function employee_validation(e) {

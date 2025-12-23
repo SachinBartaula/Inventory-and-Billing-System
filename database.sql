@@ -37,7 +37,8 @@ CREATE TABLE sales (
     subtotal DECIMAL(10,2) NOT NULL,
     tax DECIMAL(10,2) NOT NULL,
     final_total DECIMAL(10,2) NOT NULL,
-    sale_date DATE NOT NULL
+    sale_date DATE NOT NULL,
+    status varchar(50)
 );
 
 CREATE TABLE sales_items (

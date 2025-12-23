@@ -120,6 +120,8 @@ if ($inventory_number != 0) {
     <!--icon connect garni*/-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="main.js"></script>
+        <script src="validation.js"></script>
+
 
 </head>
 
@@ -317,7 +319,8 @@ if ($inventory_number != 0) {
         <!-- -----------------------------category model-------------------- -->
         <div class="category_add" id="category_add">
             <div class="addinventory_bgcolor">
-                <form method="post" onsubmit="return category_validation(event)">
+              <form method="post" onsubmit="return category_validation()">
+
                     <span id="close_category">
                         <span id="close"><a href="a_inventory.php" class="button_link">&times;</a></button></span>
 
@@ -344,7 +347,6 @@ if ($inventory_number != 0) {
             </div>
         </div>
         <!-- ------------------------------------------close------------------------------------------------------------ -->
-        <script src="validation.js"></script>
 
 </body>
 
