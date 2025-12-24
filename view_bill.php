@@ -117,7 +117,7 @@
                      <tr>
                          <td><strong>Inventory & Billing system</strong></td>
                          <td>
-                             <strong>Invoice #:<?php echo  $row['sale_id'] ?></strong> <br>
+                             <strong>Invoice:<?php echo  $row['sale_id'] ?></strong> <br>
                              <strong>Date:<?php echo  $row_show_data['sale_date'] ?></strong> <span></span>
                          </td>
                      </tr>

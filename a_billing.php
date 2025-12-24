@@ -247,7 +247,7 @@ if (isset($_POST["billing_submit"])) {
             <tr>
                 <td><strong>Inventory & Billing system</strong></td>
                 <td>
-                    <strong>Invoice #:</strong> <br>
+                    <strong>Invoice:</strong> <br>
                     <strong>Date:</strong> <span id="date_text"></span>
                 </td>
             </tr>

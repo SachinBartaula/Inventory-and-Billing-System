@@ -22,7 +22,7 @@ window.addEventListener("load", function () {
 //table---------------------------------
 $(document).ready(function() {
     $('#salesTable').DataTable({
-        "order": [[0, "desc"]],
+        "order": [[0, "asc"]],
         "pageLength": 10
     });
 
@@ -31,6 +31,10 @@ $(document).ready(function() {
         "pageLength": 10
     });
      $('#mytable').DataTable({
+        "order": [[0, "asc"]],
+        "pageLength": 10
+    });
+      $('#mytable_customer').DataTable({
         "order": [[0, "asc"]],
         "pageLength": 10
     });
@@ -92,8 +96,8 @@ if (isNaN(qty) || qty <= 0) {
     return false;
 }
 
-if (isNaN(discount) || discount < 0) {
-    alert("Please enter a valid discount (0 or greater).");
+if (isNaN(discount) || discount < 0 || discount > 100) {
+    alert("Please enter a valid discount between 0 and 100.");
     return false;
 }
 // If all validations pass, you can proceed
