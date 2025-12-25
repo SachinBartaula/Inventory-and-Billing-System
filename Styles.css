@@ -129,14 +129,25 @@ footer p {
 
 /*------------------------- Login page css ------------------------------*/
 .form {
-
     border-radius: 15px;
-    width: fit-content;
+    width: 30%;
     background-color: #E0F2FE;
     padding: 30px;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     margin-right: 10vw;
+}
+.form input[type="text"],.form input[type="password"]{
+    background-color: #fefefe;
+    color: #1E293B;
+    border: 2px;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+    width: 100%;
+    margin-top: 5px;
 }
 
 .form h1 {
@@ -144,7 +155,7 @@ footer p {
     font-family: 'Courier New', Courier, monospace;
     display: flex;
     justify-content: center;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
 }
 
 label {
@@ -309,8 +320,9 @@ select:focus {
     height: 18vh;
     margin-top: 4vh;
     display: flex;
-    justify-content: space-around;
-    width: 100%;
+    justify-content: space-between;
+    width: 90%;
+    margin-left: 2vw;
 }
 
 .main_box_heading_dashboard h4 {
@@ -321,7 +333,7 @@ select:focus {
 
 .main_box_heading_dashboard {
     height: 10vh;
-    width: 50vw;
+    width: 40vw;
     Border: 1px;
     border-radius: 15px;
     background-color: #38BDF8;
@@ -351,39 +363,45 @@ select:focus {
     padding: 15px;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
 }
- .content_display{
-    height: auto;
-    /* background-color: #000000; */
+.content_display {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.8rem;
     margin-left: 2vw;
     margin-right: 2vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    margin-bottom: 2vh;
+}
 
- }
-.content_display_container{
+.content_display_container {
     background-color: #38BDF8;
-    /* margin: 2% 0; */
-    height: 15vh;
-    width: 20vw;
-    border: 2px;
+    flex: 1 1 180px;          
+    max-width: 240px;        
+    min-height: 100px;      
+    border-radius: 8px;
     text-align: center;
-    border-radius: 10px;
-    margin-bottom: 4vh;
+    padding: 0.7rem;
+    
 
 }
-.content_display_container p{
-    font-size: 20px;
-    color:white;
-    font-weight: bold;
-    padding: 8px 0;
+.content_display_container p {
+    font-size: clamp(13px, 1.8vw, 16px);
+    color: white;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  
 }
-.content_display_mainContent p{
-    color: #000000;
-    font-size: 40px;
+
+.content_display_mainContent p {
+    color: #000;
+    font-size: clamp(20px, 3.5vw, 32px);
     font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: bold;
 }
+
 .main_body {
     margin-left: 2vw;
     padding: 20px;
@@ -1014,7 +1032,7 @@ margin-right: 8vw;
     background-color: #f9f9f9;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     font-family: Arial, sans-serif;
-        margin-right: 8vw;
+     margin-right: 8vw;
 }
 
 
@@ -1055,6 +1073,6 @@ margin-right: 8vw;
 }
 
 table.dataTable {
-    width: 105% !important;
+    width: 100% !important;
     table-layout: auto; /* lets columns adjust automatically */
 }

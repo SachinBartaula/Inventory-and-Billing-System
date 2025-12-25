@@ -135,7 +135,7 @@ function category_validation() {
   }
 
   // Letters, numbers, spaces
-  const pattern = /^[a-zA-Z][0-9]+$/;
+  const pattern = /^[a-zA-Z]+$/;
   if (!pattern.test(categoryName)) {
     alert("Category name shluld start from letter");
     document.getElementById("Category_name").focus();

@@ -89,15 +89,17 @@ $result = $conn->query($sql);
 $inventory_number = $result->num_rows;
 $total_inventory_amount = 0;
 
+$total_quantity = 0;
 for ($i = 0; $i < $inventory_number; $i++) {
     $row = $result->fetch_assoc();
-    $row_inventory_amount = $row['inv_price'];
+    $row_inventory_amount = $row['inv_price']* $row['inv_quantity'];
     $total_inventory_amount = $total_inventory_amount + $row_inventory_amount;
+    $total_quantity += $row['inv_quantity'];
 }
 
 $average_inventory_amount = 0;
 if ($inventory_number != 0) {
-    $average_inventory_amount = $total_inventory_amount / $inventory_number;
+    $average_inventory_amount =  $total_inventory_amount / $total_quantity;;
 }
 ?>
 <!DOCTYPE html>
@@ -180,19 +182,19 @@ if ($inventory_number != 0) {
         <div class="content_display">
             <div class="content_display_container">
                 <p>No of Items</p>
-                <span class="content_display_mainContent">
+                <span class="content_display_mainContent"><br>
                     <p><?php echo $inventory_number ?></p>
                 </span>
             </div>
             <div class="content_display_container">
                 <p>Average per Items</p>
-                <span class="content_display_mainContent">
+                <span class="content_display_mainContent"><br>
                     <p><?php echo number_format($average_inventory_amount,2)?></p>
                 </span>
             </div>
             <div class="content_display_container">
                 <p>Total Cost</p>
-                <span class="content_display_mainContent">
+                <span class="content_display_mainContent"><br>
                     <p><?php echo number_format($total_inventory_amount) ?></p>
                 </span>
             </div>
@@ -245,9 +247,8 @@ if ($inventory_number != 0) {
                                         . "</tr>";
                                     $sno++;
                                 }
-                            } else {
-
-                                echo "<td colspan=7 style='text-align:center;'>" . "No data found" . "</td>";
+                            }  else{
+                                 echo "<td colspan=7 style='text-align:center;'>" . "No data found" . "</td>";
                             }
 
                             ?>

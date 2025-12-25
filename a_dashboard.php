@@ -84,10 +84,12 @@
 
         <div class="main">
             <div class="main_box_dashboard">
+                 
                 <div class="main_box_heading_dashboard">
                     <h1>Dashboard</h1>
                     <h4><?php echo $_SESSION["username_session"]; ?></h4>
                 </div>
+                
                 <div class="clock">
                     <span id="hrs"></span>
                     <span id="min"></span>
@@ -97,13 +99,13 @@
             </div>
             
             <div class="content_display">
-                <div class="content_display_container"><p>No of Sales</p>
+                <div class="content_display_container"><p>No of Sales</p><br>
                 <span class="content_display_mainContent"><p><?php echo $sales_number ?></p></span>
             </div>
-                <div class="content_display_container"><p>Average per Sales</p>
+                <div class="content_display_container"><p>Average per Sales</p><br>
                 <span class="content_display_mainContent"><p><?php echo number_format($average_sales_amount,2) ?></p></span>
             </div>
-                <div class="content_display_container"><p>Total Revenue</p> 
+                <div class="content_display_container"><p>Total Revenue</p> <br>
                 <span class="content_display_mainContent"><p><?php echo number_format( $total_sales_amount )?></p></span>
             </div>
             </div>
