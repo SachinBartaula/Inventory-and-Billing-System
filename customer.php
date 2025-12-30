@@ -175,15 +175,18 @@
                          <table>
                              <tr>
                                  <td><label for="c_name">Customer Name:</label></td>
-                                 <td><input type="text" id="c_name" placeholder="Customer name" name="c_name" required></td>
+                                 <td><input type="text" id="c_name" placeholder="Customer name" name="c_name" >
+                                 <p class="validation_message"></p></td>
 
                                  <td><label for="c_phone">Phone:</label></td>
-                                 <td><input type="text" id="c_phone" placeholder="Phone number" name="c_phone" required></td>
+                                 <td><input type="text" id="c_phone" placeholder="Phone number" name="c_phone" >
+                                 <p class="validation_message"></p></td>
                              </tr>
 
                              <tr>
                                  <td><label for="c_address">Address:</label></td>
-                                 <td><input type="text" id="c_address" placeholder="Address" name="c_address" required></td>
+                                 <td><input type="text" id="c_address" placeholder="Address" name="c_address" >
+                                 <p class="validation_message"></p></td>
 
                                  <td><label for="customer_created_on">Created on:</label></td>
                                  <td><input type="text" id="date" name="customer_createdOn" readonly></td>

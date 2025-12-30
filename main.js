@@ -74,53 +74,81 @@ document.getElementById("discount_billing").addEventListener("input", calculateT
 
 // -------------------------- ADD ITEM TO INVOICE --------------------------
 let count = 1;
+function showBillingMessageById(id, message) {
+    const input = document.getElementById(id);
+    if (!input) return;
+    let msg = input.parentNode.querySelector(".validation_message");
+    if (!msg) {
+        msg = document.createElement("p");
+        msg.className = "validation_message";
+        input.parentNode.appendChild(msg);
+    }
+    msg.innerText = message;
+}
+
+function clearBillingMessages() {
+    document.querySelectorAll(".validation_message").forEach(msg => msg.innerText = "");
+}
+
 function add_sales() {
-  const product = document.getElementById("product_name").value;
-  const price = parseFloat(document.getElementById("product_price_billing").value);
-  const qty = parseFloat(document.getElementById("product_quantity_billing").value);
-  const discount = parseFloat(document.getElementById("discount_billing").value) || 0;
-  const customer = document.getElementById("customer_name").value;
+    clearBillingMessages();
 
-  if (!product) {
-    alert("Please enter a product name.");
-    return false;
-}
+    const product = document.getElementById("product_name").value.trim();
+    const price = parseFloat(document.getElementById("product_price_billing").value);
+    const qty = parseFloat(document.getElementById("product_quantity_billing").value);
+    const discount = parseFloat(document.getElementById("discount_billing").value) || 0;
+    const customer = document.getElementById("customer_name").value.trim();
 
-if (isNaN(price) || price <= 0) {
-    alert("Please enter a valid price greater than 0.");
-    return false;
-}
+    let isValid = true;
 
-if (isNaN(qty) || qty <= 0) {
-    alert("Please enter a valid quantity greater than 0.");
-    return false;
-}
+    if (!product) {
+        showBillingMessageById("product_name", "Please enter a product name.");
+        isValid = false;
+    }
 
-if (isNaN(discount) || discount < 0 || discount > 100) {
-    alert("Please enter a valid discount between 0 and 100.");
-    return false;
-}
-// If all validations pass, you can proceed
+    if (isNaN(price) || price <= 0) {
+        showBillingMessageById("product_price_billing", "Please enter a valid price greater than 0.");
+        isValid = false;
+    }
 
-  // Apply discount
-  let total = price * qty;
-  if (discount > 0) {
-    total = total - total * (discount / 100);
-  }
-  total = total.toFixed(2);
+    if (isNaN(qty) || qty <= 0) {
+        showBillingMessageById("product_quantity_billing", "Please enter a valid quantity greater than 0.");
+        isValid = false;
+    }
 
-  document.getElementById("customer_name_invoice").innerText = customer;
+    if (isNaN(discount) || discount < 0 || discount > 100) {
+        showBillingMessageById("discount_billing", "Please enter a valid discount between 0 and 100.");
+        isValid = false;
+    }
 
-  const tbody = document.getElementById("invoice_items");
-  tbody.insertAdjacentHTML("beforeend", `<tr>
+    if (!customer) {
+        showBillingMessageById("customer_name", "Please enter a customer name.");
+        isValid = false;
+    }
+
+    if (!isValid) return false; // Stop if validation failed
+
+    // If all validations pass, you can proceed
+
+    // Apply discount
+    let total = price * qty;
+    if (discount > 0) {
+        total = total - total * (discount / 100);
+    }
+    total = total.toFixed(2);
+
+    document.getElementById("customer_name_invoice").innerText = customer;
+
+    const tbody = document.getElementById("invoice_items");
+    tbody.insertAdjacentHTML("beforeend", `<tr>
         <td>${count}</td>
         <td>${product}</td>
         <td>${qty}</td>
         <td>${price.toFixed(2)}</td>
         <td>${total}</td>
     </tr>`);
-  count++;
-  updateTotals();
+    count++;
+    updateTotals();
 }
 
 

@@ -98,8 +98,10 @@ for ($i = 0; $i < $inventory_number; $i++) {
 }
 
 $average_inventory_amount = 0;
-if ($inventory_number != 0) {
-    $average_inventory_amount =  $total_inventory_amount / $total_quantity;;
+if ($total_quantity > 0) {
+    $average_inventory_amount = $total_inventory_amount / $total_quantity;
+} else {
+    $average_inventory_amount = 0; // or null
 }
 ?>
 <!DOCTYPE html>
@@ -262,65 +264,86 @@ if ($inventory_number != 0) {
         <!-- css applied through input attributes -->
         <div class="addinventory" id="addinventory_id">
             <div class="addinventory_bgcolor">
-                <form method="post" onsubmit="return inventory_validation(event)">
+               <form method="post" onsubmit="return inventory_validation(event)">
 
-                    <span id="close"><a href="a_inventory.php" class="button_link">&times;</a></button></span>
-                    <h3>Inventory Items</h3>
-                    <table>
-                        <tr>
-                            <td><label for="product_name">Product Name:</label></td>
-                            <td><input type="text" id="product_name" placeholder="Product Name" name="product_name" required></td>
+    <span id="close">
+        <a href="a_inventory.php" class="button_link">&times;</a>
+    </span>
 
-                            <td><label for="product_price">Price:</label></td>
-                            <td><input type="text" id="product_price" placeholder="Price" name="product_price" required></td>
-                        </tr>
+    <h3>Inventory Items</h3>
 
+    <table>
+        <tr>
+            <td>
+                <label for="product_name">Product Name:</label>
+            </td>
+            <td>
+                <input type="text" id="product_name" placeholder="Product Name" name="product_name">
+                <p class="validation_message" id="validation_product_name"></p>
+            </td>
 
+            <td>
+                <label for="product_price">Price:</label>
+            </td>
+            <td>
+                <input type="text" id="product_price" placeholder="Price" name="product_price" value="1">
+                <p class="validation_message"></p>
+            </td>
+        </tr>
 
-                        <tr>
-                            <td><label for="product_quantity">Quantity:</label></td>
-                            <td><input type="number" id="product_quantity" placeholder="Quantity" name="product_quantity" value="1" required></td>
-                            <td><label for="product_category">Category:</label></td>
-                            <td>
-                                <?php
-                                $sql_category = "SELECT cat_id, category_name FROM  category";
-                                $result_category = $conn->query($sql_category);
-                                ?>
+        <tr>
+            <td>
+                <label for="product_quantity">Quantity:</label>
+            </td>
+            <td>
+                <input type="text" id="product_quantity" placeholder="Quantity" name="product_quantity" value="1">
+                <p class="validation_message"></p>
+            </td>
 
-                                <select name="product_category" required>
-                                    <option value="">Select Category</option>
+            <td>
+                <label for="product_category">Category:</label>
+            </td>
+            <td>
+                <select name="product_category">
+                    <option value="">Select Category</option>
+                    <?php
+                    $sql_category = "SELECT cat_id, category_name FROM category";
+                    $result_category = $conn->query($sql_category);
+                    while ($row = mysqli_fetch_assoc($result_category)) {
+                    ?>
+                        <option value="<?php echo htmlspecialchars($row['category_name']); ?>">
+                            <?php echo htmlspecialchars($row['category_name']); ?>
+                        </option>
+                    <?php } ?>
+                </select>
+                <p class="validation_message"></p>
+            </td>
+        </tr>
 
-                                    <?php
-                                    while ($row = mysqli_fetch_assoc($result_category)) {
-                                    ?>
-                                        <option value="<?php echo htmlspecialchars($row['category_name']); ?>">
-                                            <?php echo htmlspecialchars($row['category_name']); ?>
-                                        </option>
-                                    <?php
-                                    }
-                                    ?>
-                            </td>
-                        </tr>
+        <tr>
+            <td>
+                <label for="purchased_date">Purchased on:</label>
+            </td>
+            <td>
+                <input type="date" id="date" name="product_purchasedon" readonly>
+                <p class="validation_message"></p>
+            </td>
 
+            <td>
+                <input type="submit" name="inventory_submit" value="Add" class="button_2">
+            </td>
+        </tr>
+    </table>
 
-                        <tr>
+</form>
 
-                        </tr>
-
-                        <tr>
-                            <td><label for="purchased_date">Purchased on:</label></td>
-                            <td><input type="date" id="date" name="product_purchasedon" readonly> </td>
-                            <td><input type="submit" name="inventory_submit" value="Add" class="button_2">
-                            <td>
-                        </tr>
-                    </table>
-                </form>
             </div>
         </div>
         <!-- -----------------------------category model-------------------- -->
         <div class="category_add" id="category_add">
             <div class="addinventory_bgcolor">
-              <form method="post" onsubmit="return category_validation()">
+             <form method="post" onsubmit="return category_validation(event)">
+
 
                     <span id="close_category">
                         <span id="close"><a href="a_inventory.php" class="button_link">&times;</a></button></span>
@@ -332,7 +355,8 @@ if ($inventory_number != 0) {
                     <table>
                         <tr>
                             <td><label for="Category_name">Category:</label></td>
-                            <td><input type="text" id="Category_name" name="category_name" placeholder="Category" required></td>
+                            <td><input type="text" id="Category_name" name="category_name" placeholder="Category" >
+                         <p class="validation_message"></p></td>
                         </tr>
 
                         <tr>
