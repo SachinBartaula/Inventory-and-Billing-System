@@ -52,15 +52,16 @@ body {
 
 #logo {
     color: #000000;
-
     margin-top: 3vh;
-    margin-left: 2vw;
+    margin-left: 4vw;
     margin-right: 2vw;
-    font-size: 35px;
-    height: 15vh;
-    border-bottom: 2px solid #1c1e1e;
+    padding-top: 2.5vh;
+    padding-bottom: 2.5vh;
+    /* font-size: 35px; */
+    /* height: 15vh; */
+    /* border-bottom: 2px solid #1c1e1e; */
     overflow: hidden;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: sans-serif;
     transition: 0.8s;
     overflow-wrap: normal;
 }
@@ -346,24 +347,23 @@ select:focus {
 
 .clock {
     width: 20vw;
+    min-width: 180px; /* prevents too small on mobile */
     height: 10vh;
+    min-height: 70px; /* prevents collapse */
+    
     display: flex;
-    Border: 1px;
-    border-radius: 15px;
     align-items: center;
     justify-content: center;
-    color: #000000;
-    /* font-family: "Segoe UI", sans-serif; */
-     font-family: 'Orbitron', sans-serif;
-    font-size: 40px;
+    border-radius: 15px;
+    color: #000;
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(18px, 3vw, 40px); /* responsive font */
     font-weight: bold;
     letter-spacing: 1px;
-    transition: 0.4s;
     background-color: #38BDF8;
-    padding: 15px;
+    padding: 10px;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-
 }
 .content_display {
     width: 90%;
@@ -1105,5 +1105,191 @@ table.dataTable {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+/* ===================== RESPONSIVE DESIGN ===================== */
+
+/* ----------- Tablets (max width 992px) ----------- */
+@media (max-width: 992px) {
+
+    .sidebar,
+    .sidebar_index {
+        width: 25vw;
+    }
+
+    .main {
+        margin-left: 25vw;
+        width: calc(100vw - 25vw);
+    }
+
+    .container {
+        width: 75vw;
+    }
+
+    .form {
+        width: 60%;
+        margin-right: 0;
+    }
+
+    .main_body {
+        width: 85vw;
+    }
+
+    .main_box_heading {
+        width: 50vw;
+    }
+
+    .clock {
+        width: 30vw;
+        font-size: 28px;
+    }
+
+    .content_display_container {
+        flex: 1 1 45%;
+        max-width: 45%;
+    }
+
+    .invoice-box {
+        margin-top: 5vh;
+    }
+}
+
+
+/* ----------- Mobile Devices (max width 768px) ----------- */
+@media (max-width: 768px) {
+
+    body {
+        flex-direction: column;
+    }
+
+    /* Sidebar becomes top navbar */
+    .sidebar,
+    .sidebar_index {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    #logo {
+        text-align: center;
+        font-size: 24px;
+        height: auto;
+        padding-bottom: 10px;
+    }
+
+    .main {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .main_billing {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .form {
+        width: 90%;
+    }
+
+    .main_body {
+        width: 95%;
+    }
+
+    .main_box_dashboard {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .main_box_heading_dashboard,
+    .main_box_heading {
+        width: 100%;
+    }
+
+    .clock {
+        width: 100%;
+        font-size: 24px;
+    }
+
+    .content_display {
+        flex-direction: column;
+    }
+
+    .content_display_container {
+        max-width: 100%;
+    }
+
+    .billing {
+        max-width: 95%;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .billing_btn_add {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    #total_amount {
+        width: 40%;
+    }
+
+    .amt_view {
+        width: 90%;
+        margin-right: 5%;
+    }
+
+    .invoice-box {
+        margin-top: 5vh;
+        width: 95%;
+    }
+
+    .invoice-box-print {
+        width: 95%;
+    }
+
+    .main_body_table table {
+        font-size: 13px;
+    }
+}
+
+
+/* ----------- Small Mobile (max width 480px) ----------- */
+@media (max-width: 480px) {
+
+    .clock {
+        font-size: 20px;
+    }
+
+    .main_box_heading h4,
+    .main_box_heading_dashboard h4 {
+        font-size: 16px;
+    }
+
+    .content_display_mainContent p {
+        font-size: 20px;
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="number"] {
+        width: 100%;
+    }
+
+    input[type="date"] {
+        width: 100%;
+    }
+
+    #total_amount {
+        width: 60%;
     }
 }
