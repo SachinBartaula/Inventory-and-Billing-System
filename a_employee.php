@@ -89,7 +89,7 @@ if(isset($_POST["employee_submit"])){
             </div>
             
             <div class="main_body_table">
-                <table class="display">
+                <table class="display" id="employeeTable">
                   <thead>
           <tr>
                         <th> S.N </th>
@@ -122,8 +122,8 @@ if ($result->num_rows > 0) {
     }
     else{
         echo "<tr>
-        <td colspan='3' style='text-align:center;'>No data found</td>
-      </tr>";
+            <td colspan='4' style='text-align:center;'>No data found</td>
+          </tr>";
     }
     ?>      
     </tbody>

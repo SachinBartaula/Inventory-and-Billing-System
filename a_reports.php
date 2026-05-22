@@ -127,8 +127,8 @@
                                     $sno++;
                                 }
                             }
-                              else{
-                                 echo "<td colspan=6 style='text-align:center;'>" . "No data found" . "</td>";
+                            else {
+                                 echo "<tr><td colspan='6' style='text-align:center;'>No data found</td></tr>";
                             }
                             ?>
                       </tbody>
@@ -176,8 +176,8 @@
                                     $sno++;
                                 }
                             }
-                              else{
-                                 echo "<td colspan=7 style='text-align:center;'>" . "No data found" . "</td>";
+                            else {
+                                 echo "<tr><td colspan='7' style='text-align:center;'>No data found</td></tr>";
                             }
                             ?>
 

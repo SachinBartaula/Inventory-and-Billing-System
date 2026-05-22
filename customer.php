@@ -112,7 +112,7 @@
 
              <div class="main_body_table">
                  <!-- <table class="customerTable" id="customerTable"> -->
-                 <table class="customerTable" id="mytable_customer">
+                 <table class="display" id="mytable_customer">
                      <thead>
                          <tr>
                              <th>S.N</th>
@@ -148,8 +148,8 @@
                                 }
                             } else {
                                 echo "<tr>
-        <td colspan='3' style='text-align:center;'>No data found</td>
-      </tr>";
+                                    <td colspan='5' style='text-align:center;'>No data found</td>
+                                  </tr>";
                             }
                             ?>
                      </tbody>

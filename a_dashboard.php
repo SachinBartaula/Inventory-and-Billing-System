@@ -146,7 +146,7 @@
                                 
                             }
                             else{
-                                 echo "<td colspan=6 style='text-align:center;'>" . "No data found" . "</td>";
+                                 echo "<tr><td colspan='6' style='text-align:center;'>No data found</td></tr>";
                             }
                             ?>
                         </tbody>

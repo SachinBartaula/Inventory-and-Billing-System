@@ -123,7 +123,7 @@ if (!$sales_result) {
                 <i class="fas fa-print"></i> Print
             </button>
             <div class="main_body_table">
-                <table class="customerTable">
+                <table class="display" id="customerSalesTable">
                     <thead>
 
                         <tr>
@@ -156,7 +156,7 @@ if (!$sales_result) {
                             }
                         } else {
                             echo "<tr>
-                              <td colspan='7' style='text-align:center;'>No data found</td>
+                              <td colspan='6' style='text-align:center;'>No data found</td>
                                 </tr>";
                         }
                         ?>

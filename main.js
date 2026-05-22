@@ -21,22 +21,10 @@ window.addEventListener("load", function () {
 
 //table---------------------------------
 $(document).ready(function() {
-    $('#salesTable').DataTable({
+    $('table.display').DataTable({
         "order": [[0, "asc"]],
-        "pageLength": 10
-    });
-
-    $('#inventoryTable').DataTable({
-        "order": [[0, "asc"]],
-        "pageLength": 10
-    });
-     $('#mytable').DataTable({
-        "order": [[0, "asc"]],
-        "pageLength": 10
-    });
-      $('#mytable_customer').DataTable({
-        "order": [[0, "asc"]],
-        "pageLength": 10
+        "pageLength": 10,
+        "autoWidth": false
     });
 });
 
