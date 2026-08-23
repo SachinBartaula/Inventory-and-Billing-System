@@ -78,7 +78,7 @@ if(isset($_POST["employee_submit"])){
          <div class="main_box">
             <div class="main_box_heading">
                 <h1>Employee</h1>
-                <h4>Admin</h4>
+                <h4><?php echo $_SESSION["username_session"]; ?></h4>
                 </div>
             </div>
         <div class="main_body">

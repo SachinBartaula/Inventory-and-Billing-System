@@ -101,8 +101,51 @@ $average_inventory_amount = 0;
 if ($total_quantity > 0) {
     $average_inventory_amount = $total_inventory_amount / $total_quantity;
 } else {
-    $average_inventory_amount = 0; // or null
+    $average_inventory_amount = 0;
 }
+
+
+// ================= INVENTORY CHART DATA =================
+
+// Category-wise quantity
+$category_sql = "
+    SELECT inv_category, SUM(inv_quantity) AS total_quantity
+    FROM inventory
+    GROUP BY inv_category
+    ORDER BY total_quantity DESC
+";
+
+$category_result = $conn->query($category_sql);
+
+$category_names = [];
+$category_quantities = [];
+$category_costs = [];
+
+if ($category_result) {
+    while ($category_row = $category_result->fetch_assoc()) {
+        $category_names[] = $category_row['inv_category'];
+        $category_quantities[] = (int)$category_row['total_quantity'];
+    }
+}
+
+
+// Category-wise inventory cost
+$cost_sql = "
+    SELECT inv_category,
+           SUM(inv_price * inv_quantity) AS total_cost
+    FROM inventory
+    GROUP BY inv_category
+    ORDER BY total_cost DESC
+";
+
+$cost_result = $conn->query($cost_sql);
+
+if ($cost_result) {
+    while ($cost_row = $cost_result->fetch_assoc()) {
+        $category_costs[] = (float)$cost_row['total_cost'];
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -121,6 +164,7 @@ if ($total_quantity > 0) {
     <script src="https://cdn.datatables.net/2.3.5/js/dataTables.min.js"></script>
     <!-- <link rel="stylesheet" href="Styles.css"> -->
     <link rel="stylesheet" href="Styles.css?v=<?php echo time(); ?>">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!--icon connect garni*/-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="main.js"></script>
@@ -201,6 +245,56 @@ if ($total_quantity > 0) {
                 </span>
             </div>
         </div>
+
+        <!-- ================= INVENTORY CHARTS ================= -->
+
+        <div class="dashboard_charts">
+
+            <!-- BAR CHART -->
+            <div class="chart_card">
+
+                <div class="chart_card_header">
+
+                    <div>
+                        <h2>Inventory by Category</h2>
+                        <p>Total inventory cost for each category</p>
+                    </div>
+
+                    <i class="fa-solid fa-chart-column"></i>
+
+                </div>
+
+                <div class="chart_canvas_wrap">
+                    <canvas id="inventoryBarChart"></canvas>
+                </div>
+
+            </div>
+
+
+            <!-- PIE CHART -->
+            <div class="chart_card">
+
+                <div class="chart_card_header">
+
+                    <div>
+                        <h2>Quantity Distribution</h2>
+                        <p>Inventory quantity by category</p>
+                    </div>
+
+                    <i class="fa-solid fa-chart-pie"></i>
+
+                </div>
+
+                <div class="chart_canvas_wrap chart_canvas_pie">
+                    <canvas id="inventoryPieChart"></canvas>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================= END INVENTORY CHARTS ================= -->
+
         <div class="main_body">
             <div class="display_inventory">
                 <h2 id="main_body_heading">Inventory</h2>
@@ -371,6 +465,209 @@ if ($total_quantity > 0) {
             </div>
         </div>
         <!-- ------------------------------------------close------------------------------------------------------------ -->
+
+
+<script>
+
+// =====================================================
+// INVENTORY BAR CHART
+// =====================================================
+
+new Chart(document.getElementById('inventoryBarChart'), {
+
+    type: 'bar',
+
+    data: {
+        labels: <?php echo json_encode($category_names); ?>,
+
+        datasets: [{
+            label: 'Inventory Cost',
+
+            data: <?php echo json_encode($category_costs); ?>,
+
+            backgroundColor: 'rgba(76, 95, 224, 0.78)',
+
+            borderColor: '#4C5FE0',
+
+            borderWidth: 1,
+
+            borderRadius: 8,
+
+            maxBarThickness: 42
+        }]
+    },
+
+    options: {
+
+        responsive: true,
+
+        maintainAspectRatio: false,
+
+        plugins: {
+
+            legend: {
+                display: false
+            },
+
+            tooltip: {
+
+                callbacks: {
+
+                    label: function(context) {
+
+                        return ' Cost: ' +
+                            Number(context.raw).toLocaleString();
+
+                    }
+
+                }
+
+            }
+
+        },
+
+        scales: {
+
+            x: {
+
+                grid: {
+                    display: false
+                },
+
+                ticks: {
+                    color: '#5A6488'
+                }
+
+            },
+
+            y: {
+
+                beginAtZero: true,
+
+                grid: {
+                    color: '#EAEEF7'
+                },
+
+                ticks: {
+
+                    color: '#5A6488',
+
+                    callback: function(value) {
+                        return Number(value).toLocaleString();
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+});
+
+
+// =====================================================
+// INVENTORY PIE CHART
+// =====================================================
+
+new Chart(document.getElementById('inventoryPieChart'), {
+
+    type: 'pie',
+
+    data: {
+
+        labels: <?php echo json_encode($category_names); ?>,
+
+        datasets: [{
+
+            label: 'Quantity',
+
+            data: <?php echo json_encode($category_quantities); ?>,
+
+            backgroundColor: [
+                '#4C5FE0',
+                '#EFA22E',
+                '#48A868',
+                '#D65B76',
+                '#6B7280',
+                '#8B5CF6',
+                '#0EA5E9',
+                '#F97316'
+            ],
+
+            borderColor: '#FFFFFF',
+
+            borderWidth: 3,
+
+            hoverOffset: 8
+
+        }]
+
+    },
+
+    options: {
+
+        responsive: true,
+
+        maintainAspectRatio: false,
+
+        plugins: {
+
+            legend: {
+
+                position: 'bottom',
+
+                labels: {
+
+                    usePointStyle: true,
+
+                    padding: 18,
+
+                    color: '#5A6488'
+
+                }
+
+            },
+
+            tooltip: {
+
+                callbacks: {
+
+                    label: function(context) {
+
+                        const total =
+                            context.dataset.data.reduce(
+                                (a, b) => Number(a) + Number(b),
+                                0
+                            );
+
+                        const value = Number(context.raw);
+
+                        const percentage = total > 0
+                            ? ((value / total) * 100).toFixed(1)
+                            : 0;
+
+                        return context.label +
+                            ': ' +
+                            value +
+                            ' items (' +
+                            percentage +
+                            '%)';
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+});
+
+</script>
 
 </body>
 

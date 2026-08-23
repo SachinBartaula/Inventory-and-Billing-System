@@ -1,4 +1,4 @@
-    <?php
+<?php
     session_start();
     if (!isset($_SESSION["username_session"]) || $_SESSION["role_session"] !== "admin") {
         header("Location: index.php");
@@ -28,6 +28,27 @@
                                 
                             }
                            
+
+                            // Chart data
+                            $monthly_sql = "SELECT DATE_FORMAT(sale_date, '%Y-%m') AS sale_month, SUM(final_total) AS monthly_revenue FROM sales GROUP BY DATE_FORMAT(sale_date, '%Y-%m') ORDER BY sale_month ASC";
+                            $monthly_result = $conn->query($monthly_sql);
+                            $chart_months = [];
+                            $chart_revenue = [];
+                            if ($monthly_result) {
+                                while ($monthly_row = $monthly_result->fetch_assoc()) {
+                                    $chart_months[] = date("M Y", strtotime($monthly_row['sale_month'] . "-01"));
+                                    $chart_revenue[] = (float)$monthly_row['monthly_revenue'];
+                                }
+                            }
+
+                            $total_tax = 0;
+                            $tax_result = $conn->query("SELECT COALESCE(SUM(tax), 0) AS total_tax FROM sales");
+                            if ($tax_result) {
+                                $tax_row = $tax_result->fetch_assoc();
+                                $total_tax = (float)$tax_row['total_tax'];
+                            }
+                            $net_revenue = max(0, (float)$total_sales_amount - $total_tax);
+
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -56,6 +77,7 @@
 
         <!-- google font -->
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     </head>
 
@@ -110,6 +132,25 @@
             </div>
             </div>
 
+
+            <div class="dashboard_charts">
+                <div class="chart_card">
+                    <div class="chart_card_header">
+                        <div><h2>Monthly Revenue</h2><p>Revenue generated from sales each month</p></div>
+                        <i class="fa-solid fa-chart-column"></i>
+                    </div>
+                    <div class="chart_canvas_wrap"><canvas id="monthlyRevenueChart"></canvas></div>
+                </div>
+
+                <div class="chart_card">
+                    <div class="chart_card_header">
+                        <div><h2>Revenue Breakdown</h2><p>Net revenue compared with tax</p></div>
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+                    <div class="chart_canvas_wrap chart_canvas_pie"><canvas id="revenueBreakdownChart"></canvas></div>
+                </div>
+            </div>
+
             <div class="main_body">
                 <h2 id="main_body_heading">Sales</h2>
                 <div class="main_body_table">
@@ -154,6 +195,70 @@
                 </div>
             </div>
         </div>
+
+
+        <script>
+        new Chart(document.getElementById('monthlyRevenueChart'), {
+            type: 'bar',
+            data: {
+                labels: <?php echo json_encode($chart_months); ?>,
+                datasets: [{
+                    label: 'Revenue',
+                    data: <?php echo json_encode($chart_revenue); ?>,
+                    backgroundColor: 'rgba(76, 95, 224, 0.78)',
+                    borderColor: '#4C5FE0',
+                    borderWidth: 1,
+                    borderRadius: 8,
+                    maxBarThickness: 42
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { grid: { display: false }, ticks: { color: '#5A6488' } },
+                    y: { beginAtZero: true, grid: { color: '#EAEEF7' },
+                        ticks: { color: '#5A6488', callback: value => Number(value).toLocaleString() }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('revenueBreakdownChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Net Revenue', 'Tax'],
+                datasets: [{
+                    data: [<?php echo json_encode($net_revenue); ?>, <?php echo json_encode($total_tax); ?>],
+                    backgroundColor: ['#4C5FE0', '#EFA22E'],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 3,
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { usePointStyle: true, padding: 18, color: '#5A6488' }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const total = context.dataset.data.reduce((a,b) => Number(a)+Number(b), 0);
+                                const value = Number(context.raw);
+                                const pct = total ? ((value / total) * 100).toFixed(1) : 0;
+                                return context.label + ': ' + value.toLocaleString() + ' (' + pct + '%)';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        </script>
 
     </body>
 
